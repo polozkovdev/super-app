@@ -14,12 +14,8 @@ const BottomMenu = ({ nav, currentRoute }: IBottomMenuProps) => {
 	const { bottom } = useSafeAreaInsets()
 	return (
 		<View
+			className='w-full flex-row items-center pt-5 justify-around'
 			style={{
-				paddingTop: 5,
-				flexDirection: "row",
-				justifyContent: "space-between",
-				alignItems: "center",
-				width: "100%",
 				paddingBottom: bottom + 10,
 				backgroundColor: AppConstants.primaryBackground
 			}}
