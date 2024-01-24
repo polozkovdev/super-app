@@ -14,19 +14,24 @@ const BottomMenu = ({ nav, currentRoute }: IBottomMenuProps) => {
 	const { bottom } = useSafeAreaInsets()
 	return (
 		<View
-			className='w-full flex-row items-center pt-5 justify-around'
+			className='w-full flex-row items-center pt-5 justify-around h-[80]'
 			style={{
-				paddingBottom: bottom + 10,
+				paddingBottom: bottom + 6,
 				backgroundColor: AppConstants.primaryBackground
 			}}
 		>
-			{menuData.map(item => (
-				<MenuItem
-					key={item.path}
-					item={item}
-					nav={nav}
-					currentRoute={currentRoute}
-				/>
+			{menuData.map((item, index) => (
+				<>
+					<MenuItem
+						key={item.path}
+						item={item}
+						nav={nav}
+						currentRoute={currentRoute}
+					/>
+					{index + 1 !== menuData.length && (
+						<View className='h-[40] w-[1] bg-primary opacity-25' />
+					)}
+				</>
 			))}
 		</View>
 	)

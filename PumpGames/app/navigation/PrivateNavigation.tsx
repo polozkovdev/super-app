@@ -19,7 +19,13 @@ const PrivateNavigation = () => {
 			}}
 		>
 			{routes.map(route => {
-				return <Stack.Screen key={route.name} {...route} />
+				return (
+					<Stack.Screen
+						key={route.name}
+						name={route.name}
+						component={route.component}
+					/>
+				)
 			})}
 		</Stack.Navigator>
 	)

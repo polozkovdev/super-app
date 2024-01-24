@@ -1,6 +1,6 @@
-import { IMenuInterface } from "@/components/ui/layout/menu.interface"
+import { IMenuItem } from "@/components/ui/layout/menu.interface"
 
-export const menuData: IMenuInterface[] = [
+export const menuData: IMenuItem[] = [
 	{
 		path: "Today",
 		text: "Today",

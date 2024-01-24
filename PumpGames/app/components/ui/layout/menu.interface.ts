@@ -1,6 +1,6 @@
 import { TypeRootStackParamList } from "@/navigation/navigation.types"
 
-export interface IMenuInterface {
+export interface IMenuItem {
 	path: keyof TypeRootStackParamList
 	text: string
 	icon: {
