@@ -2,8 +2,8 @@ import { GAMES_URI } from "@/constants/app.constants"
 import WebViewProvider from "@/providers/WebViewProvider"
 import React from "react"
 
-const BlockDocku = () => {
-	return <WebViewProvider uri={GAMES_URI.BlockDocku} />
+const Man = () => {
+	return <WebViewProvider uri={GAMES_URI.Man} />
 }
 
-export default BlockDocku
+export default Man

@@ -7,9 +7,14 @@ export type TypeRootStackParamList = {
 	Puzzles: undefined
 	Tests: undefined
 	Profile: undefined
+
+	// games
+	BlockDocku: undefined
+	Man: undefined
 }
 
 export interface IRoute {
 	name: keyof TypeRootStackParamList
 	component: ComponentType
+	isHidden?: boolean
 }
