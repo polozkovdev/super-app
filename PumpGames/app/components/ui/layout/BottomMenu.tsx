@@ -21,17 +21,15 @@ const BottomMenu = ({ nav, currentRoute }: IBottomMenuProps) => {
 			}}
 		>
 			{menuData.map((item, index) => (
-				<>
-					<MenuItem
-						key={item.path}
-						item={item}
-						nav={nav}
-						currentRoute={currentRoute}
-					/>
+				<View
+					key={item.path}
+					className='flex-row items-center justify-around gap-1'
+				>
+					<MenuItem item={item} nav={nav} currentRoute={currentRoute} />
 					{index + 1 !== menuData.length && (
 						<View className='h-[40] w-[1] bg-primary opacity-25' />
 					)}
-				</>
+				</View>
 			))}
 		</View>
 	)
