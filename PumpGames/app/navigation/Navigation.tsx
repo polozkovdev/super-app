@@ -23,11 +23,9 @@ const Navigation = () => {
 		}
 	}, [])
 	return (
-		<>
-			<NavigationContainer ref={navRef}>
-				<PrivateNavigation currentRoute={currentRoute} />
-			</NavigationContainer>
-		</>
+		<NavigationContainer ref={navRef}>
+			<PrivateNavigation currentRoute={currentRoute} />
+		</NavigationContainer>
 	)
 }
 export default Navigation

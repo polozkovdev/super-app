@@ -8,9 +8,9 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 	children
 }) => {
 	return (
-		<View className='items-center object-center'>
+		<View className='flex-row justify-center'>
 			<TouchableOpacity
-				className={`flex-row items-center justify-center gap-1 mt-72 bg-white max-w-[340] w-full h-[55] rounded-3xl border-[1px] border-[black]/10 shadow-[black]/10 shadow-sm`}
+				className={`flex-row items-center justify-center gap-1 bg-white max-w-[340] w-full h-[55] rounded-3xl border-[1px] border-[black]/10 shadow-[black]/10 shadow-sm`}
 				onPress={onPress}
 			>
 				<Text className='font-semibold text-primary text-lg mb-1'>

@@ -1,4 +1,4 @@
-import { menuData } from "@/components/ui/layout/menu.data"
+import { menuData } from "@/components/ui/layout/bottomMenu/menu.data"
 import { AppConstants } from "@/constants/app.constants"
 import { useAuth } from "@/hooks/useAuth"
 import { TypeRootStackParamList } from "@/navigation/navigation.types"
@@ -36,9 +36,14 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 							</View>
 						)
 					},
+					headerShown: false,
 					tabBarShowLabel: false,
 					tabBarHideOnKeyboard: true,
+					tabBarItemStyle: { height: 80 },
 					tabBarStyle: {
+						height: 80,
+						borderTopWidth: 0,
+
 						backgroundColor: AppConstants.primaryBackground
 					}
 				}

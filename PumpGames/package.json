@@ -17,6 +17,7 @@
     "@tanstack/react-query": "^5.17.19",
     "expo": "~50.0.2",
     "expo-gl": "~13.6.0",
+    "expo-google-fonts": "^0.0.0",
     "expo-splash-screen": "~0.26.3",
     "expo-status-bar": "~1.11.1",
     "nativewind": "^2.0.11",
@@ -28,7 +29,8 @@
     "react-native-svg": "14.1.0",
     "react-native-web": "^0.19.10",
     "react-native-webview": "13.6.4",
-    "react-unity-webgl": "^9.5.0"
+    "react-unity-webgl": "^9.5.0",
+    "expo-font": "~11.10.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

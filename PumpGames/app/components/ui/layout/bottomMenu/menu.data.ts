@@ -1,4 +1,4 @@
-import { IMenuItem } from "@/components/ui/layout/menu.interface"
+import { IMenuItem } from "@/components/ui/layout/bottomMenu/menu.interface"
 
 export const menuData: IMenuItem[] = [
 	{

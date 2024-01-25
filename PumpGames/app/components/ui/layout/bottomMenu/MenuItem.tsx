@@ -1,4 +1,7 @@
-import { IMenuItem, TypeNav } from "@/components/ui/layout/menu.interface"
+import {
+	IMenuItem,
+	TypeNav
+} from "@/components/ui/layout/bottomMenu/menu.interface"
 import { AppConstants } from "@/constants/app.constants"
 import React from "react"
 import { Pressable, Text, View } from "react-native"
