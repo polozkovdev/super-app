@@ -77,6 +77,7 @@ const Games = ({ navigation }: any) => {
 								Other problem
 							</Text>
 						</View>
+						<View className='flex-1 h-[50] w-full' />
 					</View>
 				</Layout>
 			</ScrollView>
