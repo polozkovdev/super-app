@@ -13,7 +13,7 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 }) => {
 	return (
 		<View
-			className='flex-1 pt-[11] pb-[6] pl-[10] pr-[10]'
+			className='flex-1 pt-[16] pb-[16] pl-[12] pr-[12]'
 			style={{
 				backgroundColor: AppConstants.primaryBackground
 			}}
