@@ -6,6 +6,7 @@ import BlockDocku from "@/games/BlockDocku/BlockDocku"
 import Cars from "@/games/Cars/Cars"
 import Man from "@/games/Man/Man"
 import BlickPuzzle from "@/games/native/BlickPuzzle"
+import Test from "@/games/Test/Test"
 import { IRoute } from "@/navigation/navigation.types"
 
 export const routes: IRoute[] = [
@@ -43,5 +44,9 @@ export const games: IRoute[] = [
 	{
 		name: "BlickPuzzle",
 		component: BlickPuzzle
+	},
+	{
+		name: "Test",
+		component: Test
 	}
 ]

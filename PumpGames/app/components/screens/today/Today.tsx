@@ -14,16 +14,20 @@ const Today = ({ navigation }: any) => {
 						children='Start playing BlockDocku'
 					/>
 				</View>
-				<Button
-					isArrow
-					onPress={() => navigation.navigate("Man")}
-					children='Start playing Man'
-				/>
-				<Button
-					isArrow
-					onPress={() => navigation.navigate("BlickPuzzle")}
-					children='Start playing BlickPuzzle'
-				/>
+				<View className='mb-6'>
+					<Button
+						isArrow
+						onPress={() => navigation.navigate("Man")}
+						children='Start playing Man'
+					/>
+				</View>
+				<View className='mb-6'>
+					<Button
+						isArrow
+						onPress={() => navigation.navigate("BlickPuzzle")}
+						children='Start playing BlickPuzzle'
+					/>
+				</View>
 			</View>
 		</Layout>
 	)

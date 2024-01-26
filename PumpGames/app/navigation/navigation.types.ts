@@ -14,6 +14,7 @@ export type TypeRootStackParamList = {
 	Game: undefined
 	Cars: undefined
 	BlickPuzzle: undefined
+	Test: undefined
 }
 
 export interface IRoute {
