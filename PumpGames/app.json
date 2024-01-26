@@ -4,12 +4,16 @@
     "slug": "PumpGames",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ui/logo_mini.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/ui/logo_mini.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#F8F4E8"
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#F8F4E8",
+      "translucent": false
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,13 +23,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/ui/logo_mini.png",
+        "backgroundColor": "#F8F4E8"
       },
       "package": "com.rpalazkou.PumpGames"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/ui/logo_mini.png"
     },
     "extra": {
       "eas": {
