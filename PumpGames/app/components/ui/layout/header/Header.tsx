@@ -12,9 +12,9 @@ const Header = () => {
 				/>
 			</View>
 			<View className='flex-row items-center justify-center h-8 gap-3'>
-				<View className='flex-row gap-2 rounded-full items-center justify-center px-2 bg-[#FF6400]/10 h-full'>
+				<View className='flex-row rounded-full items-center justify-center px-3 self-center bg-[#FF6400]/10 h-full'>
 					<Image
-						className='w-4 h-4 '
+						className='w-4 h-4 mr-1'
 						resizeMode='contain'
 						source={require("@/assets/ui/fire.png")}
 					/>
