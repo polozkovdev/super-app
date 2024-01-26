@@ -19,6 +19,11 @@ const Today = ({ navigation }: any) => {
 					onPress={() => navigation.navigate("Man")}
 					children='Start playing Man'
 				/>
+				<Button
+					isArrow
+					onPress={() => navigation.navigate("BlickPuzzle")}
+					children='Start playing BlickPuzzle'
+				/>
 			</View>
 		</Layout>
 	)

@@ -11,6 +11,9 @@ export type TypeRootStackParamList = {
 	// games
 	BlockDocku: undefined
 	Man: undefined
+	Game: undefined
+	Cars: undefined
+	BlickPuzzle: undefined
 }
 
 export interface IRoute {
