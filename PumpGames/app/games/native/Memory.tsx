@@ -10,7 +10,7 @@ import {
 } from "react-native"
 
 const screenWidth = Dimensions.get("window").width
-const cardSize = (screenWidth - 40) / 4
+const cardSize = Math.floor((screenWidth - 80) / 4)
 export const shuffle = (array: string[]) => {
 	let currentIndex = array.length,
 		temporaryValue,
@@ -53,9 +53,11 @@ const rank1stars = symbols.length + 10
 const gameCardsQTY = symbols.length
 const delay = 800
 
-const BlickPuzzle = () => {
+const Memory = () => {
 	const [cards, setCards] = useState(shuffle([...symbols]))
-	const [animation] = useState(new Animated.Value(0))
+	const [animations, setAnimations] = useState(
+		cards.map(() => new Animated.Value(0))
+	)
 	const [opened, setOpened] = useState<number[]>([])
 	const [matched, setMatched] = useState<number[]>([])
 	const [moves, setMoves] = useState(0)
@@ -64,23 +66,30 @@ const BlickPuzzle = () => {
 		initGame()
 	}, [])
 
-	const animatePress = () => {
-		Animated.timing(animation, {
+	const animatePress = (index: number) => {
+		Animated.timing(animations[index], {
 			toValue: 1,
 			duration: 300,
 			useNativeDriver: true
 		}).start()
 	}
 
-	const animatedStyles = {
-		transform: [
-			{
-				rotateY: animation.interpolate({
-					inputRange: [0, 1],
-					outputRange: ["0deg", "180deg"]
-				})
-			}
-		]
+	const animatedStyles = (index: number) => {
+		if (opened[index]) {
+			console.log("is opened")
+			console.log("i", index)
+			console.log("card", cards[index])
+		}
+		return {
+			transform: [
+				{
+					rotateY: animations[index].interpolate({
+						inputRange: [0, 1],
+						outputRange: ["0deg", "180deg"]
+					})
+				}
+			]
+		}
 	}
 
 	const initGame = () => {
@@ -88,6 +97,7 @@ const BlickPuzzle = () => {
 		setOpened([])
 		setMatched([])
 		setMoves(0)
+		setAnimations(cards.map(() => new Animated.Value(0)))
 	}
 
 	const setRating = (moves: number) => {
@@ -111,7 +121,7 @@ const BlickPuzzle = () => {
 	}
 
 	const handleCardPress = (index: number) => {
-		animatePress()
+		animatePress(index)
 
 		if (matched.includes(index)) return
 
@@ -134,7 +144,7 @@ const BlickPuzzle = () => {
 			} else {
 				setTimeout(() => {
 					setOpened([])
-				}, delay / 1.5)
+				}, 500)
 			}
 
 			setMoves(moves + 1)
@@ -162,7 +172,7 @@ const BlickPuzzle = () => {
 							styles.card,
 							opened.includes(index) && styles.openedCard,
 							matched.includes(index) && styles.matchedCard,
-							opened.includes(index) && animatedStyles
+							animatedStyles(index)
 						]}
 						onPress={() => handleCardPress(index)}
 					>
@@ -215,7 +225,7 @@ const styles = StyleSheet.create({
 		margin: 0,
 		backgroundColor: "#FFFA62",
 		padding: 16,
-		gap: 2,
+		gap: 8,
 		borderRadius: 10,
 		flexDirection: "row",
 		alignItems: "center",
@@ -246,4 +256,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default BlickPuzzle
+export default Memory

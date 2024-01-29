@@ -1,5 +1,7 @@
 import { ComponentType } from "react"
 
+export type CATEGORY_TYPES = "Solving" | "Memory" | "Focus" | "Relax"
+
 export type TypeRootStackParamList = {
 	Auth: undefined
 	Today: undefined
@@ -13,7 +15,7 @@ export type TypeRootStackParamList = {
 	Man: undefined
 	Game: undefined
 	Cars: undefined
-	BlickPuzzle: undefined
+	Memory: undefined
 	Test: undefined
 }
 
@@ -21,4 +23,11 @@ export interface IRoute {
 	name: keyof TypeRootStackParamList
 	component: ComponentType
 	isHidden?: boolean
+}
+
+export interface IGame {
+	name: string
+	component: ComponentType
+	isHidden?: boolean
+	category: CATEGORY_TYPES
 }

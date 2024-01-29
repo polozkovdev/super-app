@@ -66,15 +66,15 @@ const Games = ({ navigation }: any) => {
 						/>
 						<TouchableOpacity
 							className='mb-[10]'
-							onPress={() => navigation.navigate("BlickPuzzle")}
+							onPress={() => navigation.navigate("Memory")}
 						>
 							<Text className='text-center text-[30px] text-primary font-semibold'>
-								Blick Puzzle Game
+								Word Search
 							</Text>
 						</TouchableOpacity>
 						<View className='mb-[20]'>
 							<Text className='text-center text-[24px] text-accent'>
-								Other problem
+								Memory
 							</Text>
 						</View>
 						<View className='flex-1 h-[50] w-full' />

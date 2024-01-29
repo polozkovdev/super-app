@@ -5,7 +5,7 @@ import Today from "@/components/screens/today/Today"
 import BlockDocku from "@/games/BlockDocku/BlockDocku"
 import Cars from "@/games/Cars/Cars"
 import Man from "@/games/Man/Man"
-import BlickPuzzle from "@/games/native/BlickPuzzle"
+import Memory from "@/games/native/Memory"
 import Test from "@/games/Test/Test"
 import { IRoute } from "@/navigation/navigation.types"
 
@@ -42,8 +42,8 @@ export const games: IRoute[] = [
 		component: Man
 	},
 	{
-		name: "BlickPuzzle",
-		component: BlickPuzzle
+		name: "Memory",
+		component: Memory
 	},
 	{
 		name: "Test",
