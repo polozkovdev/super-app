@@ -12,6 +12,11 @@ module.exports = {
 				primaryBackground: "#F8F4E8",
 				black: "#000000"
 			}
+		},
+		fontFamily: {
+			title: ["DM-SemiBold"],
+			subtitle: ["DM-Medium"],
+			text: ["CP-Regular"]
 		}
 	},
 	plugins: []

@@ -16,6 +16,7 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "@tanstack/react-query": "^5.17.19",
+    "clsx": "^2.1.0",
     "expo": "~50.0.2",
     "expo-font": "~11.10.2",
     "expo-gl": "~13.6.0",
@@ -33,7 +34,8 @@
     "react-native-web": "^0.19.10",
     "react-native-webview": "13.6.4",
     "react-responsive": "^9.0.2",
-    "react-unity-webgl": "^9.5.0"
+    "react-unity-webgl": "^9.5.0",
+    "tailwind-merge": "^2.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -37,7 +37,16 @@
       }
     },
     "plugins": [
-      "expo-font"
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./app/assets/fonts/CrimsonPro-Regular.ttf",
+            "./app/assets/fonts/DMSans_Medium.ttf",
+            "./app/assets/fonts/DMSans_SemiBold.ttf"
+          ]
+        }
+      ]
     ]
   }
 }

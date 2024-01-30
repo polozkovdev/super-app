@@ -30,7 +30,12 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 								>
 									<Path d={menu?.icon.path} />
 								</Svg>
-								<Text className={isActive ? "text-orange" : "text-secondary"}>
+								<Text
+									className={isActive ? "text-orange" : "text-secondary"}
+									style={{
+										fontFamily: "DM-Medium"
+									}}
+								>
 									{menu?.text}
 								</Text>
 							</View>

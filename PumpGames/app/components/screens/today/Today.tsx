@@ -1,5 +1,6 @@
 import Button from "@/components/ui/button/Button"
 import Layout from "@/components/ui/layout/Layout"
+import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
 import React from "react"
 import { Image, ScrollView, Text, View } from "react-native"
@@ -22,15 +23,17 @@ const Today = ({ navigation }: any) => {
 						}}
 					>
 						<View className='mb-[20] w-full'>
-							<Text className='text-center text-[35px] text-primary font-bold'>
-								Today
-							</Text>
+							<TextComponent type='title'>Today</TextComponent>
 						</View>
 						<View className='mb-[20] w-full'>
-							<Text className='text-center text-[24px] text-primary'>
-								Your <Text className='italic'>personal</Text> selection of
-								exercises{"\n"} for different brain areas
-							</Text>
+							<TextComponent>
+								Your
+								<Text className='text-center text-[24px] text-secondary -tracking-widest italic font-text'>
+									{" "}
+									personal{" "}
+								</Text>
+								selection of exercises{"\n"} for different brain areas
+							</TextComponent>
 						</View>
 						{/*game 1*/}
 						<Image
@@ -38,15 +41,18 @@ const Today = ({ navigation }: any) => {
 							resizeMode='contain'
 							source={require("@/assets/games/game_1.png")}
 						/>
-						<View className='mb-[10]'>
-							<Text className='text-center text-[30px] text-primary font-semibold'>
+						<View className='mb-[4]'>
+							<TextComponent
+								type='title'
+								className='text-[30px] text-primary font-subtitle'
+							>
 								Robotic Flows
-							</Text>
+							</TextComponent>
 						</View>
 						<View className='mb-[20]'>
-							<Text className='text-center text-[24px] text-accent'>
+							<TextComponent className='text-accent'>
 								Problem solving
-							</Text>
+							</TextComponent>
 						</View>
 						<Image
 							className='mb-[30]'
@@ -65,14 +71,14 @@ const Today = ({ navigation }: any) => {
 							source={require("@/assets/games/game_2.png")}
 						/>
 						<View className='mb-[10]'>
-							<Text className='text-center text-[30px] text-primary font-semibold'>
+							<TextComponent type='title' className='text-[30px] font-semibold'>
 								Other game
-							</Text>
+							</TextComponent>
 						</View>
 						<View className='mb-[20]'>
-							<Text className='text-center text-[24px] text-accent'>
+							<TextComponent className='text-accent'>
 								Other problem
-							</Text>
+							</TextComponent>
 						</View>
 						<Image
 							className='mb-[30]'
@@ -91,14 +97,14 @@ const Today = ({ navigation }: any) => {
 							source={require("@/assets/games/game_3.png")}
 						/>
 						<View className='mb-[10]'>
-							<Text className='text-center text-[30px] text-primary font-semibold'>
+							<TextComponent type='title' className='text-[30px] font-semibold'>
 								Other game 3
-							</Text>
+							</TextComponent>
 						</View>
 						<View className='mb-[20]'>
-							<Text className='text-center text-[24px] text-accent'>
+							<TextComponent className='text-accent'>
 								Other problem 3
-							</Text>
+							</TextComponent>
 						</View>
 						<Image
 							className='mb-[30]'

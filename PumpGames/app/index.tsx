@@ -1,5 +1,6 @@
 import Loading from "@/components/screens/loading/Loading"
 import { setPresetScreenHeight } from "@/helpers/scaleHelper"
+import useCachedResources from "@/hooks/useCachedResources"
 import Navigation from "@/navigation/Navigation"
 import React, { useEffect, useState } from "react"
 import { Dimensions } from "react-native"
@@ -11,6 +12,7 @@ import {
 const Wrapper = () => {
 	const insets = useSafeAreaInsets()
 	const frame = useSafeAreaFrame()
+	const isCachedComplete = useCachedResources()
 
 	const [isDone, setIsDone] = useState<boolean>(false)
 	const [isLoading, setIsLoading] = useState(true)
@@ -28,9 +30,11 @@ const Wrapper = () => {
 	const onStartClick = () => {
 		setIsLoading(false)
 	}
-	// return <Navigation />
-
-	// case with load
+	useEffect(() => {
+		if (isCachedComplete) {
+			setIsLoading(false)
+		}
+	}, [isCachedComplete, setIsLoading])
 	return isLoading ? (
 		<Loading isLoading={isLoading} onStart={onStartClick} />
 	) : (
