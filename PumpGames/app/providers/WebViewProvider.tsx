@@ -11,13 +11,25 @@ const WebViewProvider = ({ uri }: IWebViewProviderProps) => {
 
 	const injectedJavaScript = `
     var canvas = document.querySelector('canvas');
-    if (canvas) {
-      canvas.width = ${screenWidth};
-      canvas.style.width = '${screenWidth}px';
-      canvas.style.position = 'absolute';
-    	canvas.style.top = '0';
-    	canvas.style.left = '0';
-    }
+		if (canvas) {
+			var offsetX = 0;
+			var offsetY = 0;
+			var element = canvas;
+	
+			// Traverse up the DOM tree to calculate cumulative offsets
+			while (element) {
+				offsetX += element.offsetLeft;
+				offsetY += element.offsetTop;
+				element = element.offsetParent;
+			}
+	
+			var screenWidth = ${screenWidth};
+			canvas.width = screenWidth;
+			canvas.style.width = screenWidth + 'px';
+			canvas.style.position = 'absolute';
+			canvas.style.top = offsetY + 'px';
+			canvas.style.left = offsetX + 'px';
+		}
   `
 	return (
 		<View style={{ flex: 1 }}>
