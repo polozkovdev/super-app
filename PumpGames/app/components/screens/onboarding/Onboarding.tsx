@@ -5,12 +5,11 @@ import { useSplashScreenHideProcess } from "@/hooks/useSplashScreenProcess"
 import React from "react"
 import { Image, ScrollView, Text, View } from "react-native"
 
-export type ILoadingProps = {
-	isLoading: boolean
+export type IOnboardingProps = {
 	onStart: () => void
 }
 
-const Loading = ({ isLoading, onStart }: ILoadingProps) => {
+const Onboarding = ({ onStart }: IOnboardingProps) => {
 	useSplashScreenHideProcess()
 
 	return (
@@ -88,11 +87,11 @@ const Loading = ({ isLoading, onStart }: ILoadingProps) => {
 						resizeMode='cover'
 						source={require("@/assets/ui/logo_mini.png")}
 					/>
-					<Button children='Start for free' isArrow onPress={() => onStart()} />
+					<Button children='Start for free' isArrow onPress={onStart} />
 				</View>
 			</Layout>
 		</ScrollView>
 	)
 }
 
-export default Loading
+export default Onboarding
