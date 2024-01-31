@@ -1,6 +1,5 @@
 import Button from "@/components/ui/button/Button"
 import Layout from "@/components/ui/layout/Layout"
-import { AppConstants } from "@/constants/app.constants"
 import React from "react"
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native"
 
@@ -8,10 +7,11 @@ const Games = ({ navigation }: any) => {
 	return (
 		<View>
 			<ScrollView
-				style={{ width: "100%", height: "100%" }}
+				className='flex-1'
 				contentContainerStyle={{
-					minHeight: "100%",
-					backgroundColor: AppConstants.primaryBackground
+					flexGrow: 1,
+					justifyContent: "center",
+					alignItems: "center"
 				}}
 			>
 				<Layout>

@@ -1,5 +1,4 @@
 import Header from "@/components/ui/layout/header/Header"
-import { AppConstants } from "@/constants/app.constants"
 import { FC, PropsWithChildren } from "react"
 import { View } from "react-native"
 
@@ -13,9 +12,11 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 }) => {
 	return (
 		<View
-			className='flex-1 pt-[16] pb-[16] pl-[12] pr-[12]'
+			className='pt-[16] pb-[16] pl-[12] pr-[12]'
 			style={{
-				backgroundColor: AppConstants.primaryBackground
+				flex: 1,
+				alignItems: "center",
+				width: "100%"
 			}}
 		>
 			{isHeader && <Header />}

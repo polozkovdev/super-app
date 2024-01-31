@@ -9,19 +9,15 @@ const Today = ({ navigation }: any) => {
 	return (
 		<View>
 			<ScrollView
-				style={{ width: "100%", height: "100%" }}
+				style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}
 				contentContainerStyle={{
-					minHeight: "100%",
-					backgroundColor: AppConstants.primaryBackground
+					flexGrow: 1,
+					justifyContent: "center",
+					alignItems: "center"
 				}}
 			>
 				<Layout>
-					<View
-						className='items-center justify-center'
-						style={{
-							height: "100%"
-						}}
-					>
+					<View style={{ alignItems: "center" }}>
 						<View className='mb-[20] w-full'>
 							<TextComponent type='title'>Today</TextComponent>
 						</View>
