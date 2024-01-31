@@ -2,6 +2,10 @@
 module.exports = {
 	content: ["./App.{js,jsx,ts,tsx}", "./app/**/*.{js,jsx,ts,tsx}"],
 	theme: {
+		letterSpacing: {
+			title: "2px",
+			text: "1px"
+		},
 		extend: {
 			colors: {
 				orange: "#E57300",

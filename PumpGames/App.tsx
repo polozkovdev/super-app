@@ -3,6 +3,8 @@ import Wrapper from "@/index"
 import AuthProvider from "@/providers/AuthProvider"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { StatusBar } from "expo-status-bar"
+// @ts-ignore
+import { NativeWindStyleSheet } from "nativewind"
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 
 const queryClient = new QueryClient()
@@ -27,3 +29,7 @@ export default function App() {
 		</QueryClientProvider>
 	)
 }
+
+NativeWindStyleSheet.setOutput({
+	default: "native"
+})

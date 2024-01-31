@@ -15,8 +15,8 @@ const TextComponent: React.FC<ITextComponentProps> = ({
 }) => {
 	const classname =
 		type === "title"
-			? "text-center text-[35px] text-primary font-bold -tracking-widest font-title"
-			: "text-center text-[24px] text-secondary -tracking-widest font-text"
+			? "text-center text-[35px] leading-[35px] text-primary font-bold -tracking-title font-title"
+			: "text-center text-[24px] leading-[28px] text-secondary -tracking-text font-text"
 	return (
 		<Text className={cn(classname, className)} {...props}>
 			{children}

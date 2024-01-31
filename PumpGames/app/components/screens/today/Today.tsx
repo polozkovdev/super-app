@@ -3,13 +3,13 @@ import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
 import React from "react"
-import { Image, ScrollView, Text, View } from "react-native"
+import { Image, ScrollView, View } from "react-native"
 
 const Today = ({ navigation }: any) => {
 	return (
-		<View>
+		<View style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}>
 			<ScrollView
-				style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}
+				style={{ flex: 1 }}
 				contentContainerStyle={{
 					flexGrow: 1,
 					justifyContent: "center",
@@ -24,16 +24,16 @@ const Today = ({ navigation }: any) => {
 						<View className='mb-[20] w-full'>
 							<TextComponent>
 								Your
-								<Text className='text-center text-[24px] text-secondary -tracking-widest italic font-text'>
+								<TextComponent className='italic text-secondary'>
 									{" "}
 									personal{" "}
-								</Text>
+								</TextComponent>
 								selection of exercises{"\n"} for different brain areas
 							</TextComponent>
 						</View>
 						{/*game 1*/}
 						<Image
-							className='mb-[20] w-4/5'
+							className='mb-[20] w-[200px] h-[200px]'
 							resizeMode='contain'
 							source={require("@/assets/games/game_1.png")}
 						/>
@@ -62,7 +62,7 @@ const Today = ({ navigation }: any) => {
 						/>
 						{/*	game 2*/}
 						<Image
-							className='mb-[20] w-4/5'
+							className='mb-[20] w-[200px] h-[200px]'
 							resizeMode='contain'
 							source={require("@/assets/games/game_2.png")}
 						/>
@@ -88,7 +88,7 @@ const Today = ({ navigation }: any) => {
 						/>
 						{/*	game 2*/}
 						<Image
-							className='mb-[20] w-4/5'
+							className='mb-[20] w-[200px] h-[200px]'
 							resizeMode='contain'
 							source={require("@/assets/games/game_3.png")}
 						/>

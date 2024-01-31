@@ -16,7 +16,7 @@ const Games = ({ navigation }: any) => {
 			>
 				<Layout>
 					<View
-						className='items-center justify-center'
+						className='items-center justify-center w-full'
 						style={{
 							height: "100%"
 						}}
