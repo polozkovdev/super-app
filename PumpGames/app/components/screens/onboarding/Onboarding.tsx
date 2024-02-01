@@ -25,7 +25,19 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 		require("@/assets/games/game_6.png")
 	]
 	return (
-		<View style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}>
+		<View
+			style={{
+				flex: 1,
+				backgroundColor: AppConstants.primaryBackground,
+				position: "relative",
+				maxWidth: 1420,
+				width: "100%",
+				marginTop: 0,
+				marginBottom: 0,
+				marginLeft: "auto",
+				marginRight: "auto"
+			}}
+		>
 			<ScrollView
 				style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}
 				contentContainerStyle={{
