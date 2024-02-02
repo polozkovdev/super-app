@@ -68,7 +68,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 							resizeMode='cover'
 							source={require("@/assets/games/finger.png")}
 						/>
-						<View className='w-[220px] mb-[20px] opacity-80'>
+						<View className='w-[220px] mb-[20px]'>
 							<TextComponent>
 								Brain training{" "}
 								<TextComponent className='italic'>personalized</TextComponent>{" "}
@@ -80,7 +80,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 								Stay sharp, build{"\n"} confidence, and boost{"\n"} productivity
 							</TextComponent>
 						</View>
-						<View className='mb-[60px] w-[100%] max-w-[480px] md:flex-row opacity-80'>
+						<View className='mb-[60px] w-[100%] max-w-[480px] md:flex-row'>
 							<TextComponent className=''>
 								Train with over 30{" "}
 								<TextComponent className='italic'>
@@ -129,10 +129,10 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 							/>
 						</View>
 					</View>
-					<View className='flex-1 h-[50] w-full md-hidden' />
+					<View className='flex-1 h-[60] w-full md-hidden' />
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-4 md:top-4 md:right-4'>
+			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:top-4 md:right-4'>
 				<Button children='Start for free' isArrow onPress={onStart} />
 			</View>
 		</View>

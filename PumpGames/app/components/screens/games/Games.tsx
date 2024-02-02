@@ -1,13 +1,28 @@
+import GamesList from "@/components/features/gamesList/GamesList"
 import Button from "@/components/ui/button/Button"
 import Layout from "@/components/ui/layout/Layout"
+import TextComponent from "@/components/ui/text/TextComponent"
+import { AppConstants } from "@/constants/app.constants"
 import React from "react"
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { Image, ScrollView, TouchableOpacity, View } from "react-native"
 
 const Games = ({ navigation }: any) => {
 	return (
-		<View>
+		<View
+			style={{
+				flex: 1,
+				backgroundColor: AppConstants.primaryBackground,
+				position: "relative",
+				maxWidth: 1420,
+				width: "100%",
+				marginTop: 0,
+				marginBottom: 0,
+				marginLeft: "auto",
+				marginRight: "auto"
+			}}
+		>
 			<ScrollView
-				className='flex-1'
+				style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}
 				contentContainerStyle={{
 					flexGrow: 1,
 					justifyContent: "center",
@@ -22,27 +37,31 @@ const Games = ({ navigation }: any) => {
 						}}
 					>
 						<View className='mb-[20] w-full'>
-							<Text className='text-center text-[35px] text-primary font-bold'>
-								Games
-							</Text>
+							<TextComponent type='title'>Games</TextComponent>
 						</View>
 						<View className='mb-[20] w-full'>
-							<Text className='text-center text-[24px] text-primary'>
+							<TextComponent>
 								Unlock your potential with{"\n"} Mighty brain games
-							</Text>
+							</TextComponent>
 						</View>
-						<View className='mb-[20] w-full'>
-							<Text className='text-center text-[24px] text-primary'>
-								categories list
-							</Text>
+						<View className='mb-[50px] w-full'>
+							<GamesList />
+						</View>
+						<View className='flex-row space-x-2 items-center justify-center w-full max-w-[100%] overflow-hidden mb-[50px]'>
+							<View className='h-[2px] w-full bg-[#3F1210]/10' />
+							<View
+								className={`pt-1 pb-1 pl-4 pr-4 border-[#3F1210]/10 border-[1px] rounded-full`}
+							>
+								<TextComponent
+									className={`text-[18px] font-subtitle text-primary`}
+								>
+									Free games
+								</TextComponent>
+							</View>
+							<View className='h-[2px] w-full bg-[#3F1210]/10' />
 						</View>
 						<Image
-							className='mb-[20] w-full'
-							resizeMode='cover'
-							source={require("@/assets/ui/free_games.png")}
-						/>
-						<Image
-							className='mb-[20] w-4/5'
+							className='mb-[20] w-[200px] h-[200px]'
 							resizeMode='contain'
 							source={require("@/assets/games/game_1.png")}
 						/>
@@ -50,17 +69,17 @@ const Games = ({ navigation }: any) => {
 							className='mb-[10]'
 							onPress={() => navigation.navigate("BlockDocku")}
 						>
-							<Text className='text-center text-[30px] text-primary font-semibold'>
+							<TextComponent className='text-[30px] text-primary font-semibold md:text-[40px]'>
 								Block Puzzle Game
-							</Text>
+							</TextComponent>
 						</TouchableOpacity>
-						<View className='mb-[20]'>
-							<Text className='text-center text-[24px] text-accent'>
+						<View className='mb-[60]'>
+							<TextComponent className='text-accent'>
 								Problem solving
-							</Text>
+							</TextComponent>
 						</View>
 						<Image
-							className='mb-[20] w-4/5'
+							className='mb-[20] w-[200px] h-[200px]'
 							resizeMode='contain'
 							source={require("@/assets/games/game_2.png")}
 						/>
@@ -68,20 +87,18 @@ const Games = ({ navigation }: any) => {
 							className='mb-[10]'
 							onPress={() => navigation.navigate("Memory")}
 						>
-							<Text className='text-center text-[30px] text-primary font-semibold'>
+							<TextComponent className='text-[30px] text-primary font-semibold md:text-[40px]'>
 								Word Search
-							</Text>
+							</TextComponent>
 						</TouchableOpacity>
 						<View className='mb-[20]'>
-							<Text className='text-center text-[24px] text-accent'>
-								Memory
-							</Text>
+							<TextComponent className='text-accent'>Memory</TextComponent>
 						</View>
-						<View className='flex-1 h-[50] w-full' />
+						<View className='flex-1 h-[60] w-full' />
 					</View>
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-4'>
+			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm'>
 				<Button
 					children='Start playing'
 					iconLeftPath='@/assets/ui/unlock.png'

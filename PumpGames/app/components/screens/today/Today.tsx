@@ -34,9 +34,9 @@ const Today = ({ navigation }: any) => {
 							<TextComponent type='title'>Today</TextComponent>
 						</View>
 						<View className='mb-[20] w-full md:mb-[80px]'>
-							<TextComponent className='opacity-80'>
+							<TextComponent>
 								Your
-								<TextComponent className='italic text-secondary'>
+								<TextComponent className='italic text-secondary opacity-80'>
 									{" "}
 									personal{" "}
 								</TextComponent>
@@ -57,7 +57,7 @@ const Today = ({ navigation }: any) => {
 										type='title'
 										className='text-[30px] text-primary font-subtitle md:text-[40px]'
 									>
-										Robotic Flows
+										Block Puzzle Game
 									</TextComponent>
 								</View>
 								<View className='mb-[20]'>
@@ -102,7 +102,7 @@ const Today = ({ navigation }: any) => {
 										type='title'
 										className='text-[30px] font-semibold md:text-[40px]'
 									>
-										Other game
+										Memory
 									</TextComponent>
 								</View>
 								<View className='mb-[20]'>
@@ -124,11 +124,11 @@ const Today = ({ navigation }: any) => {
 								</View>
 							</View>
 						</View>
-						<View className='flex-1 h-[50] w-full' />
+						<View className='flex-1 h-[60] w-full' />
 					</View>
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-4'>
+			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm'>
 				<Button
 					children='Start playing'
 					isArrow
