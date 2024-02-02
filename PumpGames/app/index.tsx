@@ -1,5 +1,6 @@
 import Loading from "@/components/screens/loading/Loading"
 import Onboarding from "@/components/screens/onboarding/Onboarding"
+import { AppConstants } from "@/constants/app.constants"
 import { setPresetScreenHeight } from "@/helpers/scaleHelper"
 import useCachedResources from "@/hooks/useCachedResources"
 import Navigation from "@/navigation/Navigation"
@@ -38,7 +39,9 @@ const Wrapper = () => {
 	}, [isCachedComplete, setIsLoading])
 	if (isLoading) {
 		return (
-			<View style={{ flex: 1 }}>
+			<View
+				style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}
+			>
 				<Loading />
 			</View>
 		)

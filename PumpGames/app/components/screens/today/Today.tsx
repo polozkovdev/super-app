@@ -1,4 +1,5 @@
 import Button from "@/components/ui/button/Button"
+import Footer from "@/components/ui/footer/Footer"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
@@ -122,6 +123,9 @@ const Today = ({ navigation }: any) => {
 										</TextComponent>
 									</View>
 								</View>
+							</View>
+							<View className='hidden md:flex-row'>
+								<Footer />
 							</View>
 						</View>
 						<View className='flex-1 h-[60] w-full' />
