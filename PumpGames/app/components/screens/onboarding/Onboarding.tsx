@@ -33,6 +33,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 				contentContainerStyle={{
 					flexGrow: 1,
 					justifyContent: "center",
+					borderWidth: 0,
 					alignItems: "center"
 				}}
 			>
@@ -87,7 +88,12 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 				</Layout>
 			</ScrollView>
 			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:top-4 md:right-4'>
-				<Button children='Start for free' isArrow onPress={onStart} />
+				<Button
+					children='Start for free'
+					isArrow
+					onPress={onStart}
+					className=' md:ml-auto'
+				/>
 			</View>
 		</View>
 	)

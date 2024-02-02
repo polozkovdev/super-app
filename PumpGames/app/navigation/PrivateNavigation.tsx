@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator<TypeRootStackParamList>()
 const Tab = createBottomTabNavigator()
 
 const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
+	const isDestop = true
 	return (
 		<Tab.Navigator
 			initialRouteName='Today'
@@ -20,6 +21,9 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 				const menu = menuData.find(i => i.path === route.name)
 				return {
 					tabBarIcon: () => {
+						if (isDestop) {
+							console.log("isDestop")
+						}
 						return (
 							<View className='items-center justify-center gap-1'>
 								<Svg
@@ -48,8 +52,21 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 					tabBarStyle: {
 						height: 80,
 						borderTopWidth: 0,
-
-						backgroundColor: AppConstants.primaryBackground
+						// DESCTOP !!!!
+						position: "absolute",
+						top: 0,
+						maxWidth: 500,
+						width: "100%",
+						borderRadius: "100px",
+						paddingTop: "14px",
+						paddingBottom: "14px",
+						paddingLeft: "24px",
+						paddingRight: "24px",
+						flexDirection: "row",
+						alignItems: "center",
+						backgroundColor: "#FFFFFF"
+						//////////
+						// backgroundColor: AppConstants.primaryBackground
 					}
 				}
 			}}
@@ -71,6 +88,21 @@ const PrivateNavigation = ({ currentRoute }: { currentRoute?: string }) => {
 		<Stack.Navigator
 			screenOptions={{
 				headerShown: false,
+				headerTitle: () => (
+					<View>
+						<Text>headerTitle</Text>
+					</View>
+				),
+				headerLeft: () => (
+					<View>
+						<Text>headerLeft</Text>
+					</View>
+				),
+				headerRight: () => (
+					<View>
+						<Text>headerRight</Text>
+					</View>
+				),
 				contentStyle: {
 					backgroundColor: AppConstants.primaryBackground
 				}
