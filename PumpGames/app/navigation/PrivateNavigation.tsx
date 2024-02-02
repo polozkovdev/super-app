@@ -13,24 +13,6 @@ const Tab = createBottomTabNavigator()
 
 const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 	const isDesktop = true
-	const desktopStyleItem = {
-		tabBarItemStyle: { height: 55 }
-	}
-	const desktopStyle = {
-		position: "absolute",
-		top: 0,
-		maxWidth: 500,
-		width: "100%",
-		borderRadius: "100px",
-		paddingTop: "14px",
-		paddingBottom: "14px",
-		paddingLeft: "24px",
-		paddingRight: "24px",
-		flexDirection: "row",
-		alignItems: "center",
-		backgroundColor: "#FFFFFF",
-		height: 55
-	}
 	return (
 		<Tab.Navigator
 			initialRouteName='Today'
@@ -86,25 +68,26 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 					headerShown: false,
 					tabBarShowLabel: false,
 					tabBarHideOnKeyboard: true,
-					tabBarItemStyle: { height: 80 },
+					tabBarItemStyle: {
+						height: 80,
+						"@media (min-width: 728px)": {
+							height: 55
+						}
+					},
 					tabBarStyle: {
 						height: 80,
 						borderTopWidth: 0,
-						// DESCTOP !!!!
-						position: "absolute",
-						top: 0,
-						maxWidth: 500,
-						width: "100%",
-						borderRadius: "100px",
-						// paddingTop: "14px",
-						// paddingBottom: "14px",
-						// paddingLeft: "24px",
-						// paddingRight: "24px",
-						flexDirection: "row",
-						alignItems: "center",
-						backgroundColor: "#FFFFFF"
-						//////////
-						// backgroundColor: AppConstants.primaryBackground
+						backgroundColor: AppConstants.primaryBackground,
+						"@media (min-width: 728px)": {
+							position: "absolute",
+							top: 0,
+							maxWidth: 500,
+							width: "100%",
+							borderRadius: "100px",
+							flexDirection: "row",
+							alignItems: "center",
+							backgroundColor: "#FFFFFF"
+						}
 					}
 				}
 			}}
