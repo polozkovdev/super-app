@@ -41,7 +41,7 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 					tabBarIcon: () => {
 						if (isDesktop) {
 							return (
-								<View className='flex-row items-center justify-center gap-1 '>
+								<View className='flex-row items-center justify-center gap-1'>
 									<Svg
 										width={menu?.icon.width}
 										height={menu?.icon.height}
@@ -89,7 +89,7 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 						height: isDesktop ? 40 : 80
 					},
 					tabBarStyle: {
-						height: desktopStyles ? 40 : 80,
+						height: isDesktop ? 40 : 80,
 						borderTopWidth: 0,
 						backgroundColor: AppConstants.primaryBackground,
 						...desktopStyles
