@@ -12,7 +12,25 @@ const Stack = createNativeStackNavigator<TypeRootStackParamList>()
 const Tab = createBottomTabNavigator()
 
 const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
-	const isDestop = true
+	const isDesktop = true
+	const desktopStyleItem = {
+		tabBarItemStyle: { height: 55 }
+	}
+	const desktopStyle = {
+		position: "absolute",
+		top: 0,
+		maxWidth: 500,
+		width: "100%",
+		borderRadius: "100px",
+		paddingTop: "14px",
+		paddingBottom: "14px",
+		paddingLeft: "24px",
+		paddingRight: "24px",
+		flexDirection: "row",
+		alignItems: "center",
+		backgroundColor: "#FFFFFF",
+		height: 55
+	}
 	return (
 		<Tab.Navigator
 			initialRouteName='Today'
@@ -21,8 +39,28 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 				const menu = menuData.find(i => i.path === route.name)
 				return {
 					tabBarIcon: () => {
-						if (isDestop) {
+						if (isDesktop) {
 							console.log("isDestop")
+							return (
+								<View className='flex-row items-center justify-center gap-1'>
+									<Svg
+										width={menu?.icon.width}
+										height={menu?.icon.height}
+										viewBox={menu?.icon.viewBox}
+										className={`${isActive ? "fill-[#E57300]" : "fill-[#522725]"} hover:fill-yellow-600`}
+									>
+										<Path d={menu?.icon.path} />
+									</Svg>
+									<Text
+										className={isActive ? "text-orange" : "text-secondary"}
+										style={{
+											fontFamily: "DM-Medium"
+										}}
+									>
+										{menu?.text}
+									</Text>
+								</View>
+							)
 						}
 						return (
 							<View className='items-center justify-center gap-1'>
@@ -58,10 +96,10 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 						maxWidth: 500,
 						width: "100%",
 						borderRadius: "100px",
-						paddingTop: "14px",
-						paddingBottom: "14px",
-						paddingLeft: "24px",
-						paddingRight: "24px",
+						// paddingTop: "14px",
+						// paddingBottom: "14px",
+						// paddingLeft: "24px",
+						// paddingRight: "24px",
 						flexDirection: "row",
 						alignItems: "center",
 						backgroundColor: "#FFFFFF"
