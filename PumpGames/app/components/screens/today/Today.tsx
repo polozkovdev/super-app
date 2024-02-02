@@ -44,7 +44,7 @@ const Today = ({ navigation }: any) => {
 							</TextComponent>
 						</View>
 						{/* GAMES */}
-						<View className='md:flex-row md:justify-center md:items-center'>
+						<View className='md:flex-row md:justify-center md:items-start'>
 							{/*game 1*/}
 							<View className='items-center md:w-[300px]'>
 								<Image
@@ -57,7 +57,7 @@ const Today = ({ navigation }: any) => {
 										type='title'
 										className='text-[30px] text-primary font-subtitle md:text-[40px]'
 									>
-										Block Puzzle Game
+										Block Puzzle
 									</TextComponent>
 								</View>
 								<View className='mb-[20]'>

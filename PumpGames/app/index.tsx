@@ -1,9 +1,10 @@
+import Loading from "@/components/screens/loading/Loading"
 import Onboarding from "@/components/screens/onboarding/Onboarding"
 import { setPresetScreenHeight } from "@/helpers/scaleHelper"
 import useCachedResources from "@/hooks/useCachedResources"
 import Navigation from "@/navigation/Navigation"
 import React, { useEffect, useState } from "react"
-import { Dimensions, Text, View } from "react-native"
+import { Dimensions, View } from "react-native"
 import {
 	useSafeAreaFrame,
 	useSafeAreaInsets
@@ -30,13 +31,15 @@ const Wrapper = () => {
 	const onStartClick = () => setIsDone(true)
 	useEffect(() => {
 		if (isCachedComplete) {
-			setIsLoading(false)
+			setTimeout(() => {
+				setIsLoading(false)
+			}, 1000)
 		}
 	}, [isCachedComplete, setIsLoading])
 	if (isLoading) {
 		return (
 			<View style={{ flex: 1 }}>
-				<Text style={{ flex: 1 }}>Loading...</Text>
+				<Loading />
 			</View>
 		)
 	}

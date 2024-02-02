@@ -1,5 +1,6 @@
 // WordSearchGame.tsx
 
+import TextComponent from "@/components/ui/text/TextComponent"
 import React, { useEffect, useState } from "react"
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
@@ -106,6 +107,7 @@ const WordSearchGame: React.FC = () => {
 
 	return (
 		<View style={styles.container}>
+			<TextComponent type='title'>This game in developing...</TextComponent>
 			<View style={styles.header}>
 				<Text>Found Words: {foundWords.join(", ")}</Text>
 			</View>
