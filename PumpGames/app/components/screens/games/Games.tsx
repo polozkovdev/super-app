@@ -41,13 +41,18 @@ const Games = ({ navigation }: any) => {
 						<View className='mb-[20px] w-full'>
 							<TextComponent type='title'>Games</TextComponent>
 						</View>
-						<View className='mb-[20px] w-full'>
+						<View className='mb-[20px] w-full md:hidden'>
 							<TextComponent>
 								Unlock your potential with{"\n"} Mighty brain games
 							</TextComponent>
 						</View>
 						<View className='mb-[50px] w-full'>
 							<GameCategories category={category} setCategory={setCategory} />
+						</View>
+						<View className='mb-[40px] w-full hidden md:flex'>
+							<TextComponent>
+								Unlock your potential with{"\n"} Mighty brain games
+							</TextComponent>
 						</View>
 						<View className='flex-row space-x-2 items-center justify-center w-full max-w-[100%] overflow-hidden mb-[50px]'>
 							<View className='h-[2px] w-full bg-[#3F1210]/10' />

@@ -17,6 +17,7 @@ export type TypeRootStackParamList = {
 	Cars: undefined
 	Memory: undefined
 	Test: undefined
+	WordSearch: undefined
 }
 
 export interface IRoute {

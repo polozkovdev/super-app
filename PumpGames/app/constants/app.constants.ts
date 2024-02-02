@@ -50,15 +50,22 @@ export const GAMES: IGame[] = [
 	{
 		name: "Block Puzzle Game",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
-		source: require("@/assets/games/game_1.png"),
+		source: require("@/assets/games/game_8.png"),
 		route: "BlockDocku",
 		description: "Problem solving"
 	},
 	{
 		name: "Symbol Search",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Memory],
-		source: require("@/assets/games/game_2.png"),
+		source: require("@/assets/games/game_9.png"),
 		route: "Memory",
 		description: "Memory"
+	},
+	{
+		name: "Word Search",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Focus],
+		source: require("@/assets/games/game_3.png"),
+		route: "WordSearch",
+		description: "Focus"
 	}
 ]

@@ -9,14 +9,14 @@ const GameList = ({ navigation, category }: any) => {
 		setFilteredGames(GAMES.filter(i => i.categories.some(c => c === category)))
 	}, [category])
 	return (
-		<View className='flex-row flex-wrap items-center justify-center mb-[140px]'>
+		<View className='md:flex-row flex-wrap items-center justify-center mb-[140px] md:items-start'>
 			{filteredGames.length > 0 ? (
 				filteredGames.map(
 					({ name, categories, source, route, description }, index) => {
 						return (
 							<TouchableOpacity
 								key={name}
-								className={`${index + 1 !== filteredGames.length && "mb-[60px]"} items-center`}
+								className={`${index + 1 !== filteredGames.length && "mb-[60px] md:mb-0 md:mr-[60px]"} items-center md:mb-0`}
 								onPress={() => navigation.navigate(route)}
 							>
 								<Image
@@ -27,7 +27,7 @@ const GameList = ({ navigation, category }: any) => {
 								<View className='mb-[10]'>
 									<TextComponent
 										type='title'
-										className='text-[30px] text-primary font-subtitle md:text-[40px]'
+										className='text-[30px] text-primary font-subtitle md:text-[40px] md:leading-[40px]'
 									>
 										{name}
 									</TextComponent>

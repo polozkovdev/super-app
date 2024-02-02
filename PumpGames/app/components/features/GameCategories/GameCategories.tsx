@@ -8,13 +8,13 @@ const GameCategories = ({ category, setCategory }: any) => {
 		setCategory(value)
 	}
 	return (
-		<View className='flex-row space-x-2 space-y-2 flex-wrap items-center justify-center'>
+		<View className='flex-row space-x-2 space-y-2 flex-wrap items-center justify-center md:space-y-0'>
 			{CATEGORIES_LIST.map(i => {
 				const isActive = i === category
 				return (
 					<TouchableOpacity
 						key={i}
-						className={`pt-1 pb-1 pl-4 pr-4 ${isActive ? "bg-primary" : "bg-[#3F1210]/10"} rounded-full`}
+						className={`px-4 py-1 ${isActive ? "bg-primary" : "bg-[#3F1210]/10"} rounded-full m-0`}
 						onPress={() => onPress(i)}
 					>
 						<TextComponent

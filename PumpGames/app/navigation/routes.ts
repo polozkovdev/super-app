@@ -7,6 +7,7 @@ import Cars from "@/games/Cars/Cars"
 import Man from "@/games/Man/Man"
 import Memory from "@/games/native/Memory"
 import Test from "@/games/Test/Test"
+import WordSearchGame from "@/games/WordSearch/WordSearchGame"
 import { IRoute } from "@/navigation/navigation.types"
 
 export const routes: IRoute[] = [
@@ -32,6 +33,10 @@ export const games: IRoute[] = [
 	{
 		name: "BlockDocku",
 		component: BlockDocku
+	},
+	{
+		name: "WordSearch",
+		component: WordSearchGame
 	},
 	{
 		name: "Cars",
