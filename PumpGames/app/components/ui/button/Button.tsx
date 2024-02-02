@@ -19,7 +19,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 				flex-row items-center justify-center gap-x-2
 				 bg-white max-w-[340] w-full h-[55] rounded-3xl
 				 md:flex md:w-60
-				  border-[1px] border-[black]/10 shadow-[black]/10 shadow-sm
+				  border-[1px] border-[black]/10 shadow-[black]/10 shadow-sm md:shadow-none
 				`}
 				onPress={onPress}
 			>

@@ -87,7 +87,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 					<View className='flex-1 h-[60] w-full md-hidden' />
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:top-4 md:right-4'>
+			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
 				<Button
 					children='Start for free'
 					isArrow

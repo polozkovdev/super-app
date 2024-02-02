@@ -16,7 +16,7 @@ const GameList = ({ navigation, category }: any) => {
 						return (
 							<TouchableOpacity
 								key={name}
-								className={`${index + 1 !== filteredGames.length && "mb-[60px] md:mb-0 md:mr-[60px]"} items-center md:mb-0`}
+								className={`${index + 1 !== filteredGames.length && "mb-[60px] md:mb-0 md:mr-[60px]"} items-center md:mb-0 md:w-[300px]`}
 								onPress={() => navigation.navigate(route)}
 							>
 								<Image

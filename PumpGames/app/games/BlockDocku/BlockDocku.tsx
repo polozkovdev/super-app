@@ -5,7 +5,27 @@ import { Platform } from "react-native"
 
 const BlockDocku = () => {
 	if (Platform.OS === "web") {
-		return <iframe src={GAMES_URI.BlockDocku} height='100%' frameBorder='0' />
+		return (
+			<div
+				style={{
+					maxWidth: 500,
+					maxHeight: 1000,
+					width: "100%",
+					marginLeft: "auto",
+					marginRight: "auto",
+					marginTop: "auto",
+					marginBottom: "auto",
+					height: "100%"
+				}}
+			>
+				<iframe
+					src={GAMES_URI.BlockDocku}
+					height='100%'
+					width='100%'
+					frameBorder='0'
+				/>
+			</div>
+		)
 	}
 	return <WebViewProvider uri={GAMES_URI.BlockDocku} />
 }

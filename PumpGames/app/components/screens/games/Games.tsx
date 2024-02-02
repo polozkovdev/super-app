@@ -75,7 +75,7 @@ const Games = ({ navigation }: any) => {
 					</View>
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm'>
+			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none'>
 				<Button
 					children='Start playing'
 					iconLeftPath='@/assets/ui/unlock.png'

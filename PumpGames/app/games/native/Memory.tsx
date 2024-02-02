@@ -10,7 +10,9 @@ import {
 } from "react-native"
 
 const screenWidth = Dimensions.get("window").width
-const cardSize = Math.floor((screenWidth - 80) / 4)
+console.log("screenWidth", screenWidth)
+console.log("?", screenWidth > 728)
+const cardSize = screenWidth > 728 ? 100 : Math.floor((screenWidth - 80) / 4)
 export const shuffle = (array: string[]) => {
 	let currentIndex = array.length,
 		temporaryValue,
@@ -144,7 +146,7 @@ const Memory = () => {
 			} else {
 				setTimeout(() => {
 					setOpened([])
-				}, 500)
+				}, delay / 1.5)
 			}
 
 			setMoves(moves + 1)
@@ -192,8 +194,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		overflow: "hidden",
-		backgroundColor: "#000"
+		maxWidth: 500,
+		marginLeft: "auto",
+		marginRight: "auto"
+		// overflow: "hidden"
+		// backgroundColor: "#000"
 	},
 	scorePanel: {
 		flexDirection: "row",
@@ -211,7 +216,7 @@ const styles = StyleSheet.create({
 		marginRight: 5
 	},
 	moves: {
-		color: "#FFF",
+		color: "#000",
 		marginRight: 5
 	},
 	restart: {
@@ -219,11 +224,11 @@ const styles = StyleSheet.create({
 	},
 	restartIcon: {
 		fontSize: 24,
-		color: "#FFF"
+		color: "#000"
 	},
 	deck: {
 		margin: 0,
-		backgroundColor: "#FFFA62",
+		// backgroundColor: "#FFFA62",
 		padding: 16,
 		gap: 8,
 		borderRadius: 10,

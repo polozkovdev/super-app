@@ -3,16 +3,34 @@ import { AppConstants } from "@/constants/app.constants"
 import { useAuth } from "@/hooks/useAuth"
 import { TypeRootStackParamList } from "@/navigation/navigation.types"
 import { games, routes } from "@/navigation/routes"
+import "@expo/match-media"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { Text, View } from "react-native"
 import Svg, { Path } from "react-native-svg"
+import { useMediaQuery } from "react-responsive"
 
 const Stack = createNativeStackNavigator<TypeRootStackParamList>()
 const Tab = createBottomTabNavigator()
 
 const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
-	const isDesktop = true
+	const isDesktop = useMediaQuery({
+		query: "(min-width: 724px)"
+	})
+	const desktopStyles = isDesktop
+		? {
+				position: "absolute",
+				top: "14px",
+				maxWidth: 440,
+				width: "100%",
+				borderRadius: "100px",
+				flexDirection: "row",
+				alignItems: "center",
+				backgroundColor: "#FFFFFF",
+				marginLeft: "auto",
+				marginRight: "auto"
+			}
+		: {}
 	return (
 		<Tab.Navigator
 			initialRouteName='Today'
@@ -22,14 +40,13 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 				return {
 					tabBarIcon: () => {
 						if (isDesktop) {
-							console.log("isDestop")
 							return (
-								<View className='flex-row items-center justify-center gap-1'>
+								<View className='flex-row items-center justify-center gap-1 '>
 									<Svg
 										width={menu?.icon.width}
 										height={menu?.icon.height}
 										viewBox={menu?.icon.viewBox}
-										className={`${isActive ? "fill-[#E57300]" : "fill-[#522725]"} hover:fill-yellow-600`}
+										className={`${isActive ? "fill-[#E57300]" : "fill-[#522725]"}`}
 									>
 										<Path d={menu?.icon.path} />
 									</Svg>
@@ -69,25 +86,13 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 					tabBarShowLabel: false,
 					tabBarHideOnKeyboard: true,
 					tabBarItemStyle: {
-						height: 80,
-						"@media (min-width: 728px)": {
-							height: 55
-						}
+						height: isDesktop ? 40 : 80
 					},
 					tabBarStyle: {
-						height: 80,
+						height: desktopStyles ? 40 : 80,
 						borderTopWidth: 0,
 						backgroundColor: AppConstants.primaryBackground,
-						"@media (min-width: 728px)": {
-							position: "absolute",
-							top: 0,
-							maxWidth: 500,
-							width: "100%",
-							borderRadius: "100px",
-							flexDirection: "row",
-							alignItems: "center",
-							backgroundColor: "#FFFFFF"
-						}
+						...desktopStyles
 					}
 				}
 			}}
@@ -109,21 +114,6 @@ const PrivateNavigation = ({ currentRoute }: { currentRoute?: string }) => {
 		<Stack.Navigator
 			screenOptions={{
 				headerShown: false,
-				headerTitle: () => (
-					<View>
-						<Text>headerTitle</Text>
-					</View>
-				),
-				headerLeft: () => (
-					<View>
-						<Text>headerLeft</Text>
-					</View>
-				),
-				headerRight: () => (
-					<View>
-						<Text>headerRight</Text>
-					</View>
-				),
 				contentStyle: {
 					backgroundColor: AppConstants.primaryBackground
 				}
