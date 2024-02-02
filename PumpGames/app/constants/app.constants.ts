@@ -1,3 +1,6 @@
+import { TypeRootStackParamList } from "@/navigation/navigation.types"
+import { ImageSourcePropType } from "react-native"
+
 export const AppConstants = {
 	// background colors
 	primaryBackground: "#F8F4E8",
@@ -15,14 +18,14 @@ export const GAMES_URI = {
 	Man: "https://html5.gamedistribution.com/997e89b1cda74adcab5724f711cbcc9f/"
 }
 
-export const CATEGORIES = {
-	All: "All",
-	Free: "Free",
-	Relax: "Relax",
-	Focus: "Focus",
-	Memory: "Memory",
-	ProblemSolving: "Problem Solving",
-	Challenge: "Challenge"
+export enum CATEGORIES {
+	All = "All",
+	Free = "Free",
+	Relax = "Relax",
+	Focus = "Focus",
+	Memory = "Memory",
+	ProblemSolving = "Problem Solving",
+	Challenge = "Challenge"
 }
 
 export const CATEGORIES_LIST = [
@@ -33,4 +36,29 @@ export const CATEGORIES_LIST = [
 	CATEGORIES.Memory,
 	CATEGORIES.ProblemSolving,
 	CATEGORIES.Challenge
+]
+
+export interface IGame {
+	name: string
+	categories: CATEGORIES[]
+	source?: ImageSourcePropType
+	route: keyof TypeRootStackParamList
+	description: string
+}
+
+export const GAMES: IGame[] = [
+	{
+		name: "Block Puzzle Game",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
+		source: require("@/assets/games/game_1.png"),
+		route: "BlockDocku",
+		description: "Problem solving"
+	},
+	{
+		name: "Symbol Search",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Memory],
+		source: require("@/assets/games/game_2.png"),
+		route: "Memory",
+		description: "Memory"
+	}
 ]

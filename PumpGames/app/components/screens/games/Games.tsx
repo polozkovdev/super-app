@@ -1,12 +1,14 @@
-import GamesList from "@/components/features/gamesList/GamesList"
+import GameCategories from "@/components/features/GameCategories/GameCategories"
+import GameList from "@/components/features/GameList/GameList"
 import Button from "@/components/ui/button/Button"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
-import { AppConstants } from "@/constants/app.constants"
-import React from "react"
-import { Image, ScrollView, TouchableOpacity, View } from "react-native"
+import { AppConstants, CATEGORIES_LIST } from "@/constants/app.constants"
+import React, { useState } from "react"
+import { ScrollView, View } from "react-native"
 
 const Games = ({ navigation }: any) => {
+	const [category, setCategory] = useState(CATEGORIES_LIST[0])
 	return (
 		<View
 			style={{
@@ -36,16 +38,16 @@ const Games = ({ navigation }: any) => {
 							height: "100%"
 						}}
 					>
-						<View className='mb-[20] w-full'>
+						<View className='mb-[20px] w-full'>
 							<TextComponent type='title'>Games</TextComponent>
 						</View>
-						<View className='mb-[20] w-full'>
+						<View className='mb-[20px] w-full'>
 							<TextComponent>
 								Unlock your potential with{"\n"} Mighty brain games
 							</TextComponent>
 						</View>
 						<View className='mb-[50px] w-full'>
-							<GamesList />
+							<GameCategories category={category} setCategory={setCategory} />
 						</View>
 						<View className='flex-row space-x-2 items-center justify-center w-full max-w-[100%] overflow-hidden mb-[50px]'>
 							<View className='h-[2px] w-full bg-[#3F1210]/10' />
@@ -60,41 +62,7 @@ const Games = ({ navigation }: any) => {
 							</View>
 							<View className='h-[2px] w-full bg-[#3F1210]/10' />
 						</View>
-						<Image
-							className='mb-[20] w-[200px] h-[200px]'
-							resizeMode='contain'
-							source={require("@/assets/games/game_1.png")}
-						/>
-						<TouchableOpacity
-							className='mb-[10]'
-							onPress={() => navigation.navigate("BlockDocku")}
-						>
-							<TextComponent className='text-[30px] text-primary font-semibold md:text-[40px]'>
-								Block Puzzle Game
-							</TextComponent>
-						</TouchableOpacity>
-						<View className='mb-[60]'>
-							<TextComponent className='text-accent'>
-								Problem solving
-							</TextComponent>
-						</View>
-						<Image
-							className='mb-[20] w-[200px] h-[200px]'
-							resizeMode='contain'
-							source={require("@/assets/games/game_2.png")}
-						/>
-						<TouchableOpacity
-							className='mb-[10]'
-							onPress={() => navigation.navigate("Memory")}
-						>
-							<TextComponent className='text-[30px] text-primary font-semibold md:text-[40px]'>
-								Word Search
-							</TextComponent>
-						</TouchableOpacity>
-						<View className='mb-[20]'>
-							<TextComponent className='text-accent'>Memory</TextComponent>
-						</View>
-						<View className='flex-1 h-[60] w-full' />
+						<GameList category={category} navigation={navigation} />
 					</View>
 				</Layout>
 			</ScrollView>
