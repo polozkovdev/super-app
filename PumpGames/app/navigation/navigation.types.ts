@@ -12,11 +12,9 @@ export type TypeRootStackParamList = {
 
 	// games
 	BlockDocku: undefined
-	Man: undefined
-	Game: undefined
-	Cars: undefined
 	Memory: undefined
-	Test: undefined
+
+	Tetris: undefined
 	WordSearch: undefined
 }
 

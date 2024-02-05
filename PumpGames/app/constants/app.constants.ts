@@ -48,6 +48,13 @@ export interface IGame {
 
 export const GAMES: IGame[] = [
 	{
+		name: "Tetris",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Focus],
+		source: require("@/assets/games/game_1.png"),
+		route: "Tetris",
+		description: "Tetris"
+	},
+	{
 		name: "Block Puzzle Game",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
 		source: require("@/assets/games/game_8.png"),
