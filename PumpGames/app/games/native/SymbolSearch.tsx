@@ -10,8 +10,6 @@ import {
 } from "react-native"
 
 const screenWidth = Dimensions.get("window").width
-console.log("screenWidth", screenWidth)
-console.log("?", screenWidth > 728)
 const cardSize = screenWidth > 728 ? 100 : Math.floor((screenWidth - 80) / 4)
 export const shuffle = (array: string[]) => {
 	let currentIndex = array.length,
@@ -53,9 +51,8 @@ const rank3stars = symbols.length + 2
 const rank2stars = symbols.length + 6
 const rank1stars = symbols.length + 10
 const gameCardsQTY = symbols.length
-const delay = 800
 
-const Memory = () => {
+const SymbolSearch = () => {
 	const [cards, setCards] = useState(shuffle([...symbols]))
 	const [animations, setAnimations] = useState(
 		cards.map(() => new Animated.Value(0))
@@ -68,20 +65,20 @@ const Memory = () => {
 		initGame()
 	}, [])
 
-	const animatePress = (index: number) => {
-		Animated.timing(animations[index], {
-			toValue: 1,
-			duration: 300,
-			useNativeDriver: true
-		}).start()
+	const animatePress = (index: number, updatedOpened: number[]) => {
+		const parallelAnimations = animations.map((_, i) => {
+			const toValue = matched.includes(i) || updatedOpened.includes(i) ? 1 : 0
+			return Animated.timing(animations[i], {
+				toValue,
+				duration: index === i ? 500 : 0,
+				useNativeDriver: true
+			})
+		})
+
+		Animated.parallel(parallelAnimations).start()
 	}
 
 	const animatedStyles = (index: number) => {
-		if (opened[index]) {
-			console.log("is opened")
-			console.log("i", index)
-			console.log("card", cards[index])
-		}
 		return {
 			transform: [
 				{
@@ -123,12 +120,11 @@ const Memory = () => {
 	}
 
 	const handleCardPress = (index: number) => {
-		animatePress(index)
-
-		if (matched.includes(index)) return
-
+		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)
+
+		animatePress(index, updatedOpened)
 
 		if (updatedOpened.length % 2 === 0) {
 			const firstCardIndex = updatedOpened[updatedOpened.length - 2]
@@ -146,7 +142,7 @@ const Memory = () => {
 			} else {
 				setTimeout(() => {
 					setOpened([])
-				}, delay / 1.5)
+				}, 500)
 			}
 
 			setMoves(moves + 1)
@@ -261,4 +257,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default Memory
+export default SymbolSearch

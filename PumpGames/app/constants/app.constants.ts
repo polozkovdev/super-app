@@ -48,6 +48,13 @@ export interface IGame {
 
 export const GAMES: IGame[] = [
 	{
+		name: "Symbol Search",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Memory],
+		source: require("@/assets/games/game_9.png"),
+		route: "SymbolSearch",
+		description: "Memory"
+	},
+	{
 		name: "Tetris",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Focus],
 		source: require("@/assets/games/game_1.png"),
@@ -60,13 +67,6 @@ export const GAMES: IGame[] = [
 		source: require("@/assets/games/game_8.png"),
 		route: "BlockDocku",
 		description: "Problem solving"
-	},
-	{
-		name: "Symbol Search",
-		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Memory],
-		source: require("@/assets/games/game_9.png"),
-		route: "Memory",
-		description: "Memory"
 	},
 	{
 		name: "Word Search",

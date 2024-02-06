@@ -2,7 +2,7 @@ import Games from "@/components/screens/games/Games"
 import Puzzles from "@/components/screens/puzzles/Puzzles"
 import Tests from "@/components/screens/tests/Tests"
 import Today from "@/components/screens/today/Today"
-import Memory from "@/games/native/Memory"
+import SymbolSearch from "@/games/native/SymbolSearch"
 import Tetris from "@/games/native/Tetris"
 import WordSearchGame from "@/games/native/WordSearchGame"
 import BlockDocku from "@/games/webview/BlockDocku/BlockDocku"
@@ -37,8 +37,8 @@ export const games: IRoute[] = [
 		component: WordSearchGame
 	},
 	{
-		name: "Memory",
-		component: Memory
+		name: "SymbolSearch",
+		component: SymbolSearch
 	},
 	{
 		name: "Tetris",
