@@ -36,7 +36,7 @@ const Timer: React.FC<TimerProps> = ({ initialTime = 0 }) => {
 	}
 	return (
 		<View className='flex-row space-x-[14px] items-center'>
-			<Handler className='bg-red-950 pl-[24px] pr-[24px] bg-[#3F1210]/10 text-primary'>
+			<Handler className='pl-[24px] pr-[24px] bg-[#3F1210]/10 text-primary w-[140px]'>
 				<TextComponent className='text-[40px] leading-[40px]'>
 					{formatTime(currentTime)}
 				</TextComponent>

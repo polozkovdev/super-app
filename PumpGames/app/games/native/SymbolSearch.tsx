@@ -1,4 +1,5 @@
 import gameWrapper from "@/hoc/gameWrapper"
+import { useModal } from "@/hooks/useModal"
 import { FontAwesome } from "@expo/vector-icons"
 import React, { useEffect, useState } from "react"
 import {
@@ -54,6 +55,7 @@ const rank1stars = symbols.length + 10
 const gameCardsQTY = symbols.length
 
 const SymbolSearch = () => {
+	const { showModal, content } = useModal()
 	const [cards, setCards] = useState(shuffle([...symbols]))
 	const [animations, setAnimations] = useState(
 		cards.map(() => new Animated.Value(0))
@@ -114,13 +116,17 @@ const SymbolSearch = () => {
 
 	const endGame = () => {
 		const rating = setRating(moves)
-		alert(
-			`Congratulations! You Won!\nWith ${moves} Moves and ${rating} Stars.\nBoom Shaka Lak!`
-		)
+		showModal({
+			title: "Congratulations!",
+			text: `You Won! with ${moves} moves \n And now you can improve yourself \n even more`,
+			successText: "Unlock next level",
+			successHandler: () => alert("set next lvl")
+		})
 		initGame()
 	}
 
 	const handleCardPress = (index: number) => {
+		endGame()
 		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)

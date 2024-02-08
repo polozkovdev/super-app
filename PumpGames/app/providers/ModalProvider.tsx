@@ -8,14 +8,16 @@ interface IModalProviderProps {
 
 export const ModalProvider: React.FC<IModalProviderProps> = ({ children }) => {
 	const [visible, setVisible] = useState<boolean>(false)
-
-	const showModal = () => setVisible(true)
+	const [content, setContent] = useState()
+	const showModal = (props: any) => {
+		props && setContent(props)
+		setVisible(true)
+	}
 	const hideModal = () => setVisible(false)
-
 	return (
 		<ModalContext.Provider value={{ showModal, hideModal }}>
 			{children}
-			{visible && <Modal onClose={hideModal} />}
+			{visible && <Modal onClose={hideModal} content={content} />}
 		</ModalContext.Provider>
 	)
 }

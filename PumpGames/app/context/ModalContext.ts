@@ -1,7 +1,15 @@
 import { createContext } from "react"
 
+export interface IModalContent {
+	title?: string
+	text?: string
+	successText?: string
+	successHandler?: (props?: any) => any
+}
+
 interface ModalContextType {
-	showModal: () => void
+	content?: IModalContent
+	showModal: (content?: IModalContent) => void
 	hideModal: () => void
 }
 
