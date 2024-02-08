@@ -1,6 +1,6 @@
 import gameWrapper from "@/hoc/gameWrapper"
 import { useModal } from "@/hooks/useModal"
-import { FontAwesome } from "@expo/vector-icons"
+import { FontAwesome5 } from "@expo/vector-icons"
 import React, { useEffect, useState } from "react"
 import {
 	Animated,
@@ -39,14 +39,14 @@ const symbols = [
 	"cube",
 	"anchor",
 	"anchor",
-	"paper-plane-o",
-	"paper-plane-o",
+	"paper-plane",
+	"paper-plane",
 	"bolt",
 	"bolt",
 	"bomb",
 	"bomb",
-	"diamond",
-	"diamond"
+	"carrot",
+	"carrot"
 ]
 
 const rank3stars = symbols.length + 2
@@ -126,7 +126,7 @@ const SymbolSearch = () => {
 	}
 
 	const handleCardPress = (index: number) => {
-		endGame()
+		// endGame()
 		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)
@@ -160,13 +160,13 @@ const SymbolSearch = () => {
 		<View style={styles.container}>
 			<View style={styles.scorePanel}>
 				<View style={styles.stars}>
-					<FontAwesome name='star' style={styles.starIcon} />
-					<FontAwesome name='star' style={styles.starIcon} />
-					<FontAwesome name='star' style={styles.starIcon} />
+					<FontAwesome5 name='star' style={styles.starIcon} />
+					<FontAwesome5 name='star' style={styles.starIcon} />
+					<FontAwesome5 name='star' style={styles.starIcon} />
 				</View>
 				<Text style={styles.moves}>{moves} Moves</Text>
 				<TouchableOpacity style={styles.restart} onPress={initGame}>
-					<FontAwesome name='repeat' style={styles.restartIcon} />
+					<FontAwesome5 name='repeat' style={styles.restartIcon} />
 				</TouchableOpacity>
 			</View>
 			<View style={styles.deck}>
@@ -182,8 +182,7 @@ const SymbolSearch = () => {
 						onPress={() => handleCardPress(index)}
 					>
 						{opened.includes(index) || matched.includes(index) ? (
-							// @ts-ignore
-							<FontAwesome name={card} style={styles.cardIcon} />
+							<FontAwesome5 name={card} style={styles.cardIcon} />
 						) : null}
 					</TouchableOpacity>
 				))}
@@ -250,7 +249,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		borderRadius: 8,
 		transform: [{ rotate: "180deg" }],
-		fontFamily: "FontAwesome"
+		fontFamily: "FontAwesome5"
 	},
 	openedCard: {
 		transform: [{ rotate: "0" }]
