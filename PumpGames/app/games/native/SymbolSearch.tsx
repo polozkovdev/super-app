@@ -1,4 +1,5 @@
-import { FontAwesome } from "@expo/vector-icons"
+import gameWrapper from "@/hoc/gameWrapper"
+import { MaterialIcons } from "@expo/vector-icons"
 import React, { useEffect, useState } from "react"
 import {
 	Animated,
@@ -153,13 +154,13 @@ const SymbolSearch = () => {
 		<View style={styles.container}>
 			<View style={styles.scorePanel}>
 				<View style={styles.stars}>
-					<FontAwesome name='star' style={styles.starIcon} />
-					<FontAwesome name='star' style={styles.starIcon} />
-					<FontAwesome name='star' style={styles.starIcon} />
+					<MaterialIcons name='star' style={styles.starIcon} />
+					<MaterialIcons name='star' style={styles.starIcon} />
+					<MaterialIcons name='star' style={styles.starIcon} />
 				</View>
 				<Text style={styles.moves}>{moves} Moves</Text>
 				<TouchableOpacity style={styles.restart} onPress={initGame}>
-					<FontAwesome name='repeat' style={styles.restartIcon} />
+					<MaterialIcons name='repeat' style={styles.restartIcon} />
 				</TouchableOpacity>
 			</View>
 			<View style={styles.deck}>
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
 	},
 	starIcon: {
 		fontSize: 24,
-		color: "#FFFA62",
+		color: "red",
 		marginRight: 5
 	},
 	moves: {
@@ -257,4 +258,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default SymbolSearch
+export default gameWrapper({ Component: SymbolSearch })
