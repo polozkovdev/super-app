@@ -166,7 +166,7 @@ const SymbolSearch = () => {
 				</View>
 				<Text style={styles.moves}>{moves} Moves</Text>
 				<TouchableOpacity style={styles.restart} onPress={initGame}>
-					<FontAwesome5 name='repeat' style={styles.restartIcon} />
+					<FontAwesome5 name='circle-notch' style={styles.restartIcon} />
 				</TouchableOpacity>
 			</View>
 			<View style={styles.deck}>
