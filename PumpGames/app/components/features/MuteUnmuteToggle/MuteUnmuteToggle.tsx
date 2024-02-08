@@ -1,5 +1,5 @@
 import TextComponent from "@/components/ui/text/TextComponent"
-import { MaterialIcons } from "@expo/vector-icons"
+import { Ionicons } from "@expo/vector-icons"
 import React, { useState } from "react"
 import { TouchableOpacity, View } from "react-native"
 
@@ -21,12 +21,15 @@ const MuteUnmuteToggle: React.FC<MuteUnmuteProps> = ({ onMute, onUnmute }) => {
 	}
 
 	return (
-		<View>
-			<TouchableOpacity onPress={toggleMute} className='flex-row items-center'>
+		<View className='flex-row'>
+			<TouchableOpacity
+				onPress={toggleMute}
+				className='flex-row items-center space-x-2'
+			>
 				{isMuted ? (
-					<MaterialIcons name='volume-off' size={24} color='#3F1210' />
+					<Ionicons name='volume-mute' size={24} color='#3F1210' />
 				) : (
-					<MaterialIcons name='volume-up' size={24} color='#3F1210' />
+					<Ionicons name='volume-mute-outline' size={24} color='#3F1210' />
 				)}
 				<TextComponent className='text-[18px] leading-[24px] font-subtitle text-primary'>
 					Ads

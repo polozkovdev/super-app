@@ -20,7 +20,7 @@ const gameWrapper =
 							flex: 1
 						}}
 					>
-						<HeaderGame />
+						<HeaderGame {...props} />
 						<Component />
 					</View>
 					<View className='flex-row space-x-[14px]'>
