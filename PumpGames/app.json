@@ -4,7 +4,7 @@
     "slug": "PumpGames",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/ui/logo_mini.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/ui/logo_mini.png",
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/ui/logo_mini.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#F8F4E8"
       },
       "package": "com.rpalazkou.PumpGames"

@@ -1,5 +1,5 @@
 import gameWrapper from "@/hoc/gameWrapper"
-import { MaterialIcons } from "@expo/vector-icons"
+import { FontAwesome } from "@expo/vector-icons"
 import React, { useEffect, useState } from "react"
 import {
 	Animated,
@@ -154,13 +154,13 @@ const SymbolSearch = () => {
 		<View style={styles.container}>
 			<View style={styles.scorePanel}>
 				<View style={styles.stars}>
-					<MaterialIcons name='star' style={styles.starIcon} />
-					<MaterialIcons name='star' style={styles.starIcon} />
-					<MaterialIcons name='star' style={styles.starIcon} />
+					<FontAwesome name='star' style={styles.starIcon} />
+					<FontAwesome name='star' style={styles.starIcon} />
+					<FontAwesome name='star' style={styles.starIcon} />
 				</View>
 				<Text style={styles.moves}>{moves} Moves</Text>
 				<TouchableOpacity style={styles.restart} onPress={initGame}>
-					<MaterialIcons name='repeat' style={styles.restartIcon} />
+					<FontAwesome name='repeat' style={styles.restartIcon} />
 				</TouchableOpacity>
 			</View>
 			<View style={styles.deck}>

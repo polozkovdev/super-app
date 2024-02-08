@@ -9,14 +9,14 @@ const GameList = ({ navigation, category }: any) => {
 		setFilteredGames(GAMES.filter(i => i.categories.some(c => c === category)))
 	}, [category])
 	return (
-		<View className='md:flex-row flex-wrap items-center justify-center mb-[140px] md:items-start'>
+		<View className='md:flex-row flex-wrap items-stretch justify-center mb-[140px] md:items-start gap-[60px]'>
 			{filteredGames.length > 0 ? (
 				filteredGames.map(
 					({ name, categories, source, route, description }, index) => {
 						return (
 							<TouchableOpacity
 								key={name}
-								className={`${index + 1 !== filteredGames.length && "mb-[60px] md:mb-0 md:mr-[60px]"} items-center md:mb-0 md:w-[300px]`}
+								className={`items-center md:mb-0 md:w-[300px]`}
 								onPress={() => navigation.navigate(route)}
 							>
 								<Image
