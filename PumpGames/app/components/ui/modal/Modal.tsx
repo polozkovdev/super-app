@@ -42,7 +42,10 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 							className='mt-[24px]'
 							children={content?.successText}
 							iconLeftPath='@/assets/ui/unlock.png'
-							onPress={content.successHandler}
+							onPress={() => {
+								content.successHandler?.()
+								onClose()
+							}}
 						/>
 					)}
 				</View>

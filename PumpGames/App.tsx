@@ -2,6 +2,7 @@ import { AppConstants } from "@/constants/app.constants"
 import Wrapper from "@/index"
 import AuthProvider from "@/providers/AuthProvider"
 import { ModalProvider } from "@/providers/ModalProvider"
+import { coreStore, StoreProvider } from "@/store"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { StatusBar } from "expo-status-bar"
 // @ts-ignore
@@ -14,19 +15,21 @@ export default function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<AuthProvider>
-				<SafeAreaProvider>
-					<SafeAreaView
-						style={{
-							width: "100%",
-							height: "100%",
-							backgroundColor: AppConstants.primaryBackground
-						}}
-					>
-						<ModalProvider>
-							<Wrapper />
-						</ModalProvider>
-					</SafeAreaView>
-				</SafeAreaProvider>
+				<StoreProvider value={coreStore}>
+					<SafeAreaProvider>
+						<SafeAreaView
+							style={{
+								width: "100%",
+								height: "100%",
+								backgroundColor: AppConstants.primaryBackground
+							}}
+						>
+							<ModalProvider>
+								<Wrapper />
+							</ModalProvider>
+						</SafeAreaView>
+					</SafeAreaProvider>
+				</StoreProvider>
 			</AuthProvider>
 			<StatusBar style='light' />
 		</QueryClientProvider>

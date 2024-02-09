@@ -9,7 +9,7 @@ interface ProgressProps {
 
 const Progress: React.FC<ProgressProps> = ({
 	steps = 10,
-	currentState = 10
+	currentState = 0
 }) => {
 	const calculateFillPercentage = (): string => {
 		return `${(currentState / steps) * 100}%`

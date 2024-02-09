@@ -5,13 +5,16 @@ import Back from "@/components/ui/back/Back"
 import React, { FC, PropsWithChildren } from "react"
 import { View } from "react-native"
 import { useMediaQuery } from "react-responsive"
+import { IGame } from "types"
 
 interface IHeaderGameProps {
+	currentData: IGame
 	navigation?: any
 }
 
 const HeaderGame: FC<PropsWithChildren<IHeaderGameProps>> = ({
 	navigation,
+	currentData,
 	children
 }) => {
 	const isDesktop = useMediaQuery({
@@ -20,7 +23,10 @@ const HeaderGame: FC<PropsWithChildren<IHeaderGameProps>> = ({
 	return (
 		<View className='flex-row space-x-[10px] justify-center items-center relative z-10'>
 			{isDesktop && <Back navigation={navigation} />}
-			<Progress />
+			<Progress
+				steps={currentData.steps}
+				currentState={currentData.currentStep}
+			/>
 			<View className='flex-row items-center bg-white h-[34px] rounded-[24px] px-[10px] shadow-[black]/10 shadow-sm'>
 				<InfoTooltip text='Some info message for tooltip' />
 				<View className='flex-row items-center justify-center h-[14px] w-[1px] bg-primary/10 ml-[6px] mr-[8px]' />

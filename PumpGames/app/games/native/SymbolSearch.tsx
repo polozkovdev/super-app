@@ -1,7 +1,9 @@
 import gameWrapper from "@/hoc/gameWrapper"
 import { useModal } from "@/hooks/useModal"
+import { coreStore } from "@/store"
 import { FontAwesome5 } from "@expo/vector-icons"
-import React, { useEffect, useState } from "react"
+import { observer } from "mobx-react-lite"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 import {
 	Animated,
 	Dimensions,
@@ -10,6 +12,7 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native"
+import { IGame } from "types"
 
 const screenWidth = Dimensions.get("window").width
 const cardSize = screenWidth > 728 ? 100 : Math.floor((screenWidth - 80) / 4)
@@ -49,12 +52,18 @@ const symbols = [
 	"carrot"
 ]
 
-const rank3stars = symbols.length + 2
-const rank2stars = symbols.length + 6
-const rank1stars = symbols.length + 10
 const gameCardsQTY = symbols.length
 
-const SymbolSearch = () => {
+const SymbolSearch = ({
+	game: { currentStep, steps },
+	game,
+	setGame,
+	navigation
+}: {
+	game: IGame
+	setGame: Dispatch<SetStateAction<IGame>>
+	navigation: any
+}) => {
 	const { showModal, content } = useModal()
 	const [cards, setCards] = useState(shuffle([...symbols]))
 	const [animations, setAnimations] = useState(
@@ -102,31 +111,36 @@ const SymbolSearch = () => {
 		setAnimations(cards.map(() => new Animated.Value(0)))
 	}
 
-	const setRating = (moves: number) => {
-		let rating = 3
-		if (moves > rank3stars && moves < rank2stars) {
-			rating = 2
-		} else if (moves > rank2stars && moves < rank1stars) {
-			rating = 1
-		} else if (moves > rank1stars) {
-			rating = 0
-		}
-		return rating
-	}
-
 	const endGame = () => {
-		const rating = setRating(moves)
+		const updatedGame = {
+			...game,
+			currentStep: currentStep + 1
+		}
+		if (currentStep + 1 === steps) {
+			return showModal({
+				title: "Congratulations!",
+				text: `You Won! you complete all steps! \n improve your skils in other games!`,
+				successText: "Let's go !",
+				successHandler: () => {
+					coreStore.db.updateGame(updatedGame)
+					navigation.navigate("Games")
+				}
+			})
+		}
 		showModal({
 			title: "Congratulations!",
-			text: `You Won! with ${moves} moves \n And now you can improve yourself \n even more`,
+			text: `You Complete this game! with ${moves} moves \n And now you can improve yourself \n even more`,
 			successText: "Unlock next level",
-			successHandler: () => alert("set next lvl")
+			successHandler: () => {
+				coreStore.db.updateGame(updatedGame)
+				setGame(updatedGame)
+			}
 		})
 		initGame()
 	}
 
 	const handleCardPress = (index: number) => {
-		// endGame()
+		endGame()
 		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)
@@ -159,11 +173,6 @@ const SymbolSearch = () => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.scorePanel}>
-				<View style={styles.stars}>
-					<FontAwesome5 name='star' style={styles.starIcon} />
-					<FontAwesome5 name='star' style={styles.starIcon} />
-					<FontAwesome5 name='star' style={styles.starIcon} />
-				</View>
 				<Text style={styles.moves}>{moves} Moves</Text>
 				<TouchableOpacity style={styles.restart} onPress={initGame}>
 					<FontAwesome5 name='circle-notch' style={styles.restartIcon} />
@@ -207,15 +216,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginBottom: 10,
 		width: 200
-	},
-	stars: {
-		flexDirection: "row",
-		marginRight: 5
-	},
-	starIcon: {
-		fontSize: 24,
-		color: "red",
-		marginRight: 5
 	},
 	moves: {
 		color: "#000",
@@ -263,4 +263,7 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default gameWrapper({ Component: SymbolSearch })
+export default gameWrapper({
+	Component: observer(SymbolSearch),
+	Name: "SymbolSearch"
+})
