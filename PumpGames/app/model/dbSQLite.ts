@@ -8,61 +8,83 @@ export class SQLiteDB {
 		this.db = openDatabase("db.db")
 	}
 
-	createTable = async (): Promise<boolean> => {
+	createTable = async ({ Games }: { Games: IGame[] }): Promise<boolean> => {
 		return new Promise((resolve, reject) => {
 			this.db.transaction(
 				tx => {
 					tx.executeSql(
-						`CREATE TABLE IF NOT EXISTS PlayerTest (
-                            userName TEXT PRIMARY KEY,
-                            photo TEXT,
-                            rewards TEXT,
-                            notifications TEXT,
-                            hotDeals TEXT,
-                            progress TEXT
-                        )`
+						`CREATE TABLE IF NOT EXISTS PlayerTest
+             (
+                 userName      TEXT PRIMARY KEY,
+                 photo         TEXT,
+                 rewards       TEXT,
+                 notifications TEXT,
+                 hotDeals      TEXT,
+                 progress      TEXT
+             )`
 					)
 					tx.executeSql(
-						`CREATE TABLE IF NOT EXISTS GamesTest (
-                            name TEXT PRIMARY KEY,
-                            categories TEXT,
-                            isFree INTEGER,
-                            isCompleted INTEGER,
-                            isProgress INTEGER,
-                            currentStep INTEGER,
-                            steps INTEGER,
-                            initialPaidStep INTEGER,
-                            timer INTEGER,
-                            rewards TEXT
-                        )`
+						`CREATE TABLE IF NOT EXISTS GamesTest
+             (
+                 name            TEXT PRIMARY KEY,
+                 categories      TEXT,
+                 isFree          INTEGER,
+                 isCompleted     INTEGER,
+                 isProgress      INTEGER,
+                 currentStep     INTEGER,
+                 steps           INTEGER,
+                 initialPaidStep INTEGER,
+                 timer           INTEGER,
+                 rewards         TEXT
+             )`
+					)
+
+					// Check if GamesTest table is empty
+					tx.executeSql(
+						`SELECT COUNT(*) AS count FROM GamesTest`,
+						[],
+						(_, { rows }) => {
+							const { count } = rows.item(0)
+							if (count === 0) {
+								// If table is empty, insert default games
+								Games.forEach(item => {
+									this.insertDefaultGame(tx, item)
+								})
+							}
+						},
+						error => {
+							reject(error.message)
+						}
 					)
 					tx.executeSql(
-						`CREATE TABLE IF NOT EXISTS PuzzlesTest (
-                            name TEXT PRIMARY KEY,
-                            categories TEXT,
-                            isFree INTEGER,
-                            isCompleted INTEGER,
-                            isProgress INTEGER,
-                            currentStep INTEGER,
-                            steps INTEGER,
-                            initialPaidStep INTEGER,
-                            timer INTEGER,
-                            rewards TEXT
-                        )`
+						`CREATE TABLE IF NOT EXISTS PuzzlesTest
+             (
+                 name            TEXT PRIMARY KEY,
+                 categories      TEXT,
+                 isFree          INTEGER,
+                 isCompleted     INTEGER,
+                 isProgress      INTEGER,
+                 currentStep     INTEGER,
+                 steps           INTEGER,
+                 initialPaidStep INTEGER,
+                 timer           INTEGER,
+                 rewards         TEXT
+             )`
 					)
 					tx.executeSql(
-						`CREATE TABLE IF NOT EXISTS TestsTest (
-                            name TEXT PRIMARY KEY,
-                            categories TEXT,
-                            isFree INTEGER,
-                            isCompleted INTEGER,
-                            isProgress INTEGER,
-                            currentStep INTEGER,
-                            steps INTEGER,
-                            initialPaidStep INTEGER,
-                            timer INTEGER,
-                            rewards TEXT
-                        )`
+						`CREATE TABLE IF NOT EXISTS TestsTest
+             (
+                 name            TEXT PRIMARY KEY,
+                 categories      TEXT,
+                 isFree          INTEGER,
+                 isCompleted     INTEGER,
+                 isProgress      INTEGER,
+                 currentStep     INTEGER,
+                 steps           INTEGER,
+                 initialPaidStep INTEGER,
+                 timer           INTEGER,
+                 rewards         TEXT
+             )`
 					)
 				},
 				error => {
@@ -76,6 +98,7 @@ export class SQLiteDB {
 	}
 
 	getGameByName = async (name: string): Promise<IGame | null> => {
+		console.log("NAME", name)
 		return new Promise((resolve, reject) => {
 			this.db.transaction(
 				tx => {
@@ -97,6 +120,7 @@ export class SQLiteDB {
 									timer: row.timer,
 									rewards: row.rewards.split(",")
 								}
+								console.log("game", game)
 								resolve(game)
 							} else {
 								resolve(null) // No game found with the given name
@@ -119,9 +143,17 @@ export class SQLiteDB {
 			this.db.transaction(
 				tx => {
 					tx.executeSql(
-						`UPDATE GamesTest 
-                    SET categories=?, isFree=?, isCompleted=?, isProgress=?, currentStep=?, steps=?, initialPaidStep=?, timer=?, rewards=?
-                    WHERE name=?`,
+						`UPDATE GamesTest
+             SET categories=?,
+                 isFree=?,
+                 isCompleted=?,
+                 isProgress=?,
+                 currentStep=?,
+                 steps=?,
+                 initialPaidStep=?,
+                 timer=?,
+                 rewards=?
+             WHERE name = ?`,
 						[
 							game.categories.join(","),
 							game.isFree ? 1 : 0,
@@ -155,9 +187,10 @@ export class SQLiteDB {
 			this.db.transaction(
 				tx => {
 					tx.executeSql(
-						`INSERT OR REPLACE INTO PlayerTest
-                        (userName, photo, rewards, notifications, hotDeals, progress) 
-                        VALUES (?, ?, ?, ?, ?, ?)`,
+						`INSERT OR
+             REPLACE INTO PlayerTest
+                 (userName, photo, rewards, notifications, hotDeals, progress)
+             VALUES (?, ?, ?, ?, ?, ?)`,
 						[
 							player.userName,
 							player.photo,
@@ -188,9 +221,10 @@ export class SQLiteDB {
 				tx => {
 					games.forEach(game => {
 						tx.executeSql(
-							`INSERT OR REPLACE INTO GamesTest 
-                            (name, categories, isFree, isCompleted, isProgress, currentStep, steps, initialPaidStep, timer, rewards) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+							`INSERT OR
+               REPLACE INTO GamesTest
+               (name, categories, isFree, isCompleted, isProgress, currentStep, steps, initialPaidStep, timer, rewards)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
 							[
 								game.name,
 								game.categories.join(","),
@@ -214,6 +248,55 @@ export class SQLiteDB {
 				}
 			)
 		})
+	}
+	// checkDefaultGamesExist = (tx: any, gameNames: string[]) => {
+	// 	// Check if default games exist in GamesTest table
+	// 	gameNames.forEach(gameName => {
+	// 		tx.executeSql(
+	// 			`SELECT * FROM GamesTest WHERE name = ?`,
+	// 			[gameName],
+	// 			(_, { rows }) => {
+	// 				if (rows.length === 0) {
+	// 					// If default game doesn't exist, insert it
+	// 					this.insertDefaultGame(tx, gameName)
+	// 				}
+	// 			},
+	// 			error => {
+	// 				console.error("Error checking default game existence:", error)
+	// 			}
+	// 		)
+	// 	})
+	// }
+
+	insertDefaultGame = (tx: any, Game: IGame) => {
+		// Insert default game into GamesTest table
+		tx.executeSql(
+			`INSERT INTO GamesTest 
+        (name, categories, isFree, isCompleted, isProgress, currentStep, steps, initialPaidStep, timer, rewards) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+			[
+				Game.name,
+				Game.categories, // Default categories
+				Game.isFree ? 1 : 0, // Example for boolean values
+				Game.isCompleted ? 1 : 0, // Example for boolean values
+				Game.isProgress ? 1 : 0, // Example for boolean values
+				Game.currentStep, // Example for integer values
+				Game.steps, // Example for integer values
+				Game.initialPaidStep, // Example for integer values
+				Game.timer, // Example for integer values
+				Game.rewards // Default rewards
+			],
+			(_, { rowsAffected }) => {
+				if (rowsAffected > 0) {
+					console.log("Default game inserted successfully.")
+				} else {
+					console.error("Failed to insert default game.")
+				}
+			},
+			error => {
+				console.error("Error inserting default game:", error)
+			}
+		)
 	}
 
 	// Example method to fetch data

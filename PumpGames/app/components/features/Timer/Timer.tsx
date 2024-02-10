@@ -1,15 +1,18 @@
 import StartStop from "@/components/features/Timer/StartStop/StartStop"
 import Handler from "@/components/ui/handler/Handler"
 import TextComponent from "@/components/ui/text/TextComponent"
-import React, { useRef, useState } from "react"
+import { coreStore } from "@/store"
+import React, { Dispatch, SetStateAction, useRef, useState } from "react"
 import { TouchableOpacity, View } from "react-native"
+import { IGame } from "types"
 
 interface TimerProps {
-	initialTime?: number // Initial time for the timer in milliseconds
+	game: IGame
+	setGame: Dispatch<SetStateAction<IGame>>
 }
 
-const Timer: React.FC<TimerProps> = ({ initialTime = 0 }) => {
-	const [currentTime, setCurrentTime] = useState<number>(initialTime)
+const Timer: React.FC<TimerProps> = ({ game, setGame }) => {
+	const [currentTime, setCurrentTime] = useState<number>(game.timer)
 	const [isRunning, setIsRunning] = useState<boolean>(false)
 	const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -25,6 +28,7 @@ const Timer: React.FC<TimerProps> = ({ initialTime = 0 }) => {
 	const pauseTimer = () => {
 		if (isRunning && intervalRef.current) {
 			setIsRunning(false)
+			coreStore.db.updateGame({ ...game, timer: currentTime })
 			clearInterval(intervalRef.current)
 		}
 	}

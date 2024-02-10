@@ -19,7 +19,7 @@ export interface IGame {
 	isProgress: boolean
 	currentStep: number
 	steps: number
-	initialPaidStep: number
+	initialPaidStep?: number
 	timer: number
 	rewards: string[]
 }

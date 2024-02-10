@@ -1,4 +1,5 @@
 import { ComponentType } from "react"
+import { IGame } from "types"
 
 export type CATEGORY_TYPES = "Solving" | "Memory" | "Focus" | "Relax"
 
@@ -24,9 +25,17 @@ export interface IRoute {
 	isHidden?: boolean
 }
 
-export interface IGame {
-	name: string
-	component: ComponentType
-	isHidden?: boolean
-	category: CATEGORY_TYPES
-}
+export const DEFAULT_GAMES: IGame[] = [
+	{
+		name: "SymbolSearch",
+		categories: ["Focus", "Memory"],
+		isFree: true,
+		isCompleted: false,
+		isProgress: false,
+		currentStep: 0,
+		steps: 5,
+		initialPaidStep: undefined,
+		timer: 0,
+		rewards: []
+	}
+]

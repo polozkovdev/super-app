@@ -50,7 +50,7 @@ const gameWrapper =
 						<Component game={game} setGame={setGame} navigation={navigation} />
 					</View>
 					<View className='flex-row space-x-[14px]'>
-						<Timer />
+						<Timer game={game} setGame={setGame} />
 						<Handler>
 							<Image
 								className={`w-6 h-6`}

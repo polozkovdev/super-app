@@ -54,16 +54,18 @@ const symbols = [
 
 const gameCardsQTY = symbols.length
 
+interface ISymbolSearchProps {
+	game: IGame
+	setGame: Dispatch<SetStateAction<IGame>>
+	navigation: any
+}
+
 const SymbolSearch = ({
 	game: { currentStep, steps },
 	game,
 	setGame,
 	navigation
-}: {
-	game: IGame
-	setGame: Dispatch<SetStateAction<IGame>>
-	navigation: any
-}) => {
+}: ISymbolSearchProps) => {
 	const { showModal, content } = useModal()
 	const [cards, setCards] = useState(shuffle([...symbols]))
 	const [animations, setAnimations] = useState(

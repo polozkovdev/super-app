@@ -1,3 +1,4 @@
+import { DEFAULT_GAMES } from "@/navigation/navigation.types"
 import * as Notifications from "expo-notifications"
 import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext } from "react"
@@ -128,14 +129,19 @@ export class DBState {
 	}
 
 	initDB() {
-		dbSqLite.createTable().then(
-			action("fetchSuccess", () => {
-				this.getData()
-			}),
-			action("fetchError", error => {
-				console.log(error)
+		console.log("initDB")
+		dbSqLite
+			.createTable({
+				Games: DEFAULT_GAMES
 			})
-		)
+			.then(
+				action("fetchSuccess", () => {
+					this.getData()
+				}),
+				action("fetchError", error => {
+					console.log(error)
+				})
+			)
 	}
 
 	getData = (): Promise<{
@@ -164,7 +170,9 @@ export class DBState {
 
 	getGameByName = async (name: string) => {
 		try {
-			return await dbSqLite.getGameByName(name)
+			const game = await dbSqLite.getGameByName(name)
+			console.log("game", game)
+			return game
 		} catch (error) {
 			console.error("Error fetching specific game:", error)
 		}
