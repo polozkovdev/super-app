@@ -34,7 +34,6 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ images }) => {
 							flexGrow: 1,
 							justifyContent: "center",
 							alignItems: "center",
-							backgroundColor: "red",
 							width: 300,
 							// height: 300,
 							transform: `rotate(${size}deg) translateX(${size}px) translateY(${size}px)`

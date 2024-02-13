@@ -142,7 +142,6 @@ const SymbolSearch = ({
 	}
 
 	const handleCardPress = (index: number) => {
-		endGame()
 		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)

@@ -1,12 +1,13 @@
-import Games from "@/components/screens/games/Games"
-import Puzzles from "@/components/screens/puzzles/Puzzles"
-import Tests from "@/components/screens/tests/Tests"
-import Today from "@/components/screens/today/Today"
 import SymbolSearch from "@/games/native/SymbolSearch"
 import Tetris from "@/games/native/Tetris"
 import WordSearchGame from "@/games/native/WordSearchGame"
 import BlockDocku from "@/games/webview/BlockDocku/BlockDocku"
 import { IRoute } from "@/navigation/navigation.types"
+import GameOverview from "@/screens/gameOverview/GameOverview"
+import Games from "@/screens/games/Games"
+import Puzzles from "@/screens/puzzles/Puzzles"
+import Tests from "@/screens/tests/Tests"
+import Today from "@/screens/today/Today"
 
 export const routes: IRoute[] = [
 	{
@@ -16,6 +17,10 @@ export const routes: IRoute[] = [
 	{
 		name: "Games",
 		component: Games
+	},
+	{
+		name: "GameOverview",
+		component: GameOverview
 	},
 	{
 		name: "Puzzles",

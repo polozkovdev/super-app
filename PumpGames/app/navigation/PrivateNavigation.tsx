@@ -35,7 +35,11 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 		<Tab.Navigator
 			initialRouteName='Today'
 			screenOptions={({ route }) => {
-				const isActive = currentRoute === route.name
+				const isGameOverview = currentRoute === "GameOverview"
+				const isActive =
+					isGameOverview && route.name === "Games"
+						? true
+						: currentRoute === route.name
 				const menu = menuData.find(i => i.path === route.name)
 				return {
 					tabBarIcon: () => {
@@ -86,6 +90,7 @@ const HomeTabs = ({ currentRoute }: { currentRoute?: string }) => {
 					tabBarShowLabel: false,
 					tabBarHideOnKeyboard: true,
 					tabBarItemStyle: {
+						display: route.name === "GameOverview" ? "none" : "flex",
 						height: isDesktop ? 40 : 80
 					},
 					tabBarStyle: {

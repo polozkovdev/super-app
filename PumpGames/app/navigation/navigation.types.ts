@@ -8,6 +8,7 @@ export type TypeRootStackParamList = {
 	Today: undefined
 	Games: undefined
 	Puzzles: undefined
+	GameOverview: undefined
 	Tests: undefined
 	Profile: undefined
 

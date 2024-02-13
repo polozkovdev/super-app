@@ -9,6 +9,7 @@ export class SQLiteDB {
 	}
 
 	createTable = async ({ Games }: { Games: IGame[] }): Promise<boolean> => {
+		console.log("create table")
 		return new Promise((resolve, reject) => {
 			this.db.transaction(
 				tx => {

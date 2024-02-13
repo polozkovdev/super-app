@@ -1,9 +1,9 @@
-import Loading from "@/components/screens/loading/Loading"
-import Onboarding from "@/components/screens/onboarding/Onboarding"
 import { AppConstants } from "@/constants/app.constants"
 import { setPresetScreenHeight } from "@/helpers/scaleHelper"
 import useCachedResources from "@/hooks/useCachedResources"
 import Navigation from "@/navigation/Navigation"
+import Loading from "@/screens/loading/Loading"
+import Onboarding from "@/screens/onboarding/Onboarding"
 import React, { useEffect, useState } from "react"
 import { Dimensions, View } from "react-native"
 import {

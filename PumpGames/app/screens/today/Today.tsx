@@ -1,5 +1,6 @@
 import Button from "@/components/ui/button/Button"
 import Footer from "@/components/ui/footer/Footer"
+import GameCard from "@/components/ui/gameCard/GameCard"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
@@ -48,24 +49,13 @@ const Today = ({ navigation }: any) => {
 						<View className='md:flex-row md:justify-center md:items-start'>
 							{/*game 1*/}
 							<View className='items-center md:w-[300px]'>
-								<Image
-									className='mb-[20] w-[200px] h-[200px]'
-									resizeMode='contain'
+								<GameCard
 									source={require("@/assets/games/game_1.png")}
+									name='Block Puzzle'
+									route='BlockDocku'
+									category='Problem solving'
+									navigation={navigation}
 								/>
-								<View className='mb-[4]'>
-									<TextComponent
-										type='title'
-										className='text-[30px] text-primary font-subtitle md:text-[40px]'
-									>
-										Block Puzzle
-									</TextComponent>
-								</View>
-								<View className='mb-[20]'>
-									<TextComponent className='text-accent'>
-										Problem solving
-									</TextComponent>
-								</View>
 								<View className='mb-[30]'>
 									<View className='flex-row items-center space-x-2'>
 										<Image
@@ -93,24 +83,13 @@ const Today = ({ navigation }: any) => {
 							</View>
 							{/*	game 2*/}
 							<View className='items-center md:w-[300px]'>
-								<Image
-									className='mb-[20] w-[200px] h-[200px]'
-									resizeMode='contain'
+								<GameCard
 									source={require("@/assets/games/game_2.png")}
+									name='Memory'
+									route='Memory'
+									category='Memory'
+									navigation={navigation}
 								/>
-								<View className='mb-[10]'>
-									<TextComponent
-										type='title'
-										className='text-[30px] font-semibold md:text-[40px]'
-									>
-										Memory
-									</TextComponent>
-								</View>
-								<View className='mb-[20]'>
-									<TextComponent className='text-accent'>
-										Other problem
-									</TextComponent>
-								</View>
 								<View className='mb-[30]'>
 									<View className='flex-row items-center space-x-2'>
 										<Image

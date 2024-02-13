@@ -12,7 +12,8 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 }) => {
 	return (
 		<View
-			className='pt-[16] pb-[16] pl-[12] pr-[12]'
+			// className='pt-[16] pb-[16] pl-[12] pr-[12]'
+			className='p-0'
 			style={{
 				flex: 1,
 				alignItems: "center",
