@@ -17,15 +17,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 	return (
 		<View
 			style={{
-				flex: 1,
-				backgroundColor: AppConstants.primaryBackground,
-				position: "relative",
-				maxWidth: 1420,
-				width: "100%",
-				marginTop: 0,
-				marginBottom: 0,
-				marginLeft: "auto",
-				marginRight: "auto"
+				flex: 1
 			}}
 		>
 			<ScrollView
@@ -34,6 +26,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 					flexGrow: 1,
 					justifyContent: "center",
 					borderWidth: 0,
+					position: "relative",
 					alignItems: "center"
 				}}
 			>
@@ -42,7 +35,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 						alignItems: "center",
 						position: "relative"
 					}}
-					className='w-full h-[100%]'
+					className='w-full h-[100%] max-w-[1420px]'
 				>
 					<Image
 						className='mb-[38px] md:mr-auto'
@@ -80,25 +73,25 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 						</TextComponent>
 					</View>
 					<Footer />
-				</View>
-				<View className='flex-1 h-[60] w-full md-hidden' />
-			</ScrollView>
-			<View
-				className={`
+					<View
+						className={`
 			absolute bottom-0 flex md:hidden h-[80] w-full
 			overflow-visible
 			shadow-xl
 			 bg-primaryBackground/70
 			`}
-			/>
-			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
-				<Button
-					children='Start for free'
-					isArrow
-					onPress={onStart}
-					className=' md:ml-auto'
-				/>
-			</View>
+					/>
+					<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
+						<Button
+							children='Start for free'
+							isArrow
+							onPress={onStart}
+							className=' md:ml-auto'
+						/>
+					</View>
+				</View>
+				<View className='flex-1 h-[60] w-full md-hidden' />
+			</ScrollView>
 		</View>
 	)
 }

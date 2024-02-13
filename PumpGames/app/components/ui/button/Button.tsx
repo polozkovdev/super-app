@@ -8,6 +8,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 	isArrow,
 	onPress,
 	iconLeftPath,
+	iconRightPath,
 	className,
 	children,
 	...props
@@ -17,7 +18,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 			<TouchableOpacity
 				className={`
 				flex-row items-center justify-center gap-x-2
-				 bg-white max-w-[340] w-full h-[55] rounded-3xl
+				 bg-white max-w-[300px] w-full h-[55px] rounded-3xl
 				 md:flex md:w-60
 				  border-[1px] border-[black]/10 shadow-[black]/10 shadow-sm md:shadow-none
 				`}
@@ -30,7 +31,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 						source={require("@/assets/ui/unlock.png")}
 					/>
 				)}
-				<TextComponent className='text-primary text-[18px] font-subtitle'>
+				<TextComponent className='text-primary text-[20px] font-subtitle'>
 					{children}
 				</TextComponent>
 				{isArrow && (
@@ -38,6 +39,13 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 						className='w-4 h-4'
 						resizeMode='contain'
 						source={require("@/assets/ui/arrow_orange.png")}
+					/>
+				)}
+				{iconLeftPath && (
+					<Image
+						className='w-4 h-4'
+						resizeMode='contain'
+						source={iconRightPath}
 					/>
 				)}
 			</TouchableOpacity>

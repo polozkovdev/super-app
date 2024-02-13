@@ -26,7 +26,11 @@ export default function App() {
 							}}
 						>
 							<ModalProvider>
-								<GestureHandlerRootView style={{ flex: 1 }}>
+								<GestureHandlerRootView
+									style={{
+										flex: 1
+									}}
+								>
 									<Wrapper />
 								</GestureHandlerRootView>
 							</ModalProvider>

@@ -13,15 +13,7 @@ const Games = ({ navigation }: any) => {
 	return (
 		<View
 			style={{
-				flex: 1,
-				backgroundColor: AppConstants.primaryBackground,
-				position: "relative",
-				maxWidth: 1420,
-				width: "100%",
-				marginTop: 0,
-				marginBottom: 0,
-				marginLeft: "auto",
-				marginRight: "auto"
+				flex: 1
 			}}
 		>
 			<ScrollView
@@ -29,6 +21,7 @@ const Games = ({ navigation }: any) => {
 				contentContainerStyle={{
 					flexGrow: 1,
 					justifyContent: "center",
+					borderWidth: 0,
 					alignItems: "center"
 				}}
 			>
@@ -74,14 +67,14 @@ const Games = ({ navigation }: any) => {
 						</View>
 					</View>
 				</Layout>
+				<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none'>
+					<Button
+						children='Start playing'
+						iconLeftPath='@/assets/ui/unlock.png'
+						onPress={() => alert("unlock")}
+					/>
+				</View>
 			</ScrollView>
-			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none'>
-				<Button
-					children='Start playing'
-					iconLeftPath='@/assets/ui/unlock.png'
-					onPress={() => alert("unlock")}
-				/>
-			</View>
 		</View>
 	)
 }

@@ -1,3 +1,7 @@
+import { CATEGORIES } from "@/constants/app.constants"
+import { TypeRootStackParamList } from "@/navigation/navigation.types"
+import { ImageSourcePropType } from "react-native"
+
 export interface IPlayer {
 	userName: string
 	photo: string
@@ -13,13 +17,20 @@ export interface IPlayer {
 
 export interface IGame {
 	name: string
-	categories: string[]
+	title: string
+	route: keyof TypeRootStackParamList
+	categories: CATEGORIES[]
 	isFree: boolean
 	isCompleted: boolean
 	isProgress: boolean
 	currentStep: number
 	steps: number
 	initialPaidStep?: number
+	benefits: {
+		title: string
+		description: string
+		source?: ImageSourcePropType
+	}[]
 	timer: number
 	rewards: string[]
 }

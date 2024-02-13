@@ -3,17 +3,14 @@ import { useFocusEffect } from "@react-navigation/native"
 import { FC, PropsWithChildren, useCallback, useRef } from "react"
 import { FlatList, Image, View } from "react-native"
 import { useMediaQuery } from "react-responsive"
+import { IGame } from "types"
 
 interface ILevelsProps {
-	steps: number
-	currentStep: number
-	initialPaidStep?: number
+	Game: IGame
 }
 
 const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
-	steps,
-	currentStep,
-	initialPaidStep
+	Game: { steps, currentStep, initialPaidStep }
 }) => {
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
@@ -21,8 +18,8 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 	const flatListRef = useRef<any>(null)
 	const getItemLayout = (data: any, index: any) => {
 		return {
-			length: 50,
-			offset: 50 * index,
+			length: steps,
+			offset: steps * index,
 			index
 		}
 	}
@@ -30,7 +27,6 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 	const scrollToIndex = () => {
 		flatListRef.current.scrollToIndex({
 			animated: true,
-
 			index: currentStep
 		})
 	}
@@ -45,6 +41,7 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 			style={{
 				flex: 1
 			}}
+			className={`${isDesktop ? "mb-[60px]" : "mb-[40px]"}`}
 		>
 			<TextComponent
 				type='title'
@@ -61,21 +58,25 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 				horizontal
 				initialScrollIndex={currentStep}
 				getItemLayout={getItemLayout}
-				ItemSeparatorComponent={() => <View className='w-[30px]' />}
 				keyExtractor={item => `${item}`}
 				renderItem={({ item, index }) => {
-					const isPrevLevel = index < currentStep
-					const isCurrentLevel = index === currentStep
-					const isFutureLevel = index > currentStep
+					const isPrevLevel = item < currentStep
+					const isCurrentLevel = item === currentStep
+					const isFutureLevel = item > currentStep
 					const source = isPrevLevel
 						? require("@/assets/ui/completed.png")
 						: isCurrentLevel
 							? require("@/assets/ui/play_white.png")
 							: require("@/assets/ui/lock.png")
 					return (
-						<View>
+						<View
+							className='mx-[10px]'
+							style={{
+								flex: 1
+							}}
+						>
 							<View
-								key={index}
+								key={item}
 								className={`
 								w-[60px] h-[60px] rounded-full
 								flex-row items-center justify-center
@@ -92,6 +93,11 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 								/>
 							</View>
 							<TextComponent
+								className={`
+									${isPrevLevel && "text-green"}
+									${isCurrentLevel && "text-[#E57300]/60"}
+									${isFutureLevel && "text-[#3F1210]/10"}
+								`}
 								style={{
 									fontFamily: "DM-Medium",
 									marginTop: 10,

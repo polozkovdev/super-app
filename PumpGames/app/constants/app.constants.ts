@@ -1,6 +1,7 @@
 import { TypeRootStackParamList } from "@/navigation/navigation.types"
-import { ImageSourcePropType } from "react-native"
+import { Dimensions, ImageSourcePropType } from "react-native"
 
+export const PAGE_WIDTH = Dimensions.get("window").width * 0.9
 export const AppConstants = {
 	// background colors
 	primaryBackground: "#F8F4E8",

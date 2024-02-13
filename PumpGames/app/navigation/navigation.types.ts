@@ -1,3 +1,4 @@
+import { CATEGORIES } from "@/constants/app.constants"
 import { ComponentType } from "react"
 import { IGame } from "types"
 
@@ -29,14 +30,36 @@ export interface IRoute {
 export const DEFAULT_GAMES: IGame[] = [
 	{
 		name: "SymbolSearch",
-		categories: ["Focus", "Memory"],
+		route: "SymbolSearch",
+		title: "Symbol Search",
+		categories: [CATEGORIES.Focus, CATEGORIES.Memory],
 		isFree: true,
 		isCompleted: false,
 		isProgress: false,
-		currentStep: 0,
-		steps: 5,
+		currentStep: 1,
+		steps: 10,
 		initialPaidStep: undefined,
 		timer: 0,
-		rewards: []
+		rewards: [],
+		benefits: [
+			{
+				title: "Decision making",
+				description:
+					"Improve your ability to make informed and effective choices",
+				source: require("@/assets/ui/benifits_01.png")
+			},
+			{
+				title: "Visual processing speed",
+				description:
+					"Boost the speed at which you process and react to visual information",
+				source: require("@/assets/ui/benifits_02.png")
+			},
+			{
+				title: "Problem solving",
+				description:
+					"Improve your ability to identify solutions to complex issues",
+				source: require("@/assets/ui/benifits_03.png")
+			}
+		]
 	}
 ]

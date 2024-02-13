@@ -1,10 +1,9 @@
+import asyncStorageDB from "@/model/asyncStorage"
 import { DEFAULT_GAMES } from "@/navigation/navigation.types"
 import * as Notifications from "expo-notifications"
 import { action, makeAutoObservable } from "mobx"
 import { createContext, useContext } from "react"
 import { IGame, IPlayer } from "types"
-import asyncStorage from "./model/asyncStorage"
-import dbSqLite from "./model/dbSQLite"
 
 Notifications.setNotificationHandler({
 	handleNotification: async () => ({
@@ -23,84 +22,6 @@ export class UiState {
 
 	constructor() {
 		makeAutoObservable(this)
-
-		this.getVisitedCount()
-		this.isLikedApp()
-		this.isRatedApp()
-	}
-
-	get isNeedShowLikePopup(): boolean {
-		return (
-			!this.isShowLikeInSession &&
-			this.isLiked === null &&
-			this.visitedCount > 2
-		)
-	}
-
-	get isNeedShowRatePopup(): boolean {
-		return (
-			!this.isShowLikeInSession &&
-			!this.isShowRateInSession &&
-			!this.isRated &&
-			!!this.isLiked &&
-			this.visitedCount > 3
-		)
-	}
-
-	getVisitedCount() {
-		asyncStorage.updateUserVisitedCount().then(
-			action("fetchSuccess", count => {
-				this.visitedCount = count
-			}),
-			action("fetchError", error => {
-				console.log(error)
-			})
-		)
-	}
-
-	isRatedApp() {
-		asyncStorage.isRatedApp().then(
-			action("fetchSuccess", isRated => {
-				this.isRated = isRated
-			}),
-			action("fetchError", error => {
-				console.log(error)
-			})
-		)
-	}
-
-	isLikedApp() {
-		asyncStorage.isLakedApp().then(
-			action("fetchSuccess", isLiked => {
-				this.isLiked =
-					isLiked === "true" ? true : isLiked === "false" ? false : null
-			}),
-			action("fetchError", error => {
-				console.log(error)
-			})
-		)
-	}
-
-	likeApp(value: boolean) {
-		asyncStorage.likeApp(value).then(
-			action("fetchSuccess", () => {
-				this.isLiked = value
-			}),
-			action("fetchError", error => {
-				console.log(error)
-			})
-		)
-	}
-
-	rateApp() {
-		asyncStorage.rateApp().then(
-			action("fetchSuccess", () => {
-				this.isRated = true
-			}),
-			action("fetchError", error => {
-				console.log(error)
-			})
-		)
 	}
 }
 
@@ -130,7 +51,7 @@ export class DBState {
 
 	initDB() {
 		console.log("initDB")
-		dbSqLite
+		asyncStorageDB
 			.createTable({
 				Games: DEFAULT_GAMES
 			})
@@ -151,7 +72,7 @@ export class DBState {
 		Tests: IGame[]
 	}> => {
 		return new Promise((resolve, reject) => {
-			dbSqLite.getData().then(
+			asyncStorageDB.getData().then(
 				action("fetchSuccess", data => {
 					this.Player = data.Player
 					this.Games = data.Games
@@ -170,7 +91,7 @@ export class DBState {
 
 	getGameByName = async (name: string) => {
 		try {
-			const game = await dbSqLite.getGameByName(name)
+			const game = await asyncStorageDB.getGameByName(name)
 			console.log("game", game)
 			return game
 		} catch (error) {
@@ -179,7 +100,7 @@ export class DBState {
 	}
 
 	updateGame = (game: IGame) => {
-		dbSqLite.updateGame(game).then(
+		asyncStorageDB.updateGame(game).then(
 			action("updateGameSuccess", () => {
 				// Update the game in the local state
 				const index = this.Games.findIndex(g => g.name === game.name)
@@ -194,7 +115,7 @@ export class DBState {
 	}
 
 	updatePlayer = (player: IPlayer) => {
-		dbSqLite.updatePlayer(player).then(
+		asyncStorageDB.updatePlayer(player).then(
 			action("updatePlayerSuccess", () => {
 				this.Player = player
 			}),
@@ -205,7 +126,7 @@ export class DBState {
 	}
 
 	updateGames = (games: IGame[]) => {
-		dbSqLite.updateGames(games).then(
+		asyncStorageDB.updateGames(games).then(
 			action("updateGamesSuccess", () => {
 				this.Games = games
 			}),

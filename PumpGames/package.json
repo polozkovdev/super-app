@@ -47,7 +47,8 @@
     "react-unity-webgl": "^9.5.0",
     "realm": "^12.6.0",
     "realm-web": "^2.0.0",
-    "tailwind-merge": "^2.2.1"
+    "tailwind-merge": "^2.2.1",
+    "@react-native-async-storage/async-storage": "1.21.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

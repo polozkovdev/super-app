@@ -3,7 +3,7 @@ import { Image, Text, View } from "react-native"
 
 const Header = () => {
 	return (
-		<View className='flex-row justify-between items-center mb-[48px] w-full'>
+		<View className='flex-row justify-between items-center mb-[48px] w-full px-[16px] my-[16px]'>
 			<View className='h-full'>
 				<Image
 					className='w-8 h-8'

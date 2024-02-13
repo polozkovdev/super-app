@@ -11,15 +11,7 @@ const Today = ({ navigation }: any) => {
 	return (
 		<View
 			style={{
-				flex: 1,
-				backgroundColor: AppConstants.primaryBackground,
-				position: "relative",
-				maxWidth: 1420,
-				width: "100%",
-				marginTop: 0,
-				marginBottom: 0,
-				marginLeft: "auto",
-				marginRight: "auto"
+				flex: 1
 			}}
 		>
 			<ScrollView
@@ -27,11 +19,17 @@ const Today = ({ navigation }: any) => {
 				contentContainerStyle={{
 					flexGrow: 1,
 					justifyContent: "center",
+					borderWidth: 0,
 					alignItems: "center"
 				}}
 			>
 				<Layout>
-					<View style={{ alignItems: "center" }}>
+					<View
+						className='items-center justify-center w-full'
+						style={{
+							height: "100%"
+						}}
+					>
 						<View className='mb-[20] w-full'>
 							<TextComponent type='title'>Today</TextComponent>
 						</View>
@@ -110,14 +108,14 @@ const Today = ({ navigation }: any) => {
 						<View className='flex-1 h-[60] w-full' />
 					</View>
 				</Layout>
+				<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none'>
+					<Button
+						children='Start playing'
+						isArrow
+						onPress={() => navigation.navigate("Games")}
+					/>
+				</View>
 			</ScrollView>
-			<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none'>
-				<Button
-					children='Start playing'
-					isArrow
-					onPress={() => navigation.navigate("Games")}
-				/>
-			</View>
 		</View>
 	)
 }

@@ -1,33 +1,92 @@
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from "@react-native-async-storage/async-storage"
+import { IDB, IGame, IPlayer } from "types"
 
-export class StorageAsync {
-  constructor() {}
+export class AsyncStorageDB {
+	async createTable({ Games }: { Games: IGame[] }): Promise<boolean> {
+		try {
+			const gamesCount = await AsyncStorage.getItem("gamesCount")
+			if (!gamesCount) {
+				// Insert default games if Games table is empty
+				await AsyncStorage.setItem("Games", JSON.stringify(Games))
+			}
+			return true
+		} catch (error) {
+			throw new Error("Failed to create tables: " + error.message)
+		}
+	}
 
-  updateUserVisitedCount = (): Promise<number> => {
-    return SecureStore.getItemAsync('counter_launch').then((value) => {
-      const counter = parseInt(value || '0', 10) + 1;
+	async getGameByName(name: string): Promise<IGame | null> {
+		try {
+			const games = await AsyncStorage.getItem("Games")
+			if (games) {
+				const parsedGames: IGame[] = JSON.parse(games)
+				const game = parsedGames.find(game => game.name === name)
+				return game ? game : null
+			}
+			return null
+		} catch (error) {
+			throw new Error("Failed to get game by name: " + error.message)
+		}
+	}
 
-      return SecureStore.setItemAsync('counter_launch', counter.toString()).then(() => counter);
-    });
-  };
+	async updateGame(game: IGame): Promise<void> {
+		try {
+			const games = await AsyncStorage.getItem("Games")
+			if (games) {
+				const parsedGames: IGame[] = JSON.parse(games)
+				const index = parsedGames.findIndex(g => g.name === game.name)
+				if (index !== -1) {
+					parsedGames[index] = game
+					await AsyncStorage.setItem("Games", JSON.stringify(parsedGames))
+				}
+			}
+		} catch (error) {
+			throw new Error("Failed to update game: " + error.message)
+		}
+	}
 
-  isLakedApp = (): Promise<string | null> => {
-    return SecureStore.getItemAsync('do_you_like').then((value) => value);
-  };
+	async updatePlayer(player: IPlayer): Promise<void> {
+		try {
+			await AsyncStorage.setItem(
+				"PlayerTest",
+				JSON.stringify({
+					userName: player.userName,
+					photo: player.photo,
+					rewards: player.rewards?.join(","),
+					notifications: player.notifications?.join(","),
+					hotDeals: player.hotDeals?.join(","),
+					progress: JSON.stringify(player.progress)
+				})
+			)
+		} catch (error) {
+			throw new Error("Failed to update player data.")
+		}
+	}
 
-  likeApp = (isLiked: boolean): Promise<void> => {
-    return SecureStore.setItemAsync('do_you_like', isLiked ? 'true' : 'false');
-  };
+	async updateGames(games: IGame[]): Promise<void> {
+		try {
+			await AsyncStorage.setItem("GamesTest", JSON.stringify(games))
+		} catch (error) {
+			throw new Error("Failed to update games.")
+		}
+	}
 
-  isRatedApp = (): Promise<boolean> => {
-    return SecureStore.getItemAsync('is_rated').then((value) => value === 'true');
-  };
-
-  rateApp = (): Promise<void> => {
-    return SecureStore.setItemAsync('is_rated', 'true');
-  };
+	async getData(): Promise<IDB> {
+		try {
+			const games = await AsyncStorage.getItem("Games")
+			const player = await AsyncStorage.getItem("Player")
+			if (games && player) {
+				const parsedGames: IGame[] = JSON.parse(games)
+				const parsedPlayer: IPlayer = JSON.parse(player)
+				return { Games: parsedGames, Player: parsedPlayer }
+			} else {
+				return { Games: [], Player: {} as IPlayer }
+			}
+		} catch (error) {
+			throw new Error("Failed to get data: " + error.message)
+		}
+	}
 }
 
-const asyncStorage = new StorageAsync();
-
-export default asyncStorage;
+const asyncStorageDB = new AsyncStorageDB()
+export default asyncStorageDB

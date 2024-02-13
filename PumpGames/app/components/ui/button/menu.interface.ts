@@ -3,7 +3,7 @@ export interface IButton {
 	className?: string
 	isArrow?: boolean
 	iconLeftPath?: string
-	iconRightPath?: string
+	iconRightPath?: any
 	icon?: {
 		path: string
 		position: "left" | "right"
