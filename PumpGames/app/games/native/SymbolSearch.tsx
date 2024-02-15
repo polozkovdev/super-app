@@ -3,7 +3,13 @@ import { useModal } from "@/hooks/useModal"
 import { coreStore } from "@/store"
 import { FontAwesome5 } from "@expo/vector-icons"
 import { observer } from "mobx-react-lite"
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
+import React, {
+	Dispatch,
+	SetStateAction,
+	useEffect,
+	useMemo,
+	useState
+} from "react"
 import {
 	Animated,
 	Dimensions,
@@ -12,10 +18,9 @@ import {
 	TouchableOpacity,
 	View
 } from "react-native"
+import { useMediaQuery } from "react-responsive"
 import { IGame } from "types"
 
-const screenWidth = Dimensions.get("window").width
-const cardSize = screenWidth > 728 ? 100 : Math.floor((screenWidth - 80) / 4)
 export const shuffle = (array: string[]) => {
 	let currentIndex = array.length,
 		temporaryValue,
@@ -33,7 +38,23 @@ export const shuffle = (array: string[]) => {
 	return array
 }
 
-const symbols = [
+const STRINGS = [
+	"android",
+	"android",
+	"apple",
+	"apple",
+	"balance-scale",
+	"balance-scale",
+	"bell",
+	"bell",
+	"bus",
+	"bus",
+	"car",
+	"car",
+	"clock",
+	"clock",
+	"coffee",
+	"coffee",
 	"bicycle",
 	"bicycle",
 	"leaf",
@@ -52,7 +73,25 @@ const symbols = [
 	"carrot"
 ]
 
-const gameCardsQTY = symbols.length
+const generateRandomPairsOrTriples = ({
+	strings,
+	repeatCount,
+	pairsCount
+}: {
+	strings: string[]
+	repeatCount: number
+	pairsCount: number
+}) => {
+	return shuffle(
+		shuffle(strings).reduce((acc: string[], item, index) => {
+			if (index + 1 > pairsCount) {
+				return acc
+			}
+			const repeatedItems = new Array(repeatCount).fill("").map(i => item)
+			return [...acc, ...repeatedItems]
+		}, [])
+	)
+}
 
 interface ISymbolSearchProps {
 	game: IGame
@@ -66,10 +105,49 @@ const SymbolSearch = ({
 	setGame,
 	navigation
 }: ISymbolSearchProps) => {
+	const isDesktop = useMediaQuery({
+		query: "(min-width: 724px)"
+	})
+	const {
+		gameCardsQTY,
+		repeatCount,
+		pairsCount
+	}: { gameCardsQTY: number; repeatCount: number; pairsCount: number } =
+		useMemo(() => {
+			switch (currentStep) {
+				case 1:
+					return {
+						gameCardsQTY: 16,
+						repeatCount: 2,
+						pairsCount: 8
+					}
+				case 2:
+					return {
+						gameCardsQTY: 36,
+						repeatCount: 3,
+						pairsCount: 12
+					}
+				default:
+					return {
+						gameCardsQTY: 64,
+						repeatCount: 2,
+						pairsCount: 32
+					}
+			}
+		}, [currentStep])
+	const symbols = useMemo(
+		() =>
+			generateRandomPairsOrTriples({
+				strings: STRINGS,
+				repeatCount,
+				pairsCount
+			}),
+		[]
+	)
 	const { showModal, content } = useModal()
-	const [cards, setCards] = useState(shuffle([...symbols]))
+	const [cards, setCards] = useState<string[]>(symbols)
 	const [animations, setAnimations] = useState(
-		cards.map(() => new Animated.Value(0))
+		symbols.map(() => new Animated.Value(0))
 	)
 	const [opened, setOpened] = useState<number[]>([])
 	const [matched, setMatched] = useState<number[]>([])
@@ -106,7 +184,7 @@ const SymbolSearch = ({
 	}
 
 	const initGame = () => {
-		setCards(shuffle([...symbols]))
+		setCards(symbols)
 		setOpened([])
 		setMatched([])
 		setMoves(0)
@@ -171,6 +249,33 @@ const SymbolSearch = ({
 		}
 	}
 
+	const generateCardSize = (size: number) => {
+		const screenWidth = Dimensions.get("window").width
+		const itemSize = Math.floor(screenWidth / (size + 1))
+		return {
+			width: itemSize,
+			height: itemSize
+		}
+	}
+
+	const generateGridStyles = (size: number) => {
+		if (isDesktop) {
+			return {
+				display: "grid",
+				gridTemplateColumns: `repeat(${size}, 100px)`,
+				gridTemplateRows: `repeat(${size}, 100px)`,
+				gap: 4,
+				borderRadius: 10
+			}
+		}
+		return {
+			display: "grid",
+			gridTemplateColumns: `repeat(${size}, 1fr)`,
+			gridTemplateRows: `repeat(${size}, 1fr)`,
+			gap: 4,
+			borderRadius: 10
+		}
+	}
 	return (
 		<View style={styles.container}>
 			<View style={styles.scorePanel}>
@@ -179,15 +284,17 @@ const SymbolSearch = ({
 					<FontAwesome5 name='circle-notch' style={styles.restartIcon} />
 				</TouchableOpacity>
 			</View>
-			<View style={styles.deck}>
+			{/*@ts-ignore*/}
+			<View style={[styles.deck, generateGridStyles(Math.sqrt(gameCardsQTY))]}>
 				{cards.map((card, index) => (
 					<TouchableOpacity
 						key={index}
 						style={[
 							styles.card,
+							!isDesktop && generateCardSize(Math.sqrt(gameCardsQTY)),
 							opened.includes(index) && styles.openedCard,
 							matched.includes(index) && styles.matchedCard,
-							animatedStyles(index)
+							!isDesktop && animatedStyles(index)
 						]}
 						onPress={() => handleCardPress(index)}
 					>
@@ -206,11 +313,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
-		maxWidth: 500,
+		maxWidth: "100%",
+		width: "100%",
 		marginLeft: "auto",
 		marginRight: "auto"
-		// overflow: "hidden"
-		// backgroundColor: "#000"
 	},
 	scorePanel: {
 		flexDirection: "row",
@@ -231,9 +337,6 @@ const styles = StyleSheet.create({
 	},
 	deck: {
 		margin: 0,
-		// backgroundColor: "#FFFA62",
-		padding: 16,
-		gap: 8,
 		borderRadius: 10,
 		flexDirection: "row",
 		alignItems: "center",
@@ -241,8 +344,6 @@ const styles = StyleSheet.create({
 		flexWrap: "wrap"
 	},
 	card: {
-		width: cardSize,
-		height: cardSize,
 		aspectRatio: 1,
 		backgroundColor: "#FFCF7F",
 		display: "flex",

@@ -28,7 +28,7 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 			<View
 				style={{ flex: 1 }}
 				className={`
-				${isDesktop ? "mt-[180px]" : "mt-[48px]"}
+				${isDesktop ? "mt-[180px] w-full" : "mt-[48px]"}
 			`}
 			>
 				{children}

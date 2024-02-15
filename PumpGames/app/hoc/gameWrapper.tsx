@@ -43,13 +43,13 @@ const gameWrapper =
 			return <Loading />
 		}
 		return (
-			<View style={{ flex: 1 }}>
+			<View style={{ flex: 1, width: "100%" }}>
 				<Layout isHeader={false}>
 					<View style={{ flex: 1 }}>
 						<HeaderGame currentData={game} />
 						<Component game={game} setGame={setGame} navigation={navigation} />
 					</View>
-					<View className='flex-row space-x-[14px]'>
+					<View className='flex-row space-x-[14px] justify-center'>
 						<Timer game={game} setGame={setGame} />
 						<Handler>
 							<Image
