@@ -4,7 +4,6 @@ import useCachedResources from "@/hooks/useCachedResources"
 import Navigation from "@/navigation/Navigation"
 import { DEFAULT_GAMES } from "@/navigation/navigation.types"
 import Loading from "@/screens/loading/Loading"
-import Onboarding from "@/screens/onboarding/Onboarding"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import React, { useEffect, useState } from "react"
 import { Dimensions, View } from "react-native"
@@ -65,7 +64,8 @@ const Wrapper = () => {
 			</View>
 		)
 	}
-	return isDone ? <Navigation /> : <Onboarding onStart={onStartClick} />
+	return <Navigation />
+	// return isDone ? <Navigation /> : <Onboarding onStart={onStartClick} />
 }
 
 export default Wrapper

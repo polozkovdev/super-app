@@ -20,7 +20,7 @@ const GameList = ({ navigation, category, time }: any) => {
 								onPress={() => navigation.navigate("GameOverview", { route })}
 							>
 								<Image
-									className='mb-[20] w-[200px] h-[200px]'
+									className='mb-[20] w-[200px] h-[200px] drop-shadow-2xl'
 									resizeMode='contain'
 									source={source}
 								/>

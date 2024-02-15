@@ -1,5 +1,6 @@
 import { IButton } from "@/components/ui/button/menu.interface"
 import TextComponent from "@/components/ui/text/TextComponent"
+import { SHADOW } from "@/constants/app.constants"
 import { cn } from "@/helpers/cn"
 import { FC, PropsWithChildren } from "react"
 import { Image, TouchableOpacity, View } from "react-native"
@@ -23,6 +24,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 				  border-[1px] border-[black]/10 shadow-[black]/10 shadow-sm md:shadow-none
 				`}
 				onPress={onPress}
+				style={SHADOW}
 			>
 				{iconLeftPath && (
 					<Image

@@ -1,3 +1,4 @@
+import Footer from "@/components/ui/footer/Footer"
 import Header from "@/components/ui/layout/header/Header"
 import { FC, PropsWithChildren } from "react"
 import { View } from "react-native"
@@ -16,15 +17,14 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 	})
 	return (
 		<View
-			// className='pt-[16] pb-[16] pl-[12] pr-[12]'
-			className='p-0 max-w-[1420px] relative mx-auto'
+			className='p-0 max-w-[1420px] relative mx-auto px-[12px]'
 			style={{
 				flex: 1,
 				alignItems: "center",
 				width: "100%"
 			}}
 		>
-			{isHeader && <Header />}
+			{isHeader && !isDesktop && <Header />}
 			<View
 				style={{ flex: 1 }}
 				className={`
@@ -32,6 +32,9 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 			`}
 			>
 				{children}
+			</View>
+			<View className={`${isDesktop ? "md:block" : "hidden"} w-full`}>
+				<Footer />
 			</View>
 		</View>
 	)

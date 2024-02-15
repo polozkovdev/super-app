@@ -1,13 +1,16 @@
 import Button from "@/components/ui/button/Button"
-import Footer from "@/components/ui/footer/Footer"
 import GameCard from "@/components/ui/gameCard/GameCard"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
 import React from "react"
 import { Image, ScrollView, View } from "react-native"
+import { useMediaQuery } from "react-responsive"
 
 const Today = ({ navigation }: any) => {
+	const isDesktop = useMediaQuery({
+		query: "(min-width: 724px)"
+	})
 	return (
 		<View
 			style={{
@@ -25,12 +28,12 @@ const Today = ({ navigation }: any) => {
 			>
 				<Layout>
 					<View
-						className='items-center justify-center w-full'
+						className='items-center justify-center w-full md:pb-[100px]'
 						style={{
 							height: "100%"
 						}}
 					>
-						<View className='mb-[20] w-full'>
+						<View className='mb-[20] w-full md:mb-[40px]'>
 							<TextComponent type='title'>Today</TextComponent>
 						</View>
 						<View className='mb-[20] w-full md:mb-[80px]'>
@@ -101,20 +104,28 @@ const Today = ({ navigation }: any) => {
 									</View>
 								</View>
 							</View>
-							<View className='hidden md:flex-row'>
-								<Footer />
-							</View>
 						</View>
-						<View className='flex-1 h-[60] w-full' />
+						<View
+							className='mt-auto shadow-[black]/10 shadow-sm'
+							style={{
+								display: isDesktop ? "flex" : "none"
+							}}
+						>
+							<Button
+								children='Start playing'
+								isArrow
+								onPress={() => navigation.navigate("Games")}
+							/>
+						</View>
+						<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
+							<Button
+								children='Start playing mob'
+								isArrow
+								onPress={() => navigation.navigate("Games")}
+							/>
+						</View>
 					</View>
 				</Layout>
-				<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none'>
-					<Button
-						children='Start playing'
-						isArrow
-						onPress={() => navigation.navigate("Games")}
-					/>
-				</View>
 			</ScrollView>
 		</View>
 	)
