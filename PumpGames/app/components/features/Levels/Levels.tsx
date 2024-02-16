@@ -15,7 +15,6 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 	Game: { steps, currentStep, initialPaidStep, route },
 	navigation
 }) => {
-	console.log("route", route)
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})

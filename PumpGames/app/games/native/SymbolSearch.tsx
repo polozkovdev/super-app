@@ -82,8 +82,6 @@ const generateRandomPairsOrTriples = ({
 	repeatCount: number
 	pairsCount: number
 }) => {
-	console.log("repeatCount", repeatCount)
-	console.log("pairsCount", pairsCount)
 	return shuffle(
 		shuffle(strings).reduce((acc: string[], item, index) => {
 			if (index + 1 > pairsCount) {
@@ -98,6 +96,7 @@ const generateRandomPairsOrTriples = ({
 interface ISymbolSearchProps {
 	game: IGame
 	setGame: Dispatch<SetStateAction<IGame>>
+	setTimerStart: Dispatch<SetStateAction<boolean>>
 	navigation: any
 }
 
@@ -105,6 +104,7 @@ const SymbolSearch = ({
 	game: { currentStep, steps },
 	game,
 	setGame,
+	setTimerStart,
 	navigation
 }: ISymbolSearchProps) => {
 	const isDesktop = useMediaQuery({
@@ -176,7 +176,7 @@ const SymbolSearch = ({
 		return {
 			transform: [
 				{
-					rotateY: animations[index].interpolate({
+					rotateY: animations[index]?.interpolate({
 						inputRange: [0, 1],
 						outputRange: ["0deg", "180deg"]
 					})
@@ -186,6 +186,7 @@ const SymbolSearch = ({
 	}
 
 	const initGame = () => {
+		setTimerStart(true)
 		setCards(symbols)
 		setOpened([])
 		setMatched([])
@@ -300,7 +301,7 @@ const SymbolSearch = ({
 								transform: [{ rotate: "180deg" }]
 							},
 							!isDesktop && generateCardSize(Math.sqrt(gameCardsQTY)),
-							opened.includes(index) && isDesktop
+							!matched.includes(index) && opened.includes(index) && isDesktop
 								? {
 										transform: [{ rotateY: "180deg" }]
 									}

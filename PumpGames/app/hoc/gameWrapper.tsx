@@ -15,7 +15,7 @@ const gameWrapper =
 	({ navigation }: any) => {
 		const { db } = useStore()
 		const [game, setGame] = useState<IGame | null>(null)
-
+		const [timerStart, setTimerStart] = useState(false)
 		useEffect(() => {
 			const getInitialGameData = async () => {
 				try {
@@ -61,11 +61,12 @@ const gameWrapper =
 							<Component
 								game={game}
 								setGame={setGame}
+								setTimerStart={setTimerStart}
 								navigation={navigation}
 							/>
 						</View>
 						<View className='flex-row space-x-[14px] mb-[14px] mt-[14px] justify-center'>
-							<Timer game={game} setGame={setGame} />
+							<Timer game={game} setGame={setGame} timerStart={timerStart} />
 							<Handler>
 								<Image
 									className={`w-6 h-6`}

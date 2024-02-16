@@ -92,7 +92,6 @@ export class DBState {
 	getGameByName = async (name: string) => {
 		try {
 			const game = await asyncStorageDB.getGameByName(name)
-			console.log("game", game)
 			return game
 		} catch (error) {
 			console.error("Error fetching specific game:", error)
@@ -149,7 +148,6 @@ export class CoreStore {
 	}
 
 	updatePreviousRoute(route: string) {
-		console.log("route", route)
 		this.previousRoute = route
 	}
 
