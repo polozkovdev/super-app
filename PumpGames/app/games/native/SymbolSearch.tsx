@@ -125,9 +125,9 @@ const SymbolSearch = ({
 					}
 				case 2:
 					return {
-						gameCardsQTY: 36,
-						repeatCount: 3,
-						pairsCount: 12
+						gameCardsQTY: 64,
+						repeatCount: 2,
+						pairsCount: 32
 					}
 				default:
 					return {
@@ -146,7 +146,6 @@ const SymbolSearch = ({
 			}),
 		[currentStep]
 	)
-	console.log("symbols", symbols)
 	const { showModal, content } = useModal()
 	const [cards, setCards] = useState<string[]>(symbols)
 	const [animations, setAnimations] = useState(
@@ -191,7 +190,7 @@ const SymbolSearch = ({
 		setOpened([])
 		setMatched([])
 		setMoves(0)
-		setAnimations(cards.map(() => new Animated.Value(0)))
+		!isDesktop && setAnimations(cards.map(() => new Animated.Value(0)))
 	}
 
 	const endGame = () => {
@@ -227,14 +226,13 @@ const SymbolSearch = ({
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)
 
-		animatePress(index, updatedOpened)
+		!isDesktop && animatePress(index, updatedOpened)
 
 		if (updatedOpened.length % 2 === 0) {
 			const firstCardIndex = updatedOpened[updatedOpened.length - 2]
 			const secondCardIndex = updatedOpened[updatedOpened.length - 1]
 			const firstCard = cards[firstCardIndex]
 			const secondCard = cards[secondCardIndex]
-
 			if (firstCard === secondCard) {
 				setMatched([...matched, firstCardIndex, secondCardIndex])
 				if (matched.length + 2 === gameCardsQTY) {
@@ -247,7 +245,6 @@ const SymbolSearch = ({
 					setOpened([])
 				}, 500)
 			}
-
 			setMoves(moves + 1)
 		}
 	}
@@ -279,6 +276,7 @@ const SymbolSearch = ({
 			borderRadius: 10
 		}
 	}
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.scorePanel}>
@@ -294,8 +292,22 @@ const SymbolSearch = ({
 						key={index}
 						style={[
 							styles.card,
+							isDesktop && {
+								// @ts-ignore
+								transition: ".3s"
+							},
+							!isDesktop && {
+								transform: [{ rotate: "180deg" }]
+							},
 							!isDesktop && generateCardSize(Math.sqrt(gameCardsQTY)),
-							opened.includes(index) && styles.openedCard,
+							opened.includes(index) && isDesktop
+								? {
+										transform: [{ rotateY: "180deg" }]
+									}
+								: {
+										transform: [{ rotate: "0" }]
+									},
+
 							matched.includes(index) && styles.matchedCard,
 							!isDesktop && animatedStyles(index)
 						]}
@@ -353,7 +365,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		borderRadius: 8,
-		transform: [{ rotate: "180deg" }],
 		fontFamily: "FontAwesome5"
 	},
 	openedCard: {
