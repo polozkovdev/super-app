@@ -1,3 +1,4 @@
+import Sudoku from "@/games/native/Sudoku"
 import SymbolSearch from "@/games/native/SymbolSearch"
 import Tetris from "@/games/native/Tetris"
 import WordSearchGame from "@/games/native/WordSearchGame"
@@ -44,6 +45,10 @@ export const games: IRoute[] = [
 	{
 		name: "SymbolSearch",
 		component: SymbolSearch
+	},
+	{
+		name: "Sudoku",
+		component: Sudoku
 	},
 	{
 		name: "Tetris",

@@ -18,7 +18,7 @@ const Benefits: FC<PropsWithChildren<IBenefitsProps>> = ({
 	return (
 		<View
 			className={`
-			${isDesktop ? "space-x-[40px] mb-[80px] flex-row justify-center" : `space-y-[30px] mb-[30px] `}
+			${isDesktop ? "gap-[40px] mb-[80px] flex-row justify-center flex-wrap items-center" : `gap-[30px] mb-[30px] `}
 		`}
 			style={{
 				maxWidth: isDesktop ? "100%" : PAGE_WIDTH,
@@ -30,10 +30,8 @@ const Benefits: FC<PropsWithChildren<IBenefitsProps>> = ({
 			{benefits.map(({ title, description, source }) => {
 				return (
 					<View
-						className={`mx-auto flex-row items-center`}
-						style={{
-							flex: 1
-						}}
+						key={title}
+						className={`mx-auto md:mx-0 flex-row items-center md:w-[460px]`}
 					>
 						<View
 							className={`rounded-full border-[1.5px] border-[#3F1210]/20

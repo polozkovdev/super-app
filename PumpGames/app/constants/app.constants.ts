@@ -66,24 +66,17 @@ export const GAMES: IGame[] = [
 		description: "Memory"
 	},
 	{
-		name: "Tetris",
-		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Focus],
-		source: require("@/assets/games/game_1.png"),
-		route: "Tetris",
-		description: "Tetris"
+		name: "Sudoku",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
+		source: require("@/assets/games/game_8.png"),
+		route: "Sudoku",
+		description: "Memory"
 	},
 	{
 		name: "Block Puzzle Game",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
-		source: require("@/assets/games/game_8.png"),
+		source: require("@/assets/games/game_2.png"),
 		route: "BlockDocku",
 		description: "Problem solving"
-	},
-	{
-		name: "Word Search",
-		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Focus],
-		source: require("@/assets/games/game_3.png"),
-		route: "WordSearch",
-		description: "Focus"
 	}
 ]

@@ -9,7 +9,6 @@ export class SQLiteDB {
 	}
 
 	createTable = async ({ Games }: { Games: IGame[] }): Promise<boolean> => {
-		console.log("create table")
 		return new Promise((resolve, reject) => {
 			this.db.transaction(
 				tx => {
@@ -99,7 +98,6 @@ export class SQLiteDB {
 	}
 
 	getGameByName = async (name: string): Promise<IGame | null> => {
-		console.log("NAME", name)
 		return new Promise((resolve, reject) => {
 			this.db.transaction(
 				tx => {
@@ -121,7 +119,6 @@ export class SQLiteDB {
 									timer: row.timer,
 									rewards: row.rewards.split(",")
 								}
-								console.log("game", game)
 								resolve(game)
 							} else {
 								resolve(null) // No game found with the given name

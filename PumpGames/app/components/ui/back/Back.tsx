@@ -1,22 +1,20 @@
 import { Ionicons } from "@expo/vector-icons"
 import React, { FC, PropsWithChildren } from "react"
-import { TouchableOpacity, View } from "react-native"
-import { useMediaQuery } from "react-responsive"
+import { TouchableOpacity } from "react-native"
 
 interface IBackProps {
 	navigation?: any
+	route?: any
 }
 
-const Back: FC<PropsWithChildren<IBackProps>> = ({ navigation }) => {
-	const isDesktop = useMediaQuery({
-		query: "(min-width: 724px)"
-	})
+const Back: FC<PropsWithChildren<IBackProps>> = ({ navigation, route }) => {
 	return (
-		<View className='flex-row items-center bg-white h-[34px] rounded-[24px] px-[6px] shadow-[black]/10 shadow-sm mr-[10px]'>
-			<TouchableOpacity onPress={() => navigation.goBack()}>
-				<Ionicons name='arrow-back-circle-outline' size={24} color='#3F1210' />
-			</TouchableOpacity>
-		</View>
+		<TouchableOpacity
+			className='flex-row items-center bg-white h-[34px] rounded-[24px] px-[6px] shadow-[black]/10 shadow-sm mr-[10px]'
+			onPress={() => navigation.navigate("GameOverview", { route })}
+		>
+			<Ionicons name='arrow-back-circle-outline' size={24} color='#3F1210' />
+		</TouchableOpacity>
 	)
 }
 

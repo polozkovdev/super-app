@@ -11,6 +11,7 @@ const TextComponent: React.FC<ITextComponentProps> = ({
 	type = "text",
 	children,
 	className,
+	style,
 	...props
 }) => {
 	const classname =
@@ -18,7 +19,7 @@ const TextComponent: React.FC<ITextComponentProps> = ({
 			? "text-center text-[36px] leading-[38px] text-primary font-bold -tracking-title font-title md:text-[60px] md:leading-[62px]"
 			: "text-center text-[24px] leading-[28px] text-secondary/80 -tracking-text font-text md:text-[28px] md:leading-[32px]"
 	return (
-		<Text className={cn(classname, className)} {...props}>
+		<Text className={cn(classname, className)} {...props} style={style}>
 			{children}
 		</Text>
 	)

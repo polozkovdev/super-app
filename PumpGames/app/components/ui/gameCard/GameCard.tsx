@@ -22,7 +22,8 @@ const GameCard = ({
 	return (
 		<TouchableOpacity
 			style={{
-				flex: 1
+				flex: 1,
+				alignItems: "center"
 			}}
 			onPress={() =>
 				isOverview

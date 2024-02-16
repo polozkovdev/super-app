@@ -196,7 +196,7 @@ const SymbolSearch = ({
 			...game,
 			currentStep: currentStep + 1
 		}
-		if (currentStep + 1 === steps) {
+		if (currentStep === steps) {
 			return showModal({
 				title: "Congratulations!",
 				text: `You Won! you complete all steps! \n improve your skils in other games!`,

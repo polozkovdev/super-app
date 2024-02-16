@@ -4,11 +4,24 @@ import Button from "@/components/ui/button/Button"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants, CATEGORIES_LIST } from "@/constants/app.constants"
+import { useModal } from "@/hooks/useModal"
 import React, { useState } from "react"
 import { ScrollView, View } from "react-native"
+import { useMediaQuery } from "react-responsive"
 
 const Games = ({ navigation }: any) => {
+	const isDesktop = useMediaQuery({
+		query: "(min-width: 724px)"
+	})
+	const { showModal, content } = useModal()
 	const [category, setCategory] = useState(CATEGORIES_LIST[0])
+	const unlockHandler = () =>
+		showModal({
+			title: "Unlock game!",
+			text: `open some screen for unlock games`,
+			successText: "Go to unlock !",
+			successHandler: () => {}
+		})
 	return (
 		<View
 			style={{
@@ -26,7 +39,7 @@ const Games = ({ navigation }: any) => {
 			>
 				<Layout>
 					<View
-						className='items-center justify-center w-full md:pb-[100px]'
+						className='items-center w-full md:pb-[100px]'
 						style={{
 							height: "100%"
 						}}
@@ -61,23 +74,37 @@ const Games = ({ navigation }: any) => {
 							<View className='h-[2px] w-full bg-[#3F1210]/10' />
 						</View>
 						<GameList category={category} navigation={navigation} />
-						<View className='mt-auto shadow-[black]/10 shadow-sm md:shadow-none hidden md:block'>
+						<View
+							className='mt-auto'
+							style={{
+								display: isDesktop ? "flex" : "none"
+							}}
+						>
 							<Button
-								children='Start playing'
-								isArrow
-								onPress={() => navigation.navigate("Games")}
+								children='Unlock all free games'
+								iconLeftPath='@/assets/ui/unlock.png'
+								style={{
+									minWidth: 300
+								}}
+								onPress={unlockHandler}
 							/>
 						</View>
 					</View>
 				</Layout>
-				<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
-					<Button
-						children='Start playing'
-						iconLeftPath='@/assets/ui/unlock.png'
-						onPress={() => alert("unlock")}
-					/>
-				</View>
 			</ScrollView>
+			<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
+				<Button
+					children='Unlock all free games'
+					iconLeftPath='@/assets/ui/unlock.png'
+					onPress={unlockHandler}
+					style={{
+						display: isDesktop ? "none" : "flex"
+					}}
+					styleButton={{
+						width: 300
+					}}
+				/>
+			</View>
 		</View>
 	)
 }

@@ -1,5 +1,7 @@
 import Footer from "@/components/ui/footer/Footer"
 import Header from "@/components/ui/layout/header/Header"
+import { DEFAULT_GAMES } from "@/navigation/navigation.types"
+import { useRoute } from "@react-navigation/native"
 import { FC, PropsWithChildren } from "react"
 import { View } from "react-native"
 import { useMediaQuery } from "react-responsive"
@@ -12,9 +14,11 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 	children,
 	isHeader = true
 }) => {
+	const route = useRoute()
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})
+	const isGame = DEFAULT_GAMES.some(i => i.route === route.name)
 	return (
 		<View
 			className='p-0 max-w-[1420px] relative mx-auto px-[12px]'
@@ -28,7 +32,7 @@ const Layout: FC<PropsWithChildren<ILayoutProps>> = ({
 			<View
 				style={{ flex: 1 }}
 				className={`
-				${isDesktop ? "mt-[180px] w-full" : "mt-[48px]"}
+				${isDesktop && !isGame ? "mt-[180px] w-full" : "mt-[48px]"}
 			`}
 			>
 				{children}

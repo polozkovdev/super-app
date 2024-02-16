@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react"
+import React, { useCallback } from "react"
 import { Dimensions, Image, StyleSheet, View } from "react-native"
 import { interpolate } from "react-native-reanimated"
 import Carousel from "react-native-reanimated-carousel"
@@ -18,7 +18,6 @@ const IMAGES_GAMES_LIST = [
 ]
 
 function CircularSlider() {
-	const [activeIndex, setActiveIndex] = useState(0)
 	const itemSize = 240
 	const centerOffset = PAGE_WIDTH / 2 - itemSize
 	const animationStyle = useCallback(
@@ -71,9 +70,6 @@ function CircularSlider() {
 					// setActiveIndex(item)
 				}}
 				renderItem={({ item, index }) => {
-					// const zIndex = index === activeIndex ? 9999 : 0
-					// const opacity = index === activeIndex ? 1 : 0.4
-					//  style={[{ zIndex, opacity }]}
 					return (
 						<View
 							key={index}

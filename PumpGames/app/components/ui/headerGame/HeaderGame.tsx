@@ -21,8 +21,8 @@ const HeaderGame: FC<PropsWithChildren<IHeaderGameProps>> = ({
 		query: "(min-width: 724px)"
 	})
 	return (
-		<View className='flex-row space-x-[10px] justify-center items-center relative z-10'>
-			{isDesktop && <Back navigation={navigation} />}
+		<View className='flex-row space-x-[10px] justify-center items-center relative z-10 mb-[14px]'>
+			{isDesktop && <Back navigation={navigation} route={currentData.route} />}
 			<Progress
 				steps={currentData.steps}
 				currentState={currentData.currentStep}

@@ -21,6 +21,7 @@ const Today = ({ navigation }: any) => {
 				style={{ flex: 1, backgroundColor: AppConstants.primaryBackground }}
 				contentContainerStyle={{
 					flexGrow: 1,
+					position: "relative",
 					justifyContent: "center",
 					borderWidth: 0,
 					alignItems: "center"
@@ -28,7 +29,7 @@ const Today = ({ navigation }: any) => {
 			>
 				<Layout>
 					<View
-						className='items-center justify-center w-full md:pb-[100px]'
+						className='items-center w-full md:pb-[100px]'
 						style={{
 							height: "100%"
 						}}
@@ -47,14 +48,17 @@ const Today = ({ navigation }: any) => {
 							</TextComponent>
 						</View>
 						{/* GAMES */}
-						<View className='md:flex-row md:justify-center md:items-start'>
+						<View
+							className='md:flex-row md:justify-center md:items-start'
+							style={{ flex: 1 }}
+						>
 							{/*game 1*/}
-							<View className='items-center md:w-[300px]'>
+							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
 								<GameCard
-									source={require("@/assets/games/game_1.png")}
-									name='Block Puzzle'
-									route='BlockDocku'
-									category='Problem solving'
+									source={require("@/assets/games/game_9.png")}
+									name='Symbol Search'
+									route='SymbolSearch'
+									category='Memory'
 									navigation={navigation}
 								/>
 								<View className='mb-[30]'>
@@ -82,13 +86,46 @@ const Today = ({ navigation }: any) => {
 									source={require("@/assets/ui/arrow_down.png")}
 								/>
 							</View>
+							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
+								<GameCard
+									source={require("@/assets/games/game_8.png")}
+									name='Sudoku'
+									route='Sudoku'
+									category='Problem solving'
+									navigation={navigation}
+								/>
+								<View className='mb-[30]'>
+									<View className='flex-row items-center space-x-2'>
+										<Image
+											className='w-5 h-5'
+											resizeMode='contain'
+											source={require("@/assets/ui/clock.png")}
+										/>
+										<TextComponent className='text-[18px] text-primary font-subtitle'>
+											60 min
+										</TextComponent>
+									</View>
+								</View>
+								<Image
+									className='mb-[20] md:hidden'
+									resizeMode='cover'
+									source={require("@/assets/ui/arrow_down.png")}
+								/>
+							</View>
+							<View className='hidden md:flex md:mr-12 md:ml-12 md:mt-28'>
+								<Image
+									className='-rotate-90'
+									resizeMode='cover'
+									source={require("@/assets/ui/arrow_down.png")}
+								/>
+							</View>
 							{/*	game 2*/}
 							<View className='items-center md:w-[300px]'>
 								<GameCard
 									source={require("@/assets/games/game_2.png")}
-									name='Memory'
-									route='Memory'
-									category='Memory'
+									name='Block Puzzle'
+									route='BlockDocku'
+									category='Focus'
 									navigation={navigation}
 								/>
 								<View className='mb-[30]'>
@@ -106,7 +143,7 @@ const Today = ({ navigation }: any) => {
 							</View>
 						</View>
 						<View
-							className='mt-auto shadow-[black]/10 shadow-sm'
+							className='mt-auto'
 							style={{
 								display: isDesktop ? "flex" : "none"
 							}}
@@ -114,19 +151,35 @@ const Today = ({ navigation }: any) => {
 							<Button
 								children='Start playing'
 								isArrow
+								styleButton={{
+									width: isDesktop ? 300 : 150
+								}}
 								onPress={() => navigation.navigate("Games")}
 							/>
 						</View>
-						<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
-							<Button
-								children='Start playing mob'
-								isArrow
-								onPress={() => navigation.navigate("Games")}
+						{!isDesktop && (
+							<View
+								style={{
+									height: 60
+								}}
 							/>
-						</View>
+						)}
 					</View>
 				</Layout>
 			</ScrollView>
+			<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
+				<Button
+					children='Start playing'
+					isArrow
+					style={{
+						display: isDesktop ? "none" : "flex"
+					}}
+					styleButton={{
+						width: 300
+					}}
+					onPress={() => navigation.navigate("Games")}
+				/>
+			</View>
 		</View>
 	)
 }

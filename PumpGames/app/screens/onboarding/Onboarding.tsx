@@ -6,6 +6,7 @@ import { AppConstants } from "@/constants/app.constants"
 import { useSplashScreenHideProcess } from "@/hooks/useSplashScreenProcess"
 import React from "react"
 import { Image, ScrollView, View } from "react-native"
+import { useMediaQuery } from "react-responsive"
 
 export type IOnboardingProps = {
 	onStart: () => void
@@ -13,6 +14,9 @@ export type IOnboardingProps = {
 
 const Onboarding = ({ onStart }: IOnboardingProps) => {
 	useSplashScreenHideProcess()
+	const isDesktop = useMediaQuery({
+		query: "(min-width: 724px)"
+	})
 
 	return (
 		<View
@@ -31,66 +35,95 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 				}}
 			>
 				<View
+					className='p-0 max-w-[1420px] relative mx-auto px-[12px]'
 					style={{
+						flex: 1,
 						alignItems: "center",
-						position: "relative"
+						width: "100%"
 					}}
-					className='w-full h-[100%] max-w-[1420px]'
 				>
-					<Image
-						className='mb-[38px] md:mr-auto'
-						resizeMode='cover'
-						source={require("@/assets/games/logo_mini_with_text.png")}
-					/>
-					<View className='relative w-full'>
-						<Slider />
-					</View>
-					<Image
-						resizeMode='cover'
-						source={require("@/assets/games/finger.png")}
-					/>
-					<View className='w-[220px] mb-[20px]'>
-						<TextComponent>
-							Brain training{" "}
-							<TextComponent className='italic'>personalized</TextComponent> for
-							you
-						</TextComponent>
-					</View>
-					<View className='mb-[20px]'>
-						<TextComponent type='title'>
-							Stay sharp, build{"\n"} confidence, and boost{"\n"} productivity
-						</TextComponent>
-					</View>
-					<View className='mb-[60px] w-[100%] max-w-[480px] md:flex-row'>
-						<TextComponent className=''>
-							Train with over 30{" "}
-							<TextComponent className='italic'>
-								interactive games
-							</TextComponent>{" "}
-							specifically crafted to enhance your productivity, income
-							potential, and self-assurance in areas such as reading, writing,
-							speaking, memory, and mathematics.
-						</TextComponent>
-					</View>
-					<Footer />
 					<View
-						className={`
+						style={{
+							alignItems: "center",
+							position: "relative"
+						}}
+						className='w-full h-[100%] max-w-[1420px]'
+					>
+						<Image
+							className='md:mr-auto mt-[20px]'
+							resizeMode='contain'
+							style={{ width: 292, height: 40 }}
+							source={require("@/assets/games/logo_mini_with_text.png")}
+						/>
+						{isDesktop ? (
+							<View
+								style={{
+									marginBottom: 40
+								}}
+							>
+								<Image
+									resizeMode='contain'
+									width={220}
+									height={220}
+									source={require("@/assets/games/game_1.png")}
+								/>
+							</View>
+						) : (
+							<View className='relative w-full'>
+								<Slider />
+							</View>
+						)}
+
+						<Image
+							resizeMode='cover'
+							source={require("@/assets/games/finger.png")}
+						/>
+						<View className='w-[220px] mb-[20px]'>
+							<TextComponent>
+								Brain training{" "}
+								<TextComponent className='italic'>personalized</TextComponent>{" "}
+								for you
+							</TextComponent>
+						</View>
+						<View className='mb-[20px]'>
+							<TextComponent type='title'>
+								Stay sharp, build{"\n"} confidence, and boost{"\n"} productivity
+							</TextComponent>
+						</View>
+						<View className='mb-[60px] w-[100%] max-w-[480px] md:flex-row'>
+							<TextComponent className=''>
+								Train with over 30{" "}
+								<TextComponent className='italic'>
+									interactive games
+								</TextComponent>{" "}
+								specifically crafted to enhance your productivity, income
+								potential, and self-assurance in areas such as reading, writing,
+								speaking, memory, and mathematics.
+							</TextComponent>
+						</View>
+						<Footer />
+						<View
+							className={`
 			absolute bottom-0 flex md:hidden h-[80] w-full
 			overflow-visible
 			shadow-xl
 			 bg-primaryBackground/70
 			`}
-					/>
-					<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
-						<Button
-							children='Start for free'
-							isArrow
-							onPress={onStart}
-							className=' md:ml-auto'
 						/>
+						<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
+							<Button
+								children='Start for free'
+								isArrow
+								styleButton={{
+									width: 240
+								}}
+								onPress={onStart}
+								className='md:ml-auto'
+							/>
+						</View>
 					</View>
+					<View className='flex-1 h-[60] w-full md-hidden' />
 				</View>
-				<View className='flex-1 h-[60] w-full md-hidden' />
 			</ScrollView>
 		</View>
 	)

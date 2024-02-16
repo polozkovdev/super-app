@@ -1,35 +1,27 @@
 import Benefits from "@/components/features/Benefits/Benefits"
 import Levels from "@/components/features/Levels/Levels"
-import Button from "@/components/ui/button/Button"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
-import { AppConstants } from "@/constants/app.constants"
+import { AppConstants, SHADOW } from "@/constants/app.constants"
 import Loading from "@/screens/loading/Loading"
 import { useStore } from "@/store"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { useEffect, useState } from "react"
 import { Image, ScrollView, TouchableOpacity, View } from "react-native"
-import { useMediaQuery } from "react-responsive"
 import { IGame } from "types"
 
 const GameOverview = ({ navigation, ...props }: any) => {
 	const { db } = useStore()
-	const isDesktop = useMediaQuery({
-		query: "(min-width: 724px)"
-	})
 	const [game, setGame] = useState<IGame | null>(null)
 	const route = props.route.params.route
 	useEffect(() => {
 		const getInitialGameData = async () => {
 			try {
-				let gamesData = await AsyncStorage.getItem("Games")
-				console.log("gamesData", gamesData)
-				console.log("route", route)
+				let gamesData = await AsyncStorage.getItem("app")
 				if (gamesData) {
 					const game = JSON.parse(gamesData).find(
 						(i: IGame) => i.route === route
 					)
-					console.log("game", game)
 					setGame(game)
 				}
 			} catch (error) {
@@ -39,23 +31,13 @@ const GameOverview = ({ navigation, ...props }: any) => {
 
 		getInitialGameData()
 	}, [db, route])
-	console.log("game", game)
 	if (!game) {
 		return <Loading />
 	}
-
 	return (
 		<View
 			style={{
-				flex: 1,
-				backgroundColor: AppConstants.primaryBackground,
-				position: "relative",
-				maxWidth: 1420,
-				width: "100%",
-				marginTop: 0,
-				marginBottom: 0,
-				marginLeft: "auto",
-				marginRight: "auto"
+				flex: 1
 			}}
 		>
 			<ScrollView
@@ -98,15 +80,16 @@ const GameOverview = ({ navigation, ...props }: any) => {
 						</View>
 						<Levels Game={game} />
 						<Benefits Game={game} />
-						<View className='flex-row items-center justify-center space-x-[10px] mb-[20px]'>
+						<View className='flex-row items-center justify-center space-x-[20px] mt-[30px] md:space-x-[40px] mb-[20px] w-full'>
 							<TouchableOpacity
 								className={`
 								w-[150px] bg-primary/10
 				flex-row items-center justify-center gap-x-2
-				 max-w-[340] h-[55] rounded-3xl
-				 md:flex md:w-60
+				 max-w-[340px] h-[55px] rounded-3xl
+				 md:flex md:w-full
 				`}
 								onPress={() => {}}
+								style={SHADOW}
 							>
 								<TextComponent className='text-primary text-[20px] font-subtitle'>
 									Swap
@@ -117,15 +100,24 @@ const GameOverview = ({ navigation, ...props }: any) => {
 									source={require("@/assets/ui/swap.png")}
 								/>
 							</TouchableOpacity>
-							<Button
-								//@ts-ignore
-								style={{
-									maxWidth: isDesktop ? 300 : 150
-								}}
-								children='Start'
-								isArrow
+							<TouchableOpacity
+								style={SHADOW}
+								className={`
+								w-[150px] bg-white flex-row items-center justify-center gap-x-2
+				 max-w-[340px] h-[55px] rounded-3xl
+				 md:flex md:w-full
+				`}
 								onPress={() => navigation.navigate(route)}
-							/>
+							>
+								<TextComponent className='text-primary text-[20px] font-subtitle'>
+									Start
+								</TextComponent>
+								<Image
+									className='w-4 h-4'
+									resizeMode='contain'
+									source={require("@/assets/ui/arrow_orange.png")}
+								/>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</Layout>

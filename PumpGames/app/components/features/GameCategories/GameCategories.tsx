@@ -14,7 +14,7 @@ const GameCategories = ({ category, setCategory }: any) => {
 				return (
 					<TouchableOpacity
 						key={i}
-						className={`${isActive ? "bg-primary" : "bg-[#3F1210]/10"} rounded-[100px] m-0 items-center flex-row justify-center px-[22px] py-[4px] md:h-[55px] `}
+						className={`${isActive ? "bg-primary" : "bg-[#3F1210]/10"} rounded-[100px] m-0 items-center flex-row justify-center px-[22px] md:px-[26px] py-[4px] md:h-[55px] `}
 						onPress={() => onPress(i)}
 					>
 						<TextComponent
