@@ -82,6 +82,8 @@ const generateRandomPairsOrTriples = ({
 	repeatCount: number
 	pairsCount: number
 }) => {
+	console.log("repeatCount", repeatCount)
+	console.log("pairsCount", pairsCount)
 	return shuffle(
 		shuffle(strings).reduce((acc: string[], item, index) => {
 			if (index + 1 > pairsCount) {
@@ -142,8 +144,9 @@ const SymbolSearch = ({
 				repeatCount,
 				pairsCount
 			}),
-		[]
+		[currentStep]
 	)
+	console.log("symbols", symbols)
 	const { showModal, content } = useModal()
 	const [cards, setCards] = useState<string[]>(symbols)
 	const [animations, setAnimations] = useState(
@@ -155,7 +158,7 @@ const SymbolSearch = ({
 
 	useEffect(() => {
 		initGame()
-	}, [])
+	}, [currentStep])
 
 	const animatePress = (index: number, updatedOpened: number[]) => {
 		const parallelAnimations = animations.map((_, i) => {

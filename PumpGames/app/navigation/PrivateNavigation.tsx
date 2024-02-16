@@ -10,6 +10,7 @@ import {
 	createBottomTabNavigator
 } from "@react-navigation/bottom-tabs"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { useState } from "react"
 import { Image, Pressable, Text, View } from "react-native"
 import Svg, { Path } from "react-native-svg"
 import { useMediaQuery } from "react-responsive"
@@ -23,6 +24,7 @@ const Header = ({
 	navigation,
 	layout
 }: BottomTabHeaderProps) => {
+	const [prevRoute, setPrevRoute] = useState("")
 	return (
 		<View style={{ flex: 1 }}>
 			<View
@@ -36,7 +38,7 @@ const Header = ({
 					shadowOpacity: 1,
 					backgroundColor: AppConstants.primaryBackground
 				}}
-			></View>
+			/>
 			<View
 				style={{ flex: 1 }}
 				className={`
@@ -51,6 +53,19 @@ const Header = ({
 						style={{ width: 292, height: 40 }}
 					/>
 				</View>
+				{/*<TouchableOpacity*/}
+				{/*	className='flex-row items-center bg-white h-[55px] rounded-[55px] px-[6px] shadow-[black]/10 shadow-sm  ml-auto'*/}
+				{/*	onPress={() => {*/}
+				{/*		console.log("prevRoute.current", prevRoute)*/}
+				{/*		prevRoute && navigation.navigate(prevRoute)*/}
+				{/*	}}*/}
+				{/*>*/}
+				{/*	<Ionicons*/}
+				{/*		name='arrow-back-circle-outline'*/}
+				{/*		size={48}*/}
+				{/*		color='#3F1210'*/}
+				{/*	/>*/}
+				{/*</TouchableOpacity>*/}
 				<View
 					style={{
 						height: 55,
@@ -75,7 +90,11 @@ const Header = ({
 						return (
 							<Pressable
 								className='flex-row items-center justify-center gap-1 group h-[55px]'
-								onPress={() => navigation.navigate(path)}
+								onPress={() => {
+									console.log("path", path)
+									setPrevRoute(path)
+									navigation.navigate(path)
+								}}
 							>
 								<Svg
 									width={icon.width}
