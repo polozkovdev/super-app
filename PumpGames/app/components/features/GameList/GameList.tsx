@@ -1,5 +1,6 @@
 import TextComponent from "@/components/ui/text/TextComponent"
 import { GAMES } from "@/constants/app.constants"
+import { coreStore } from "@/store"
 import React, { useEffect, useState } from "react"
 import {
 	Image,
@@ -40,7 +41,10 @@ const GameList = ({ navigation, category, time }: any) => {
 								key={name}
 								className={`items-center md:mb-0 md:w-[300px]`}
 								{...touchableProps}
-								onPress={() => navigation.navigate("GameOverview", { route })}
+								onPress={() => {
+									coreStore.updatePreviousRoute("Games")
+									navigation.navigate("GameOverview", { route })
+								}}
 							>
 								<Image
 									className={`mb-[20] w-[200px] h-[200px] drop-shadow-2xl`}

@@ -49,12 +49,21 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 						}}
 						className='w-full h-[100%] max-w-[1420px]'
 					>
-						<Image
-							className='md:mr-auto mt-[20px]'
-							resizeMode='contain'
-							style={{ width: 292, height: 40 }}
-							source={require("@/assets/games/logo_mini_with_text.png")}
-						/>
+						{isDesktop ? (
+							<Image
+								className='mt-[20px] mb-[40px]'
+								resizeMode='contain'
+								style={{ width: 292, height: 40 }}
+								source={require("@/assets/games/logo_mini_with_text.png")}
+							/>
+						) : (
+							<Image
+								className='md:mr-auto mt-[20px]'
+								resizeMode='contain'
+								style={{ width: 292, height: 40 }}
+								source={require("@/assets/games/logo_mini_with_text.png")}
+							/>
+						)}
 						{isDesktop ? (
 							<View
 								style={{
@@ -63,8 +72,7 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 							>
 								<Image
 									resizeMode='contain'
-									width={220}
-									height={220}
+									className='w-[300px] h-[300px]'
 									source={require("@/assets/games/game_1.png")}
 								/>
 							</View>
@@ -73,7 +81,19 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 								<Slider />
 							</View>
 						)}
-
+						{isDesktop && (
+							<View className='mt-[20px] mb-[20px]'>
+								<Button
+									children='Start for free'
+									isArrow
+									styleButton={{
+										width: 240
+									}}
+									onPress={onStart}
+									className='md:ml-auto'
+								/>
+							</View>
+						)}
 						<Image
 							resizeMode='cover'
 							source={require("@/assets/games/finger.png")}
@@ -110,17 +130,19 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 			 bg-primaryBackground/70
 			`}
 						/>
-						<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
-							<Button
-								children='Start for free'
-								isArrow
-								styleButton={{
-									width: 240
-								}}
-								onPress={onStart}
-								className='md:ml-auto'
-							/>
-						</View>
+						{!isDesktop && (
+							<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
+								<Button
+									children='Start for free'
+									isArrow
+									styleButton={{
+										width: 240
+									}}
+									onPress={onStart}
+									className='md:ml-auto'
+								/>
+							</View>
+						)}
 					</View>
 					<View className='flex-1 h-[60] w-full md-hidden' />
 				</View>

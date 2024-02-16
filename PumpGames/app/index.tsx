@@ -17,7 +17,6 @@ const Wrapper = () => {
 	const insets = useSafeAreaInsets()
 	const frame = useSafeAreaFrame()
 	const isCachedComplete = useCachedResources()
-
 	const [isDone, setIsDone] = useState<boolean>(false)
 	const [isLoading, setIsLoading] = useState(true)
 

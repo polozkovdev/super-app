@@ -4,13 +4,13 @@ import { AppConstants, SHADOW } from "@/constants/app.constants"
 import { useAuth } from "@/hooks/useAuth"
 import { TypeRootStackParamList } from "@/navigation/navigation.types"
 import { games, routes } from "@/navigation/routes"
+import { coreStore } from "@/store"
 import "@expo/match-media"
 import {
 	BottomTabHeaderProps,
 	createBottomTabNavigator
 } from "@react-navigation/bottom-tabs"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { useState } from "react"
 import { Image, Pressable, Text, View } from "react-native"
 import Svg, { Path } from "react-native-svg"
 import { useMediaQuery } from "react-responsive"
@@ -24,7 +24,6 @@ const Header = ({
 	navigation,
 	layout
 }: BottomTabHeaderProps) => {
-	const [prevRoute, setPrevRoute] = useState("")
 	return (
 		<View style={{ flex: 1 }}>
 			<View
@@ -53,19 +52,6 @@ const Header = ({
 						style={{ width: 292, height: 40 }}
 					/>
 				</View>
-				{/*<TouchableOpacity*/}
-				{/*	className='flex-row items-center bg-white h-[55px] rounded-[55px] px-[6px] shadow-[black]/10 shadow-sm  ml-auto'*/}
-				{/*	onPress={() => {*/}
-				{/*		console.log("prevRoute.current", prevRoute)*/}
-				{/*		prevRoute && navigation.navigate(prevRoute)*/}
-				{/*	}}*/}
-				{/*>*/}
-				{/*	<Ionicons*/}
-				{/*		name='arrow-back-circle-outline'*/}
-				{/*		size={48}*/}
-				{/*		color='#3F1210'*/}
-				{/*	/>*/}
-				{/*</TouchableOpacity>*/}
 				<View
 					style={{
 						height: 55,
@@ -91,8 +77,7 @@ const Header = ({
 							<Pressable
 								className='flex-row items-center justify-center gap-1 group h-[55px]'
 								onPress={() => {
-									console.log("path", path)
-									setPrevRoute(path)
+									coreStore.updatePreviousRoute(route.name)
 									navigation.navigate(path)
 								}}
 							>

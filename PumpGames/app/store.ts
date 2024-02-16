@@ -140,10 +140,21 @@ export class DBState {
 export class CoreStore {
 	db: DBState
 	uiState: UiState
+	previousRoute: string | null = null
 
 	constructor() {
 		this.db = new DBState()
 		this.uiState = new UiState()
+		makeAutoObservable(this)
+	}
+
+	updatePreviousRoute(route: string) {
+		console.log("route", route)
+		this.previousRoute = route
+	}
+
+	getPreviousRoute() {
+		return this.previousRoute
 	}
 }
 

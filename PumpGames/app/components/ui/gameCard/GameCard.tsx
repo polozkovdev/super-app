@@ -1,4 +1,5 @@
 import TextComponent from "@/components/ui/text/TextComponent"
+import { coreStore } from "@/store"
 import React from "react"
 import { Image, TouchableOpacity, View } from "react-native"
 
@@ -25,11 +26,12 @@ const GameCard = ({
 				flex: 1,
 				alignItems: "center"
 			}}
-			onPress={() =>
+			onPress={() => {
+				coreStore.updatePreviousRoute("Today")
 				isOverview
 					? navigation.navigate("GameOverview", { route })
 					: navigation.navigate(route)
-			}
+			}}
 		>
 			<Image
 				className='mb-[20] w-[200px] h-[200px]'

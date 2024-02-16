@@ -1,17 +1,21 @@
 import TextComponent from "@/components/ui/text/TextComponent"
+import { coreStore } from "@/store"
 import { useFocusEffect } from "@react-navigation/native"
 import { FC, PropsWithChildren, useCallback, useRef } from "react"
-import { FlatList, Image, View } from "react-native"
+import { FlatList, Image, TouchableOpacity, View } from "react-native"
 import { useMediaQuery } from "react-responsive"
 import { IGame } from "types"
 
 interface ILevelsProps {
 	Game: IGame
+	navigation?: any
 }
 
 const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
-	Game: { steps, currentStep, initialPaidStep }
+	Game: { steps, currentStep, initialPaidStep, route },
+	navigation
 }) => {
+	console.log("route", route)
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})
@@ -59,7 +63,7 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 				initialScrollIndex={currentStep}
 				getItemLayout={getItemLayout}
 				keyExtractor={item => `${item}`}
-				renderItem={({ item, index }) => {
+				renderItem={({ item }) => {
 					const isPrevLevel = item < currentStep
 					const isCurrentLevel = item === currentStep
 					const isFutureLevel = item > currentStep
@@ -69,8 +73,12 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 							? require("@/assets/ui/play_white.png")
 							: require("@/assets/ui/lock.png")
 					return (
-						<View
+						<TouchableOpacity
 							className='mx-[10px]'
+							onPress={() => {
+								coreStore.updatePreviousRoute("Games")
+								navigation.navigate(route)
+							}}
 							style={{
 								flex: 1
 							}}
@@ -107,7 +115,7 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 							>
 								{item}
 							</TextComponent>
-						</View>
+						</TouchableOpacity>
 					)
 				}}
 			/>

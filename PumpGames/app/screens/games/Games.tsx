@@ -37,7 +37,7 @@ const Games = ({ navigation }: any) => {
 					alignItems: "center"
 				}}
 			>
-				<Layout>
+				<Layout navigation={navigation}>
 					<View
 						className='items-center w-full md:pb-[100px]'
 						style={{

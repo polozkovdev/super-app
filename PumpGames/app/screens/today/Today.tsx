@@ -3,6 +3,7 @@ import GameCard from "@/components/ui/gameCard/GameCard"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
+import { coreStore } from "@/store"
 import React from "react"
 import { Image, ScrollView, View } from "react-native"
 import { useMediaQuery } from "react-responsive"
@@ -27,7 +28,7 @@ const Today = ({ navigation }: any) => {
 					alignItems: "center"
 				}}
 			>
-				<Layout>
+				<Layout navigation={navigation}>
 					<View
 						className='items-center w-full md:pb-[100px]'
 						style={{
@@ -154,7 +155,10 @@ const Today = ({ navigation }: any) => {
 								styleButton={{
 									width: isDesktop ? 300 : 150
 								}}
-								onPress={() => navigation.navigate("Games")}
+								onPress={() => {
+									coreStore.updatePreviousRoute("Today")
+									navigation.navigate("Games")
+								}}
 							/>
 						</View>
 						{!isDesktop && (
