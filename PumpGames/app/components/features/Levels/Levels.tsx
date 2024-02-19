@@ -30,7 +30,7 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 	const scrollToIndex = () => {
 		flatListRef.current.scrollToIndex({
 			animated: true,
-			index: currentStep
+			index: currentStep - 1
 		})
 	}
 
@@ -59,7 +59,7 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 				ref={flatListRef}
 				data={new Array(steps).fill("").map((_, index) => index + 1)}
 				horizontal
-				initialScrollIndex={currentStep}
+				initialScrollIndex={currentStep - 1}
 				getItemLayout={getItemLayout}
 				keyExtractor={item => `${item}`}
 				renderItem={({ item }) => {

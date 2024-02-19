@@ -39,7 +39,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		isProgress: false,
 		completeStep: 0,
 		currentStep: 1,
-		steps: 10,
+		steps: 5,
 		initialPaidStep: undefined,
 		timer: 0,
 		rewards: [],
