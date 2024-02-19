@@ -15,6 +15,11 @@ export interface IPlayer {
 	}
 }
 
+export interface IReward {
+	isNew: boolean
+	text: string
+}
+
 export interface IGame {
 	name: string
 	title: string
@@ -24,6 +29,7 @@ export interface IGame {
 	isCompleted: boolean
 	isProgress: boolean
 	currentStep: number
+	completeStep: number
 	steps: number
 	initialPaidStep?: number
 	benefits: {
@@ -32,7 +38,7 @@ export interface IGame {
 		source?: ImageSourcePropType
 	}[]
 	timer: number
-	rewards: string[]
+	rewards: IReward[]
 }
 
 export interface IDB {

@@ -98,7 +98,7 @@ export class DBState {
 		}
 	}
 
-	updateGame = (game: IGame) => {
+	updateGame = (game: IGame, callback?: () => void) => {
 		asyncStorageDB.updateGame(game).then(
 			action("updateGameSuccess", () => {
 				// Update the game in the local state
@@ -106,6 +106,7 @@ export class DBState {
 				if (index !== -1) {
 					this.Games[index] = game
 				}
+				callback?.()
 			}),
 			action("updateGameError", error => {
 				console.log("Error updating game:", error)

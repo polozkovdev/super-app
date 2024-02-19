@@ -80,3 +80,98 @@ export const GAMES: IGame[] = [
 		description: "Problem solving"
 	}
 ]
+
+export const SYMBOL_SEARCH_STRINGS = [
+	"android",
+	"apple",
+	"balance-scale",
+	"baby",
+	"bug",
+	"bell",
+	"bus",
+	"chess-knight",
+	"cut",
+	"drum",
+	"fish",
+	"frog",
+	"horse",
+	"car",
+	"clock",
+	"coffee",
+	"bicycle",
+	"leaf",
+	"cube",
+	"anchor",
+	"paper-plane",
+	"bolt",
+	"bomb",
+	"carrot"
+]
+
+export const shuffle = (array: string[]) => {
+	const newArray = [...array] // Make a copy of the array
+	for (let i = newArray.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1))
+		;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+	}
+	return newArray
+}
+
+export const generateSymbolSearchData = (currentStep: number) => {
+	const getDataGame = () => {
+		switch (currentStep) {
+			case 1:
+				return {
+					gameCardsQTY: 16,
+					repeatCount: 2,
+					pairsCount: 8
+				}
+			case 2:
+				return {
+					gameCardsQTY: 16,
+					repeatCount: 2,
+					pairsCount: 8
+				}
+			case 3:
+				return {
+					gameCardsQTY: 36,
+					repeatCount: 2,
+					pairsCount: 18
+				}
+			default:
+				return {
+					gameCardsQTY: 64,
+					repeatCount: 2,
+					pairsCount: 32
+				}
+		}
+	}
+	const generateRandomPairsOrTriples = ({
+		strings,
+		repeatCount,
+		pairsCount
+	}: {
+		strings: string[]
+		repeatCount: number
+		pairsCount: number
+	}) => {
+		const resultArray: string[] = []
+		const randomString = shuffle([...strings]).slice(0, pairsCount)
+		for (let i = 0; i < repeatCount; i++) {
+			resultArray.push(...randomString)
+		}
+		return shuffle(resultArray)
+	}
+	const { gameCardsQTY, repeatCount, pairsCount } = getDataGame()
+	const symbols = generateRandomPairsOrTriples({
+		strings: SYMBOL_SEARCH_STRINGS,
+		repeatCount,
+		pairsCount
+	})
+	return {
+		symbols,
+		gameCardsQTY,
+		pairsCount,
+		repeatCount
+	}
+}

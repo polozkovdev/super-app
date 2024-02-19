@@ -3,13 +3,7 @@ import { useModal } from "@/hooks/useModal"
 import { coreStore } from "@/store"
 import { FontAwesome5 } from "@expo/vector-icons"
 import { observer } from "mobx-react-lite"
-import React, {
-	Dispatch,
-	SetStateAction,
-	useEffect,
-	useMemo,
-	useState
-} from "react"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 import {
 	Animated,
 	Dimensions,
@@ -21,143 +15,36 @@ import {
 import { useMediaQuery } from "react-responsive"
 import { IGame } from "types"
 
-export const shuffle = (array: string[]) => {
-	let currentIndex = array.length,
-		temporaryValue,
-		randomIndex
-
-	while (currentIndex !== 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex)
-		currentIndex--
-
-		temporaryValue = array[currentIndex]
-		array[currentIndex] = array[randomIndex]
-		array[randomIndex] = temporaryValue
-	}
-
-	return array
-}
-
-const STRINGS = [
-	"android",
-	"android",
-	"apple",
-	"apple",
-	"balance-scale",
-	"balance-scale",
-	"bell",
-	"bell",
-	"bus",
-	"bus",
-	"car",
-	"car",
-	"clock",
-	"clock",
-	"coffee",
-	"coffee",
-	"bicycle",
-	"bicycle",
-	"leaf",
-	"leaf",
-	"cube",
-	"cube",
-	"anchor",
-	"anchor",
-	"paper-plane",
-	"paper-plane",
-	"bolt",
-	"bolt",
-	"bomb",
-	"bomb",
-	"carrot",
-	"carrot"
-]
-
-const generateRandomPairsOrTriples = ({
-	strings,
-	repeatCount,
-	pairsCount
-}: {
-	strings: string[]
-	repeatCount: number
-	pairsCount: number
-}) => {
-	return shuffle(
-		shuffle(strings).reduce((acc: string[], item, index) => {
-			if (index + 1 > pairsCount) {
-				return acc
-			}
-			const repeatedItems = new Array(repeatCount).fill("").map(i => item)
-			return [...acc, ...repeatedItems]
-		}, [])
-	)
-}
-
 interface ISymbolSearchProps {
+	symbols: string[]
+	gameCardsQTY: number
 	game: IGame
-	setGame: Dispatch<SetStateAction<IGame>>
+	updateGame: () => void
 	setTimerStart: Dispatch<SetStateAction<boolean>>
 	navigation: any
 }
 
 const SymbolSearch = ({
-	game: { currentStep, steps },
 	game,
-	setGame,
+	symbols,
+	gameCardsQTY,
+	updateGame,
 	setTimerStart,
 	navigation
 }: ISymbolSearchProps) => {
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})
-	const {
-		gameCardsQTY,
-		repeatCount,
-		pairsCount
-	}: { gameCardsQTY: number; repeatCount: number; pairsCount: number } =
-		useMemo(() => {
-			switch (currentStep) {
-				case 1:
-					return {
-						gameCardsQTY: 16,
-						repeatCount: 2,
-						pairsCount: 8
-					}
-				case 2:
-					return {
-						gameCardsQTY: 64,
-						repeatCount: 2,
-						pairsCount: 32
-					}
-				default:
-					return {
-						gameCardsQTY: 64,
-						repeatCount: 2,
-						pairsCount: 32
-					}
-			}
-		}, [currentStep])
-	const symbols = useMemo(
-		() =>
-			generateRandomPairsOrTriples({
-				strings: STRINGS,
-				repeatCount,
-				pairsCount
-			}),
-		[currentStep]
-	)
 	const { showModal, content } = useModal()
-	const [cards, setCards] = useState<string[]>(symbols)
-	const [animations, setAnimations] = useState(
-		symbols.map(() => new Animated.Value(0))
-	)
+	const [cards, setCards] = useState<string[]>([])
+	const [animations, setAnimations] = useState<any[]>([])
 	const [opened, setOpened] = useState<number[]>([])
 	const [matched, setMatched] = useState<number[]>([])
 	const [moves, setMoves] = useState(0)
 
 	useEffect(() => {
 		initGame()
-	}, [currentStep])
+	}, [symbols])
 
 	const animatePress = (index: number, updatedOpened: number[]) => {
 		const parallelAnimations = animations.map((_, i) => {
@@ -191,21 +78,22 @@ const SymbolSearch = ({
 		setOpened([])
 		setMatched([])
 		setMoves(0)
-		!isDesktop && setAnimations(cards.map(() => new Animated.Value(0)))
+		!isDesktop && setAnimations(symbols.map(() => new Animated.Value(0)))
 	}
 
 	const endGame = () => {
-		const updatedGame = {
-			...game,
-			currentStep: currentStep + 1
-		}
-		if (currentStep === steps) {
+		if (game.steps === game.currentStep + 1) {
 			return showModal({
 				title: "Congratulations!",
 				text: `You Won! you complete all steps! \n improve your skils in other games!`,
 				successText: "Let's go !",
 				successHandler: () => {
-					coreStore.db.updateGame(updatedGame)
+					coreStore.db.updateGame({
+						...game,
+						currentStep: game.currentStep + 1,
+						isProgress: false,
+						isCompleted: true
+					})
 					navigation.navigate("Games")
 				}
 			})
@@ -214,10 +102,7 @@ const SymbolSearch = ({
 			title: "Congratulations!",
 			text: `You Complete this game! with ${moves} moves \n And now you can improve yourself \n even more`,
 			successText: "Unlock next level",
-			successHandler: () => {
-				coreStore.db.updateGame(updatedGame)
-				setGame(updatedGame)
-			}
+			successHandler: () => updateGame()
 		})
 		initGame()
 	}
@@ -367,9 +252,6 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		borderRadius: 8,
 		fontFamily: "FontAwesome5"
-	},
-	openedCard: {
-		transform: [{ rotate: "0" }]
 	},
 	matchedCard: {
 		backgroundColor: "#9BCB3C"

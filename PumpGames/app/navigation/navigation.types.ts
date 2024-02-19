@@ -37,6 +37,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		isFree: true,
 		isCompleted: false,
 		isProgress: false,
+		completeStep: 0,
 		currentStep: 1,
 		steps: 10,
 		initialPaidStep: undefined,
@@ -72,6 +73,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		isCompleted: false,
 		isProgress: false,
 		currentStep: 1,
+		completeStep: 0,
 		steps: 5,
 		initialPaidStep: undefined,
 		timer: 0,
@@ -98,7 +100,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		]
 	},
 	{
-		name: "Block Puzzle",
+		name: "BlockDocku",
 		route: "BlockDocku",
 		title: "Block Puzzle",
 		categories: [CATEGORIES.Focus],
@@ -106,6 +108,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		isCompleted: false,
 		isProgress: false,
 		currentStep: 1,
+		completeStep: 0,
 		steps: 5,
 		initialPaidStep: undefined,
 		timer: 0,

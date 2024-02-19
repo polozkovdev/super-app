@@ -2,10 +2,12 @@ import Timer from "@/components/features/Timer/Timer"
 import Handler from "@/components/ui/handler/Handler"
 import HeaderGame from "@/components/ui/headerGame/HeaderGame"
 import Layout from "@/components/ui/layout/Layout"
-import { AppConstants } from "@/constants/app.constants"
+import {
+	AppConstants,
+	generateSymbolSearchData
+} from "@/constants/app.constants"
 import Loading from "@/screens/loading/Loading"
-import { useStore } from "@/store"
-import { autorun } from "mobx"
+import { coreStore, useStore } from "@/store"
 import { useEffect, useState } from "react"
 import { Image, ScrollView, View } from "react-native"
 import { IGame } from "types"
@@ -15,7 +17,23 @@ const gameWrapper =
 	({ navigation }: any) => {
 		const { db } = useStore()
 		const [game, setGame] = useState<IGame | null>(null)
+		const [gameData, setGameData] = useState<{
+			symbols: string[]
+			gameCardsQTY: number
+			pairsCount: number
+			repeatCount: number
+		}>(generateSymbolSearchData(game?.currentStep ?? 1))
 		const [timerStart, setTimerStart] = useState(false)
+		const updateGame = () => {
+			const currentStep = (game?.currentStep ?? 1) + 1
+			const updatedGame = { ...game, currentStep }
+			if (game) {
+				const updatedData = generateSymbolSearchData(currentStep)
+				coreStore.db.updateGame(updatedGame as IGame)
+				setGame({ ...game, currentStep })
+				setGameData(updatedData)
+			}
+		}
 		useEffect(() => {
 			const getInitialGameData = async () => {
 				try {
@@ -28,18 +46,6 @@ const gameWrapper =
 
 			getInitialGameData()
 		}, [db, Name])
-
-		useEffect(() => {
-			const disposer = autorun(() => {
-				if (game) {
-					setGame(game)
-				}
-			})
-
-			return () => {
-				disposer()
-			}
-		}, [game])
 		if (!game) {
 			return <Loading />
 		}
@@ -58,15 +64,21 @@ const gameWrapper =
 					<Layout isHeader={false} navigation={navigation}>
 						<View style={{ flex: 1 }}>
 							<HeaderGame navigation={navigation} currentData={game} />
-							<Component
-								game={game}
-								setGame={setGame}
-								setTimerStart={setTimerStart}
-								navigation={navigation}
-							/>
+							{gameData && (
+								<Component
+									game={game}
+									symbols={gameData.symbols}
+									gameCardsQTY={gameData.gameCardsQTY}
+									updateGame={updateGame}
+									setTimerStart={setTimerStart}
+									navigation={navigation}
+								/>
+							)}
 						</View>
 						<View className='flex-row space-x-[14px] mb-[14px] mt-[14px] justify-center'>
-							<Timer game={game} setGame={setGame} timerStart={timerStart} />
+							{game && (
+								<Timer game={game} setGame={setGame} timerStart={timerStart} />
+							)}
 							<Handler>
 								<Image
 									className={`w-6 h-6`}

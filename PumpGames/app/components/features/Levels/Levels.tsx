@@ -76,7 +76,7 @@ const Levels: FC<PropsWithChildren<ILevelsProps>> = ({
 							className='mx-[10px]'
 							onPress={() => {
 								coreStore.updatePreviousRoute("Games")
-								navigation.navigate(route)
+								isCurrentLevel && navigation.navigate(route)
 							}}
 							style={{
 								flex: 1
