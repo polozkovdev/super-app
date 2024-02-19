@@ -42,6 +42,7 @@ const SudokuGame: React.FC = () => {
 
 	const handleCellPress = (row: number, col: number) => {
 		if (!initialCells[row][col]) {
+			console.log("handler")
 			setSelectedCell([row, col])
 			highlightRegionAndLines(row, col)
 			Animated.timing(fadeAnim, {
@@ -62,11 +63,30 @@ const SudokuGame: React.FC = () => {
 		const regionCheck = checkRegion(board, regionRow, regionCol)
 		const lineCheck = checkLine(board, row, col)
 
+		// Проверяем, полностью ли заполнен регион
+		const isRegionFull = board
+			.slice(regionRow * 3, regionRow * 3 + 3)
+			.every(r =>
+				r.slice(regionCol * 3, regionCol * 3 + 3).every(cell => cell !== ".")
+			)
+
 		// Подсветить регион, если собран правильно
 		if (regionCheck) {
-			for (let i = 0; i < 3; i++) {
-				for (let j = 0; j < 3; j++) {
-					newHighlightedCells.push([regionRow * 3 + i, regionCol * 3 + j])
+			console.log("regionCheck", regionCheck)
+			if (!isRegionFull) {
+				// Если регион не полностью заполнен, подсвечиваем его зеленым
+				for (let i = regionRow * 3; i < regionRow * 3 + 3; i++) {
+					for (let j = regionCol * 3; j < regionCol * 3 + 3; j++) {
+						newHighlightedCells.push([i, j])
+					}
+				}
+			} else {
+				console.log("IS REGION FULL !!!!!!")
+				// Иначе подсвечиваем его красным
+				for (let i = regionRow * 3; i < regionRow * 3 + 3; i++) {
+					for (let j = regionCol * 3; j < regionCol * 3 + 3; j++) {
+						newHighlightedCells.push([i, j])
+					}
 				}
 			}
 		}
@@ -124,7 +144,6 @@ const SudokuGame: React.FC = () => {
 			}).start()
 		}
 	}
-
 	return (
 		<View style={styles.container}>
 			{board.map((row, rowIndex) => (
@@ -146,14 +165,15 @@ const SudokuGame: React.FC = () => {
 										width: isDesktop ? 80 : 40,
 										height: isDesktop ? 80 : 40
 									},
-									// Применяем границы для выделения регионов
 									{
 										borderRightWidth: (colIndex + 1) % 3 === 0 ? 1 : 0,
 										borderBottomWidth: (rowIndex + 1) % 3 === 0 ? 1 : 0,
 										backgroundColor: initialCells[rowIndex][colIndex]
 											? "lightgrey"
 											: isHighlighted
-												? "gray" // Green for region
+												? isSelected
+													? "#E57300"
+													: "#eaeef4" // Green for region
 												: isSelected
 													? "#E57300" // Orange for selected cell
 													: "white"
