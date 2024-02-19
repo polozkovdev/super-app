@@ -19,7 +19,8 @@ interface ISymbolSearchProps {
 	symbols: string[]
 	gameCardsQTY: number
 	game: IGame
-	updateGame: () => void
+	updateGame: (props?: any) => void
+	timerStart: boolean
 	setTimerStart: Dispatch<SetStateAction<boolean>>
 	navigation: any
 }
@@ -29,6 +30,7 @@ const SymbolSearch = ({
 	symbols,
 	gameCardsQTY,
 	updateGame,
+	timerStart,
 	setTimerStart,
 	navigation
 }: ISymbolSearchProps) => {
@@ -108,6 +110,10 @@ const SymbolSearch = ({
 	}
 
 	const handleCardPress = (index: number) => {
+		if (!timerStart) {
+			console.log("????????", timerStart)
+			setTimerStart(true)
+		}
 		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)
@@ -162,6 +168,13 @@ const SymbolSearch = ({
 			borderRadius: 10
 		}
 	}
+	useEffect(() => {
+		return () => {
+			console.log("Symbol seatch is unmounted!!!")
+
+			setTimerStart(false)
+		}
+	}, [])
 
 	return (
 		<View style={styles.container}>

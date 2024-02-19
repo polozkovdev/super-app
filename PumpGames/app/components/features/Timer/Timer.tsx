@@ -2,23 +2,17 @@ import StartStop from "@/components/features/Timer/StartStop/StartStop"
 import Handler from "@/components/ui/handler/Handler"
 import TextComponent from "@/components/ui/text/TextComponent"
 import { coreStore } from "@/store"
-import React, {
-	Dispatch,
-	SetStateAction,
-	useEffect,
-	useRef,
-	useState
-} from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { TouchableOpacity, View } from "react-native"
 import { IGame } from "types"
 
 interface TimerProps {
 	game: IGame
-	setGame: Dispatch<SetStateAction<IGame>>
+	updateGame: () => void
 	timerStart: boolean
 }
 
-const Timer: React.FC<TimerProps> = ({ game, setGame, timerStart }) => {
+const Timer: React.FC<TimerProps> = ({ game, updateGame, timerStart }) => {
 	const [currentTime, setCurrentTime] = useState<number>(game.timer)
 	const [isRunning, setIsRunning] = useState<boolean>(false)
 	const intervalRef = useRef<NodeJS.Timeout | null>(null)
@@ -53,6 +47,11 @@ const Timer: React.FC<TimerProps> = ({ game, setGame, timerStart }) => {
 			}, 1000)
 		}
 	}, [timerStart])
+	useEffect(() => {
+		return () => {
+			updateGame({ ...game, timer: currentTime })
+		}
+	}, [])
 	return (
 		<View className='flex-row space-x-[14px] items-center'>
 			<Handler className='pl-[24px] pr-[24px] bg-[#3F1210]/10 text-primary w-[140px]'>

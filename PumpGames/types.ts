@@ -38,6 +38,7 @@ export interface IGame {
 		source?: ImageSourcePropType
 	}[]
 	timer: number
+	data?: any
 	rewards: IReward[]
 }
 

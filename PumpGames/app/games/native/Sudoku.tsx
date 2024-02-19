@@ -2,7 +2,7 @@ import gameWrapper from "@/hoc/gameWrapper"
 import { useModal } from "@/hooks/useModal"
 import { coreStore } from "@/store"
 import { observer } from "mobx-react-lite"
-import React, { Dispatch, SetStateAction, useState } from "react"
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 import {
 	Animated,
 	StyleSheet,
@@ -57,12 +57,16 @@ const isInitialCell: boolean[][] = initialInput.map(row =>
 interface ISudokuGameProps {
 	game: IGame
 	navigation?: any
+	timerStart: boolean
+	updateGame: (props?: any) => void
 	setTimerStart: Dispatch<SetStateAction<boolean>>
 }
 
 const SudokuGame: React.FC<ISudokuGameProps> = ({
 	game,
 	navigation,
+	timerStart,
+	updateGame,
 	setTimerStart
 }) => {
 	const { showModal, content } = useModal()
@@ -70,7 +74,7 @@ const SudokuGame: React.FC<ISudokuGameProps> = ({
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})
-	const [board, setBoard] = useState<SudokuBoard>(initialInput)
+	const [board, setBoard] = useState<SudokuBoard>(game.data ?? initialInput)
 	const [selectedCell, setSelectedCell] = useState<[number, number] | null>(
 		null
 	)
@@ -248,6 +252,9 @@ const SudokuGame: React.FC<ISudokuGameProps> = ({
 	}
 
 	const handleNumberSelect = (num: string) => {
+		if (!timerStart) {
+			setTimerStart(true)
+		}
 		if (selectedCell) {
 			const [row, col] = selectedCell
 			const newBoard = [...board]
@@ -286,6 +293,25 @@ const SudokuGame: React.FC<ISudokuGameProps> = ({
 			}
 		}
 	}
+
+	useEffect(() => {
+		if (game.data) {
+			game.data.forEach((row, rowIndex) => {
+				row.forEach((cell, colIndex) => {
+					if (cell !== ".") {
+						// Вызываем функцию для подсветки региона и линий
+						highlightRegionAndLines(rowIndex, colIndex)
+					}
+				})
+			})
+			updateFilledRegions()
+			updateFilledRowsAndColumns()
+		}
+		return () => {
+			updateGame({ ...game, data: board })
+			setTimerStart(false)
+		}
+	}, [])
 
 	return (
 		<View style={styles.container}>

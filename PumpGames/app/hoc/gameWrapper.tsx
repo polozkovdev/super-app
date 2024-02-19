@@ -24,14 +24,16 @@ const gameWrapper =
 			repeatCount: number
 		}>(generateSymbolSearchData(game?.currentStep ?? 1))
 		const [timerStart, setTimerStart] = useState(false)
-		const updateGame = () => {
+		const updateGame = (props: any) => {
 			const currentStep = (game?.currentStep ?? 1) + 1
-			const updatedGame = { ...game, currentStep }
+			const updatedGame = { ...game, currentStep, ...props }
 			if (game) {
-				const updatedData = generateSymbolSearchData(currentStep)
 				coreStore.db.updateGame(updatedGame as IGame)
-				setGame({ ...game, currentStep })
-				setGameData(updatedData)
+				setGame(updatedGame)
+				if (game.name === "SymbolSearch") {
+					const updatedData = generateSymbolSearchData(currentStep)
+					setGameData(updatedData)
+				}
 			}
 		}
 		useEffect(() => {
@@ -64,9 +66,18 @@ const gameWrapper =
 					<Layout isHeader={false} navigation={navigation}>
 						<View style={{ flex: 1 }}>
 							<HeaderGame navigation={navigation} currentData={game} />
-							{gameData && (
+							{game.name === "Sudoku" ? (
 								<Component
 									game={game}
+									timerStart={timerStart}
+									updateGame={updateGame}
+									setTimerStart={setTimerStart}
+									navigation={navigation}
+								/>
+							) : (
+								<Component
+									game={game}
+									timerStart={timerStart}
 									symbols={gameData.symbols}
 									gameCardsQTY={gameData.gameCardsQTY}
 									updateGame={updateGame}
@@ -77,7 +88,11 @@ const gameWrapper =
 						</View>
 						<View className='flex-row space-x-[14px] mb-[14px] mt-[14px] justify-center'>
 							{game && (
-								<Timer game={game} setGame={setGame} timerStart={timerStart} />
+								<Timer
+									game={game}
+									updateGame={updateGame}
+									timerStart={timerStart}
+								/>
 							)}
 							<Handler>
 								<Image
