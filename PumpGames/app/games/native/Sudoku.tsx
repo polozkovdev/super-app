@@ -92,7 +92,7 @@ const SudokuGame: React.FC<ISudokuGameProps> = ({
 			highlightRegionAndLines(row, col)
 			Animated.timing(fadeAnim, {
 				toValue: 1,
-				duration: 500,
+				duration: 150,
 				useNativeDriver: false
 			}).start()
 		}
@@ -285,6 +285,7 @@ const SudokuGame: React.FC<ISudokuGameProps> = ({
 					successHandler: () => {
 						coreStore.db.updateGame({
 							...game,
+							timer: 0,
 							currentStep: game.currentStep + 1
 						})
 						navigation.navigate("Games")

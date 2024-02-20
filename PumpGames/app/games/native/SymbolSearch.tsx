@@ -1,7 +1,7 @@
 import gameWrapper from "@/hoc/gameWrapper"
 import { useModal } from "@/hooks/useModal"
 import { coreStore } from "@/store"
-import { FontAwesome5 } from "@expo/vector-icons"
+import { FontAwesome5, MaterialIcons } from "@expo/vector-icons"
 import { observer } from "mobx-react-lite"
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
 import {
@@ -87,7 +87,7 @@ const SymbolSearch = ({
 		if (game.steps === game.currentStep + 1) {
 			return showModal({
 				title: "Congratulations!",
-				text: `You Won! you complete all steps! \n improve your skils in other games!`,
+				text: `You Won! you complete all steps! \n improve your skills in other games!`,
 				successText: "Let's go !",
 				successHandler: () => {
 					coreStore.db.updateGame({
@@ -181,7 +181,7 @@ const SymbolSearch = ({
 			<View style={styles.scorePanel}>
 				<Text style={styles.moves}>{moves} Moves</Text>
 				<TouchableOpacity style={styles.restart} onPress={initGame}>
-					<FontAwesome5 name='circle-notch' style={styles.restartIcon} />
+					<MaterialIcons name='restart-alt' style={styles.restartIcon} />
 				</TouchableOpacity>
 			</View>
 			{/*@ts-ignore*/}

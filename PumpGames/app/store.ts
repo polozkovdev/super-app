@@ -98,6 +98,10 @@ export class DBState {
 		}
 	}
 
+	getPlayer = (): IPlayer => {
+		return this.Player
+	}
+
 	updateGame = (game: IGame, callback?: () => void) => {
 		asyncStorageDB.updateGame(game).then(
 			action("updateGameSuccess", () => {

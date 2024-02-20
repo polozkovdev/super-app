@@ -32,6 +32,7 @@ const gameWrapper =
 				setGame(updatedGame)
 				if (game.name === "SymbolSearch") {
 					const updatedData = generateSymbolSearchData(currentStep)
+					setTimerStart(false)
 					setGameData(updatedData)
 				}
 			}
@@ -40,6 +41,7 @@ const gameWrapper =
 			const getInitialGameData = async () => {
 				try {
 					const gameData = await db.getGameByName(Name)
+					const player = await db.getPlayer()
 					gameData && setGame(gameData)
 				} catch (error) {
 					console.error("Error fetching data:", error)
