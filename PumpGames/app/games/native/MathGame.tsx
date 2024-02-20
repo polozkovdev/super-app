@@ -1,18 +1,23 @@
+import TextComponent from "@/components/ui/text/TextComponent"
 import gameWrapper from "@/hoc/gameWrapper"
 import { useModal } from "@/hooks/useModal"
 import { observer } from "mobx-react-lite"
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { IGame } from "types"
 
 const Expression = ({ from, to, transitioning }) => {
 	return (
 		<View style={styles.expressionContainer}>
 			<View style={styles.expressionTextContainer}>
-				<Text style={styles.expressionText}>{from}</Text>
+				<TextComponent type='title' style={styles.expressionText}>
+					{from}
+				</TextComponent>
 			</View>
 			<View style={styles.expressionTextContainer}>
-				<Text style={styles.expressionText}>{to}</Text>
+				<TextComponent type='title' style={styles.expressionText}>
+					{to}
+				</TextComponent>
 			</View>
 		</View>
 	)
@@ -37,23 +42,22 @@ const MultipleChoice = ({ values, selected, correct, onClick }) => {
 					onPress={() => onClick(value)}
 					disabled={selected !== -1}
 				>
-					<Text style={styles.choiceText}>{value}</Text>
+					<TextComponent style={styles.choiceText}>{value}</TextComponent>
 				</TouchableOpacity>
 			))}
 		</View>
 	)
 }
 
-const Summary = ({ show, score, onPlayAgain, correctCount }) => {
+const Summary = ({ score, correctCount }) => {
 	return (
-		<View
-			style={[styles.summaryContainer, { display: show ? "flex" : "none" }]}
-		>
-			<Text style={styles.summaryText}>Your Score is: {score}</Text>
-			<Text style={styles.summaryText}>Correct Answers: {correctCount}</Text>
-			<TouchableOpacity style={styles.playAgainButton} onPress={onPlayAgain}>
-				<Text style={styles.playAgainButtonText}>PLAY AGAIN</Text>
-			</TouchableOpacity>
+		<View style={[styles.summaryContainer]}>
+			<TextComponent style={styles.summaryText}>
+				Your Score is: {score}
+			</TextComponent>
+			<TextComponent style={styles.summaryText}>
+				Correct Answers: {correctCount}
+			</TextComponent>
 		</View>
 	)
 }
@@ -74,7 +78,6 @@ const MathGame: React.FC<IMathGameProps> = ({
 	navigation
 }) => {
 	const { showModal } = useModal()
-	const [showSummary, setShowSummary] = useState(false)
 	const [score, setScore] = useState(0)
 	const [selected, setSelected] = useState(-1)
 	const [problem, setProblem] = useState({
@@ -150,6 +153,7 @@ const MathGame: React.FC<IMathGameProps> = ({
 
 	return (
 		<View style={styles.container}>
+			<Summary score={score} correctCount={correctCount} />
 			<View style={styles.expressionContainer}>
 				<Expression
 					from={`${problem.a} + ${problem.b} = `}
@@ -214,7 +218,6 @@ const styles = StyleSheet.create({
 		color: "#ffffff"
 	},
 	summaryContainer: {
-		position: "absolute",
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "#ffffff",
