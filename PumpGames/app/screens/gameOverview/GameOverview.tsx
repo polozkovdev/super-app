@@ -4,6 +4,7 @@ import TextComponent from "@/components/ui/text/TextComponent"
 import { AppConstants } from "@/constants/app.constants"
 import Loading from "@/screens/loading/Loading"
 import { useStore } from "@/store"
+import { observer } from "mobx-react-lite"
 import { useEffect, useState } from "react"
 import { Image, ScrollView, View } from "react-native"
 import { IGame } from "types"
@@ -79,4 +80,4 @@ const GameOverview = ({ navigation, ...props }: any) => {
 	)
 }
 
-export default GameOverview
+export default observer(GameOverview)

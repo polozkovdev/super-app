@@ -1,7 +1,5 @@
 import { GAMES_URI } from "@/constants/app.constants"
-import gameWrapper from "@/hoc/gameWrapper"
 import WebViewProvider from "@/providers/WebViewProvider"
-import { observer } from "mobx-react-lite"
 import React from "react"
 import { Platform } from "react-native"
 
@@ -32,7 +30,4 @@ const BlockDocku = () => {
 	return <WebViewProvider uri={GAMES_URI.BlockDocku} />
 }
 
-export default gameWrapper({
-	Component: observer(BlockDocku),
-	Name: "Block Puzzle"
-})
+export default BlockDocku

@@ -73,6 +73,13 @@ export const GAMES: IGame[] = [
 		description: "Memory"
 	},
 	{
+		name: "Math",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
+		source: require("@/assets/games/game_1.png"),
+		route: "Math",
+		description: "Problem solving"
+	},
+	{
 		name: "Block Puzzle Game",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
 		source: require("@/assets/games/game_2.png"),

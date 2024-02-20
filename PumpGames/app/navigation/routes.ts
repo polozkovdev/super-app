@@ -1,7 +1,7 @@
+import MathGame from "@/games/native/MathGame"
 import Sudoku from "@/games/native/Sudoku"
 import SymbolSearch from "@/games/native/SymbolSearch"
 import Tetris from "@/games/native/Tetris"
-import WordSearchGame from "@/games/native/WordSearchGame"
 import BlockDocku from "@/games/webview/BlockDocku/BlockDocku"
 import { IRoute } from "@/navigation/navigation.types"
 import GameOverview from "@/screens/gameOverview/GameOverview"
@@ -39,8 +39,8 @@ export const games: IRoute[] = [
 		component: BlockDocku
 	},
 	{
-		name: "WordSearch",
-		component: WordSearchGame
+		name: "Math",
+		component: MathGame
 	},
 	{
 		name: "SymbolSearch",

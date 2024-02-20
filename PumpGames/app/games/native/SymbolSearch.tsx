@@ -37,7 +37,7 @@ const SymbolSearch = ({
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})
-	const { showModal, content } = useModal()
+	const { showModal } = useModal()
 	const [cards, setCards] = useState<string[]>([])
 	const [animations, setAnimations] = useState<any[]>([])
 	const [opened, setOpened] = useState<number[]>([])
@@ -111,7 +111,6 @@ const SymbolSearch = ({
 
 	const handleCardPress = (index: number) => {
 		if (!timerStart) {
-			console.log("????????", timerStart)
 			setTimerStart(true)
 		}
 		if (matched.includes(index) || opened.includes(index)) return
