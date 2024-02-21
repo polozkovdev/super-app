@@ -121,17 +121,8 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 								speaking, memory, and mathematics.
 							</TextComponent>
 						</View>
-						<Footer />
-						<View
-							className={`
-			absolute bottom-0 flex md:hidden h-[80] w-full
-			overflow-visible
-			shadow-xl
-			 bg-primaryBackground/70
-			`}
-						/>
 						{!isDesktop && (
-							<View className='absolute bottom-4 left-0 right-0 shadow-[black]/10 shadow-sm md:shadow-none md:top-4 md:right-4'>
+							<View className='shadow-[black]/10 shadow-sm mb-[60px]'>
 								<Button
 									children='Start for free'
 									isArrow
@@ -143,8 +134,8 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 								/>
 							</View>
 						)}
+						<Footer />
 					</View>
-					<View className='flex-1 h-[60] w-full md-hidden' />
 				</View>
 			</ScrollView>
 		</View>

@@ -1,3 +1,4 @@
+import HanoiTowerGame from "@/games/native/HanoiTowerGame"
 import MathGame from "@/games/native/MathGame"
 import Sudoku from "@/games/native/Sudoku"
 import SymbolSearch from "@/games/native/SymbolSearch"
@@ -41,6 +42,10 @@ export const games: IRoute[] = [
 	{
 		name: "Math",
 		component: MathGame
+	},
+	{
+		name: "HanoiTower",
+		component: HanoiTowerGame
 	},
 	{
 		name: "SymbolSearch",

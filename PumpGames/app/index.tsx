@@ -44,6 +44,23 @@ const Wrapper = () => {
 		}
 	}, [frame.height, insets.top, insets.bottom, isDone])
 
+	useEffect(() => {
+		fetchData() // Вызываем функцию загрузки данных при монтировании компонента
+	}, [])
+
+	const fetchData = async () => {
+		try {
+			const response = await fetch("http://localhost:5678")
+			console.log("response", response)
+			if (!response.ok) {
+				throw new Error("Failed to fetch data")
+			}
+			const jsonData = await response.json()
+			console.log("jsonData", jsonData)
+		} catch (error) {
+			console.log("error")
+		}
+	}
 	const onStartClick = () => setIsDone(true)
 	useEffect(() => {
 		if (isCachedComplete) {

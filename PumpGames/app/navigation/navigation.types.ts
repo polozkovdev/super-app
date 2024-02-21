@@ -30,6 +30,7 @@ export type TypeRootStackParamList = {
 	SymbolSearch: undefined
 	Sudoku: undefined
 	Math: undefined
+	HanoiTower: undefined
 
 	Tetris: undefined
 	WordSearch: undefined
@@ -56,26 +57,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		initialPaidStep: undefined,
 		timer: 0,
 		rewards: [],
-		benefits: [
-			{
-				title: "Decision making",
-				description:
-					"Improve your ability to make informed and effective choices",
-				source: require("@/assets/ui/benifits_01.png")
-			},
-			{
-				title: "Visual processing speed",
-				description:
-					"Boost the speed at which you process and react to visual information",
-				source: require("@/assets/ui/benifits_02.png")
-			},
-			{
-				title: "Problem solving",
-				description:
-					"Improve your ability to identify solutions to complex issues",
-				source: require("@/assets/ui/benifits_03.png")
-			}
-		]
+		benefits: []
 	},
 	{
 		name: "Sudoku",
@@ -91,26 +73,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		initialPaidStep: undefined,
 		timer: 0,
 		rewards: [],
-		benefits: [
-			{
-				title: "Decision making",
-				description:
-					"Improve your ability to make informed and effective choices",
-				source: require("@/assets/ui/benifits_01.png")
-			},
-			{
-				title: "Visual processing speed",
-				description:
-					"Boost the speed at which you process and react to visual information",
-				source: require("@/assets/ui/benifits_02.png")
-			},
-			{
-				title: "Problem solving",
-				description:
-					"Improve your ability to identify solutions to complex issues",
-				source: require("@/assets/ui/benifits_03.png")
-			}
-		]
+		benefits: []
 	},
 	{
 		name: "Math",
@@ -126,26 +89,23 @@ export const DEFAULT_GAMES: IGame[] = [
 		initialPaidStep: undefined,
 		timer: 0,
 		rewards: [],
-		benefits: [
-			{
-				title: "Decision making",
-				description:
-					"Improve your ability to make informed and effective choices",
-				source: require("@/assets/ui/benifits_01.png")
-			},
-			{
-				title: "Visual processing speed",
-				description:
-					"Boost the speed at which you process and react to visual information",
-				source: require("@/assets/ui/benifits_02.png")
-			},
-			{
-				title: "Problem solving",
-				description:
-					"Improve your ability to identify solutions to complex issues",
-				source: require("@/assets/ui/benifits_03.png")
-			}
-		]
+		benefits: []
+	},
+	{
+		name: "HanoiTower",
+		route: "HanoiTower",
+		title: "Hanoi Tower",
+		categories: [CATEGORIES.Challenge],
+		isFree: true,
+		isCompleted: false,
+		isProgress: false,
+		currentStep: 1,
+		completeStep: 0,
+		steps: 10,
+		initialPaidStep: undefined,
+		timer: 0,
+		rewards: [],
+		benefits: []
 	},
 	{
 		name: "BlockDocku",
@@ -161,25 +121,6 @@ export const DEFAULT_GAMES: IGame[] = [
 		initialPaidStep: undefined,
 		timer: 0,
 		rewards: [],
-		benefits: [
-			{
-				title: "Decision making",
-				description:
-					"Improve your ability to make informed and effective choices",
-				source: require("@/assets/ui/benifits_01.png")
-			},
-			{
-				title: "Visual processing speed",
-				description:
-					"Boost the speed at which you process and react to visual information",
-				source: require("@/assets/ui/benifits_02.png")
-			},
-			{
-				title: "Problem solving",
-				description:
-					"Improve your ability to identify solutions to complex issues",
-				source: require("@/assets/ui/benifits_03.png")
-			}
-		]
+		benefits: []
 	}
 ]

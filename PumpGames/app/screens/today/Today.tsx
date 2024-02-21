@@ -55,6 +55,33 @@ const Today = ({ navigation }: any) => {
 						>
 							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
 								<GameCard
+									source={require("@/assets/games/game_4.png")}
+									name='HanoiTower'
+									route='HanoiTower'
+									category='Problem solving'
+									navigation={navigation}
+								/>
+								<View className='mb-[30]'>
+									<View className='flex-row items-center space-x-2'>
+										<Image
+											className='w-5 h-5'
+											resizeMode='contain'
+											source={require("@/assets/ui/clock.png")}
+										/>
+										<TextComponent className='text-[18px] text-primary font-subtitle'>
+											19 min
+										</TextComponent>
+									</View>
+								</View>
+								<Image
+									className='mb-[20] md:hidden'
+									resizeMode='cover'
+									source={require("@/assets/ui/arrow_down.png")}
+								/>
+							</View>
+							{/*----/*----/*----/*----/*----/*----*/}
+							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
+								<GameCard
 									source={require("@/assets/games/game_1.png")}
 									name='Math'
 									route='Math'
