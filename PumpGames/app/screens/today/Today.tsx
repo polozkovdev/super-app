@@ -56,7 +56,7 @@ const Today = ({ navigation }: any) => {
 							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
 								<GameCard
 									source={require("@/assets/games/game_4.png")}
-									name='HanoiTower'
+									name='Hanoi Tower'
 									route='HanoiTower'
 									category='Problem solving'
 									navigation={navigation}

@@ -78,7 +78,6 @@ const Wrapper = () => {
 			</View>
 		)
 	}
-	// return <Navigation />
 	return isDone ? <Navigation /> : <Onboarding onStart={onStartClick} />
 }
 

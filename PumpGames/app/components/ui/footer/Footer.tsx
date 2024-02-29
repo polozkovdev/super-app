@@ -3,10 +3,7 @@ import { Image, View } from "react-native"
 
 const Footer = () => {
 	return (
-		<View
-			className='items-center w-[100%] md:flex-row md:flex md:justify-between md:mt-auto'
-			style={{ flex: 1 }}
-		>
+		<View className='items-center w-[100%] md:flex-row md:flex md:justify-between md:mt-auto'>
 			<View className='hidden md:flex'>
 				<TextComponent className='font-[20px] leading-[28px] font-subtitle'>
 					© Mighty Minds

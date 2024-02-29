@@ -31,6 +31,7 @@ export type TypeRootStackParamList = {
 	Sudoku: undefined
 	Math: undefined
 	HanoiTower: undefined
+	Test: undefined
 
 	Tetris: undefined
 	WordSearch: undefined
@@ -85,7 +86,7 @@ export const DEFAULT_GAMES: IGame[] = [
 		isProgress: false,
 		currentStep: 1,
 		completeStep: 0,
-		steps: 50,
+		steps: 7,
 		initialPaidStep: undefined,
 		timer: 0,
 		rewards: [],
@@ -106,21 +107,37 @@ export const DEFAULT_GAMES: IGame[] = [
 		timer: 0,
 		rewards: [],
 		benefits: []
-	},
-	{
-		name: "BlockDocku",
-		route: "BlockDocku",
-		title: "Block Puzzle",
-		categories: [CATEGORIES.Focus],
-		isFree: true,
-		isCompleted: false,
-		isProgress: false,
-		currentStep: 1,
-		completeStep: 0,
-		steps: 5,
-		initialPaidStep: undefined,
-		timer: 0,
-		rewards: [],
-		benefits: []
 	}
+	// {
+	// 	name: "BlockDocku",
+	// 	route: "BlockDocku",
+	// 	title: "Block Puzzle",
+	// 	categories: [CATEGORIES.Focus],
+	// 	isFree: true,
+	// 	isCompleted: false,
+	// 	isProgress: false,
+	// 	currentStep: 1,
+	// 	completeStep: 0,
+	// 	steps: 5,
+	// 	initialPaidStep: undefined,
+	// 	timer: 0,
+	// 	rewards: [],
+	// 	benefits: []
+	// },
+	// {
+	// 	name: "Test",
+	// 	route: "Test",
+	// 	title: "Test",
+	// 	categories: [CATEGORIES.Focus],
+	// 	isFree: true,
+	// 	isCompleted: false,
+	// 	isProgress: false,
+	// 	currentStep: 1,
+	// 	completeStep: 0,
+	// 	steps: 5,
+	// 	initialPaidStep: undefined,
+	// 	timer: 0,
+	// 	rewards: [],
+	// 	benefits: []
+	// }
 ]

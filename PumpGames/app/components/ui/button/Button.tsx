@@ -32,7 +32,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 		<View className={cn("flex-row justify-center", className)} {...props}>
 			<TouchableOpacity
 				className={`
-				flex-row items-center justify-center gap-x-2 inline-flex
+				flex-row items-center justify-center space-x-2 inline-flex
 				 bg-white h-[55px] rounded-3xl
 				 px-[20px] md:min-w-[60px]
 				 md:flex md:max-w-[300px]
@@ -43,7 +43,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
 			>
 				{iconLeftPath && (
 					<Image
-						className='w-[28px]] h-[26px]'
+						className='w-[28px] h-[26px]'
 						resizeMode='contain'
 						source={require("@/assets/ui/unlock.png")}
 					/>

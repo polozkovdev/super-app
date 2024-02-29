@@ -78,14 +78,14 @@ export const GAMES: IGame[] = [
 		source: require("@/assets/games/game_1.png"),
 		route: "Math",
 		description: "Problem solving"
-	},
-	{
-		name: "Block Puzzle Game",
-		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
-		source: require("@/assets/games/game_2.png"),
-		route: "BlockDocku",
-		description: "Problem solving"
 	}
+	// {
+	// 	name: "Block Puzzle Game",
+	// 	categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
+	// 	source: require("@/assets/games/game_2.png"),
+	// 	route: "BlockDocku",
+	// 	description: "Problem solving"
+	// }
 ]
 
 export const SYMBOL_SEARCH_STRINGS = [

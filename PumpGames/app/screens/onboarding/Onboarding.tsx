@@ -98,27 +98,11 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 							resizeMode='cover'
 							source={require("@/assets/games/finger.png")}
 						/>
-						<View className='w-[220px] mb-[20px]'>
+						<View className='w-[220px] mb-[40px]'>
 							<TextComponent>
 								Brain training{" "}
 								<TextComponent className='italic'>personalized</TextComponent>{" "}
 								for you
-							</TextComponent>
-						</View>
-						<View className='mb-[20px]'>
-							<TextComponent type='title'>
-								Stay sharp, build{"\n"} confidence, and boost{"\n"} productivity
-							</TextComponent>
-						</View>
-						<View className='mb-[60px] w-[100%] max-w-[480px] md:flex-row'>
-							<TextComponent className=''>
-								Train with over 30{" "}
-								<TextComponent className='italic'>
-									interactive games
-								</TextComponent>{" "}
-								specifically crafted to enhance your productivity, income
-								potential, and self-assurance in areas such as reading, writing,
-								speaking, memory, and mathematics.
 							</TextComponent>
 						</View>
 						{!isDesktop && (
@@ -134,6 +118,22 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 								/>
 							</View>
 						)}
+						<View className='mb-[20px]'>
+							<TextComponent type='title'>
+								Stay sharp, build{"\n"} confidence, and boost{"\n"} productivity
+							</TextComponent>
+						</View>
+						<View className='mb-[30px] w-[100%] max-w-[480px] md:flex-row'>
+							<TextComponent className=''>
+								Train with over 30{" "}
+								<TextComponent className='italic'>
+									interactive games
+								</TextComponent>{" "}
+								specifically crafted to enhance your productivity, income
+								potential, and self-assurance in areas such as reading, writing,
+								speaking, memory, and mathematics.
+							</TextComponent>
+						</View>
 						<Footer />
 					</View>
 				</View>
