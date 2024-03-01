@@ -61,31 +61,38 @@ export const GAMES: IGame[] = [
 	{
 		name: "Symbol Search",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.Memory],
-		source: require("@/assets/games/game_9.png"),
+		source: require("@/assets/ui/memory2.png"),
 		route: "SymbolSearch",
 		description: "Memory"
 	},
 	{
 		name: "Sudoku",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
-		source: require("@/assets/games/game_8.png"),
+		source: require("@/assets/ui/sudoke2.png"),
 		route: "Sudoku",
-		description: "Memory"
+		description: "Problem solving"
 	},
 	{
 		name: "Math",
 		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
-		source: require("@/assets/games/game_1.png"),
+		source: require("@/assets/ui/math2.png"),
 		route: "Math",
 		description: "Problem solving"
+	},
+	{
+		name: "Honoi Tower",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
+		source: require("@/assets/ui/honoi3.png"),
+		route: "HanoiTower",
+		description: "Problem solving"
+	},
+	{
+		name: "Block Puzzle Game",
+		categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
+		source: require("@/assets/ui/blick.png"),
+		route: "BlockDocku",
+		description: "Problem solving"
 	}
-	// {
-	// 	name: "Block Puzzle Game",
-	// 	categories: [CATEGORIES.All, CATEGORIES.Free, CATEGORIES.ProblemSolving],
-	// 	source: require("@/assets/games/game_2.png"),
-	// 	route: "BlockDocku",
-	// 	description: "Problem solving"
-	// }
 ]
 
 export const SYMBOL_SEARCH_STRINGS = [

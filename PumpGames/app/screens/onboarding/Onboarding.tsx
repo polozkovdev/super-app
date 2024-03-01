@@ -17,7 +17,6 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 	const isDesktop = useMediaQuery({
 		query: "(min-width: 724px)"
 	})
-
 	return (
 		<View
 			style={{
@@ -67,13 +66,14 @@ const Onboarding = ({ onStart }: IOnboardingProps) => {
 						{isDesktop ? (
 							<View
 								style={{
-									marginBottom: 40
+									marginBottom: 40,
+									flex: 1
 								}}
 							>
 								<Image
-									resizeMode='contain'
-									className='w-[300px] h-[300px]'
-									source={require("@/assets/games/game_1.png")}
+									resizeMode='cover'
+									className='w-[320px] h-[320px] shadow-[black] shadow-sm rounded-[24px] border-[1px] border-accent/30'
+									source={require("@/assets/ui/blick.png")}
 								/>
 							</View>
 						) : (

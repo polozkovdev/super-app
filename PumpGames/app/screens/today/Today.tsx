@@ -55,68 +55,7 @@ const Today = ({ navigation }: any) => {
 						>
 							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
 								<GameCard
-									source={require("@/assets/games/game_4.png")}
-									name='Hanoi Tower'
-									route='HanoiTower'
-									category='Problem solving'
-									navigation={navigation}
-								/>
-								<View className='mb-[30]'>
-									<View className='flex-row items-center space-x-2'>
-										<Image
-											className='w-5 h-5'
-											resizeMode='contain'
-											source={require("@/assets/ui/clock.png")}
-										/>
-										<TextComponent className='text-[18px] text-primary font-subtitle'>
-											19 min
-										</TextComponent>
-									</View>
-								</View>
-								<Image
-									className='mb-[20] md:hidden'
-									resizeMode='cover'
-									source={require("@/assets/ui/arrow_down.png")}
-								/>
-							</View>
-							{/*----/*----/*----/*----/*----/*----*/}
-							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
-								<GameCard
-									source={require("@/assets/games/game_1.png")}
-									name='Math'
-									route='Math'
-									category='Problem solving'
-									navigation={navigation}
-								/>
-								<View className='mb-[30]'>
-									<View className='flex-row items-center space-x-2'>
-										<Image
-											className='w-5 h-5'
-											resizeMode='contain'
-											source={require("@/assets/ui/clock.png")}
-										/>
-										<TextComponent className='text-[18px] text-primary font-subtitle'>
-											5 min
-										</TextComponent>
-									</View>
-								</View>
-								<Image
-									className='mb-[20] md:hidden'
-									resizeMode='cover'
-									source={require("@/assets/ui/arrow_down.png")}
-								/>
-							</View>
-							<View className='hidden md:flex md:mr-12 md:ml-12 md:mt-28'>
-								<Image
-									className='-rotate-90'
-									resizeMode='cover'
-									source={require("@/assets/ui/arrow_down.png")}
-								/>
-							</View>
-							{/*game 1*/}
-							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
-								<GameCard
-									source={require("@/assets/games/game_9.png")}
+									source={require("@/assets/ui/memory2.png")}
 									name='Symbol Search'
 									route='SymbolSearch'
 									category='Memory'
@@ -147,11 +86,12 @@ const Today = ({ navigation }: any) => {
 									source={require("@/assets/ui/arrow_down.png")}
 								/>
 							</View>
+
 							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
 								<GameCard
-									source={require("@/assets/games/game_8.png")}
-									name='Sudoku'
-									route='Sudoku'
+									source={require("@/assets/ui/math2.png")}
+									name='Math'
+									route='Math'
 									category='Problem solving'
 									navigation={navigation}
 								/>
@@ -163,7 +103,7 @@ const Today = ({ navigation }: any) => {
 											source={require("@/assets/ui/clock.png")}
 										/>
 										<TextComponent className='text-[18px] text-primary font-subtitle'>
-											60 min
+											5 min
 										</TextComponent>
 									</View>
 								</View>
@@ -180,13 +120,12 @@ const Today = ({ navigation }: any) => {
 									source={require("@/assets/ui/arrow_down.png")}
 								/>
 							</View>
-							{/*	game 2*/}
-							<View className='items-center md:w-[300px]'>
+							<View className='items-center md:w-[300px]' style={{ flex: 1 }}>
 								<GameCard
-									source={require("@/assets/games/game_2.png")}
-									name='Block Puzzle'
-									route='BlockDocku'
-									category='Focus'
+									source={require("@/assets/ui/honoi3.png")}
+									name='Hanoi Tower'
+									route='HanoiTower'
+									category='Problem solving'
 									navigation={navigation}
 								/>
 								<View className='mb-[30]'>
@@ -197,10 +136,15 @@ const Today = ({ navigation }: any) => {
 											source={require("@/assets/ui/clock.png")}
 										/>
 										<TextComponent className='text-[18px] text-primary font-subtitle'>
-											7 min
+											19 min
 										</TextComponent>
 									</View>
 								</View>
+								<Image
+									className='mb-[20] md:hidden'
+									resizeMode='cover'
+									source={require("@/assets/ui/arrow_down.png")}
+								/>
 							</View>
 						</View>
 						<View

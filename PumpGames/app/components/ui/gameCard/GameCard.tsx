@@ -1,7 +1,7 @@
 import TextComponent from "@/components/ui/text/TextComponent"
 import { coreStore } from "@/store"
 import React from "react"
-import { Image, TouchableOpacity, View } from "react-native"
+import { Image, Platform, TouchableOpacity, View } from "react-native"
 
 interface IGameCardProps {
 	source: any
@@ -34,8 +34,8 @@ const GameCard = ({
 			}}
 		>
 			<Image
-				className='mb-[20] w-[200px] h-[200px]'
-				resizeMode='contain'
+				className='mb-[20] w-[200px] h-[200px] shadow-[black] shadow-sm rounded-[24px] border-[1px] border-accent/30'
+				resizeMode='cover'
 				source={source}
 			/>
 			<View className='mb-[4]'>

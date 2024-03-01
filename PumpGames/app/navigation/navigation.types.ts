@@ -107,37 +107,21 @@ export const DEFAULT_GAMES: IGame[] = [
 		timer: 0,
 		rewards: [],
 		benefits: []
+	},
+	{
+		name: "BlockDocku",
+		route: "BlockDocku",
+		title: "Block Puzzle",
+		categories: [CATEGORIES.Focus],
+		isFree: true,
+		isCompleted: false,
+		isProgress: false,
+		currentStep: 1,
+		completeStep: 0,
+		steps: 5,
+		initialPaidStep: undefined,
+		timer: 0,
+		rewards: [],
+		benefits: []
 	}
-	// {
-	// 	name: "BlockDocku",
-	// 	route: "BlockDocku",
-	// 	title: "Block Puzzle",
-	// 	categories: [CATEGORIES.Focus],
-	// 	isFree: true,
-	// 	isCompleted: false,
-	// 	isProgress: false,
-	// 	currentStep: 1,
-	// 	completeStep: 0,
-	// 	steps: 5,
-	// 	initialPaidStep: undefined,
-	// 	timer: 0,
-	// 	rewards: [],
-	// 	benefits: []
-	// },
-	// {
-	// 	name: "Test",
-	// 	route: "Test",
-	// 	title: "Test",
-	// 	categories: [CATEGORIES.Focus],
-	// 	isFree: true,
-	// 	isCompleted: false,
-	// 	isProgress: false,
-	// 	currentStep: 1,
-	// 	completeStep: 0,
-	// 	steps: 5,
-	// 	initialPaidStep: undefined,
-	// 	timer: 0,
-	// 	rewards: [],
-	// 	benefits: []
-	// }
 ]

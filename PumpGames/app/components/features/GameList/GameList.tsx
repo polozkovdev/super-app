@@ -47,8 +47,8 @@ const GameList = ({ navigation, category, time }: any) => {
 								}}
 							>
 								<Image
-									className={`mb-[20] w-[200px] h-[200px] drop-shadow-2xl`}
-									resizeMode='contain'
+									className='mb-[20] w-[200px] h-[200px] shadow-[black] shadow-sm rounded-[24px] border-[1px] border-accent/30'
+									resizeMode='cover'
 									style={[styles.image, isHovered && styles.imageHovered]}
 									source={source}
 								/>
@@ -71,7 +71,7 @@ const GameList = ({ navigation, category, time }: any) => {
 				)
 			) : (
 				<TextComponent type='title'>
-					No games were found that fit this category
+					No games were found{"\n"} that fit this category
 				</TextComponent>
 			)}
 		</View>

@@ -1,7 +1,7 @@
 import Levels from "@/components/features/Levels/Levels"
 import Layout from "@/components/ui/layout/Layout"
 import TextComponent from "@/components/ui/text/TextComponent"
-import { AppConstants } from "@/constants/app.constants"
+import { AppConstants, GAMES } from "@/constants/app.constants"
 import Loading from "@/screens/loading/Loading"
 import { useStore } from "@/store"
 import { observer } from "mobx-react-lite"
@@ -28,6 +28,8 @@ const GameOverview = ({ navigation, ...props }: any) => {
 	if (!game) {
 		return <Loading />
 	}
+	console.log("game", game)
+	const image = GAMES.find(i => i.route === route)?.source
 	return (
 		<View
 			style={{
@@ -54,9 +56,9 @@ const GameOverview = ({ navigation, ...props }: any) => {
 							className={`flex-1 items-center md:mb-0 md:w-[300px] mb-[50px]`}
 						>
 							<Image
-								className='mb-[20] w-[200px] h-[200px]'
-								resizeMode='contain'
-								source={require("@/assets/games/game_9.png")}
+								className='mb-[20] w-[200px] h-[200px] shadow-[black] shadow-sm rounded-[24px] border-[1px] border-accent/30'
+								resizeMode='cover'
+								source={image}
 							/>
 							<View className='mb-[10]'>
 								<TextComponent

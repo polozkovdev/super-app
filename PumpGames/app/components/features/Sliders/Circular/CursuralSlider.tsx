@@ -6,15 +6,11 @@ import Carousel from "react-native-reanimated-carousel"
 const scale = 0.9
 const PAGE_WIDTH = Dimensions.get("window").width * scale
 const IMAGES_GAMES_LIST = [
-	require("@/assets/games/game_1.png"),
-	require("@/assets/games/game_2.png"),
-	require("@/assets/games/game_3.png"),
-	require("@/assets/games/game_4.png"),
-	require("@/assets/games/game_5.png"),
-	require("@/assets/games/game_6.png"),
-	require("@/assets/games/game_7.png"),
-	require("@/assets/games/game_8.png"),
-	require("@/assets/games/game_9.png")
+	require("@/assets/ui/math2.png"),
+	require("@/assets/ui/blick.png"),
+	require("@/assets/ui/sudoke2.png"),
+	require("@/assets/ui/memory2.png"),
+	require("@/assets/ui/honoi3.png")
 ]
 
 function CircularSlider() {
@@ -87,6 +83,9 @@ function CircularSlider() {
 
 const styles = StyleSheet.create({
 	image: {
+		borderRadius: 14,
+		borderWidth: 1,
+		borderColor: "#FFFFFF",
 		width: 220,
 		height: 220
 	}
