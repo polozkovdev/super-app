@@ -110,9 +110,6 @@ const SymbolSearch = ({
 	}
 
 	const handleCardPress = (index: number) => {
-		if (!timerStart) {
-			setTimerStart(true)
-		}
 		if (matched.includes(index) || opened.includes(index)) return
 		const updatedOpened = [...opened, index]
 		setOpened(updatedOpened)

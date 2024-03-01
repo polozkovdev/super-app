@@ -140,11 +140,6 @@ const Today = ({ navigation }: any) => {
 										</TextComponent>
 									</View>
 								</View>
-								<Image
-									className='mb-[20] md:hidden'
-									resizeMode='cover'
-									source={require("@/assets/ui/arrow_down.png")}
-								/>
 							</View>
 						</View>
 						<View
