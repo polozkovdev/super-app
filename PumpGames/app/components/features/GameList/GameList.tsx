@@ -24,7 +24,7 @@ const GameList = ({ navigation, category, time }: any) => {
 		setHoveredGame(null)
 	}
 	return (
-		<View className='md:flex-row flex-wrap items-stretch justify-center mb-[140px] md:items-start gap-[60px]'>
+		<View className='md:flex-row flex-wrap items-stretch justify-center mb-[100px] md:items-start gap-[60px]'>
 			{filteredGames.length > 0 ? (
 				filteredGames.map(
 					({ name, categories, source, route, description }, index) => {

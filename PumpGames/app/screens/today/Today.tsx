@@ -142,24 +142,24 @@ const Today = ({ navigation }: any) => {
 								</View>
 							</View>
 						</View>
-						<View
-							className='mt-auto'
-							style={{
-								display: isDesktop ? "flex" : "none"
-							}}
-						>
-							<Button
-								children='Start playing'
-								isArrow
-								styleButton={{
-									width: isDesktop ? 300 : 150
-								}}
-								onPress={() => {
-									coreStore.updatePreviousRoute("Today")
-									navigation.navigate("Games")
-								}}
-							/>
-						</View>
+						{/*<View*/}
+						{/*	className='mt-auto'*/}
+						{/*	style={{*/}
+						{/*		display: isDesktop ? "flex" : "none"*/}
+						{/*	}}*/}
+						{/*>*/}
+						{/*	<Button*/}
+						{/*		children='Start playing'*/}
+						{/*		isArrow*/}
+						{/*		styleButton={{*/}
+						{/*			width: isDesktop ? 300 : 150*/}
+						{/*		}}*/}
+						{/*		onPress={() => {*/}
+						{/*			coreStore.updatePreviousRoute("Today")*/}
+						{/*			navigation.navigate("Games")*/}
+						{/*		}}*/}
+						{/*	/>*/}
+						{/*</View>*/}
 						{!isDesktop && (
 							<View
 								style={{
@@ -170,19 +170,19 @@ const Today = ({ navigation }: any) => {
 					</View>
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
-				<Button
-					children='Start playing'
-					isArrow
-					style={{
-						display: isDesktop ? "none" : "flex"
-					}}
-					styleButton={{
-						width: 300
-					}}
-					onPress={() => navigation.navigate("Games")}
-				/>
-			</View>
+			{/*<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>*/}
+			{/*	<Button*/}
+			{/*		children='Start playing'*/}
+			{/*		isArrow*/}
+			{/*		style={{*/}
+			{/*			display: isDesktop ? "none" : "flex"*/}
+			{/*		}}*/}
+			{/*		styleButton={{*/}
+			{/*			width: 300*/}
+			{/*		}}*/}
+			{/*		onPress={() => navigation.navigate("Games")}*/}
+			{/*	/>*/}
+			{/*</View>*/}
 		</View>
 	)
 }

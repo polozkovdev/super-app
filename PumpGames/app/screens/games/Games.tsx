@@ -74,37 +74,37 @@ const Games = ({ navigation }: any) => {
 							<View className='h-[2px] w-full bg-[#3F1210]/10' />
 						</View>
 						<GameList category={category} navigation={navigation} />
-						<View
-							className='mt-auto'
-							style={{
-								display: isDesktop ? "flex" : "none"
-							}}
-						>
-							<Button
-								children='Unlock all free games'
-								iconLeftPath='@/assets/ui/unlock.png'
-								style={{
-									minWidth: 300
-								}}
-								onPress={unlockHandler}
-							/>
-						</View>
+						{/*<View*/}
+						{/*	className='mt-auto'*/}
+						{/*	style={{*/}
+						{/*		display: isDesktop ? "flex" : "none"*/}
+						{/*	}}*/}
+						{/*>*/}
+						{/*	<Button*/}
+						{/*		children='Unlock all free games'*/}
+						{/*		iconLeftPath='@/assets/ui/unlock.png'*/}
+						{/*		style={{*/}
+						{/*			minWidth: 300*/}
+						{/*		}}*/}
+						{/*		onPress={unlockHandler}*/}
+						{/*	/>*/}
+						{/*</View>*/}
 					</View>
 				</Layout>
 			</ScrollView>
-			<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>
-				<Button
-					children='Unlock all free games'
-					iconLeftPath='@/assets/ui/unlock.png'
-					onPress={unlockHandler}
-					style={{
-						display: isDesktop ? "none" : "flex"
-					}}
-					styleButton={{
-						width: 300
-					}}
-				/>
-			</View>
+			{/*<View className='absolute bottom-[14px] left-0 right-0 shadow-[black]/10 shadow-sm md:hidden'>*/}
+			{/*	<Button*/}
+			{/*		children='Unlock all free games'*/}
+			{/*		iconLeftPath='@/assets/ui/unlock.png'*/}
+			{/*		onPress={unlockHandler}*/}
+			{/*		style={{*/}
+			{/*			display: isDesktop ? "none" : "flex"*/}
+			{/*		}}*/}
+			{/*		styleButton={{*/}
+			{/*			width: 300*/}
+			{/*		}}*/}
+			{/*	/>*/}
+			{/*</View>*/}
 		</View>
 	)
 }

@@ -1,9 +1,9 @@
-import Button from "@/components/ui/button/Button"
 import TextComponent from "@/components/ui/text/TextComponent"
 import gameWrapper from "@/hoc/gameWrapper"
+import { MaterialIcons } from "@expo/vector-icons"
 import { observer } from "mobx-react-lite"
 import React, { useEffect, useState } from "react"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { useMediaQuery } from "react-responsive"
 
 interface Disc {
@@ -177,27 +177,33 @@ const TowersOfHanoi: React.FC = () => {
 					/>
 				)}
 			</View>
-			<View style={styles.towers}>{renderTowers()}</View>
-			<View
-				style={{
-					flexDirection: "row"
-				}}
-			>
-				<Button
-					children='Restart'
-					onPress={initGame}
-					className='mt-14'
-					styleButton={{
-						minWidth: 140
-					}}
-				/>
-				{/*<TouchableOpacity onPress={initGame} style={styles.restartButton}>*/}
-				{/*	<TextComponent style={styles.buttonText}>Restart</TextComponent>*/}
-				{/*</TouchableOpacity>*/}
-				{/*<TouchableOpacity onPress={moveDiscs}>*/}
-				{/*	<Text style={styles.buttonText}>Move Discs</Text>*/}
-				{/*</TouchableOpacity>*/}
+			<View>
+				{/*<Text style={styles.moves}>{moves} Moves</Text>*/}
+				<TouchableOpacity style={styles.restart} onPress={initGame}>
+					<MaterialIcons name='restart-alt' style={styles.restartIcon} />
+				</TouchableOpacity>
 			</View>
+			<View style={styles.towers}>{renderTowers()}</View>
+			{/*<View*/}
+			{/*	style={{*/}
+			{/*		flexDirection: "row"*/}
+			{/*	}}*/}
+			{/*>*/}
+			{/*	<Button*/}
+			{/*		children='Restart'*/}
+			{/*		onPress={initGame}*/}
+			{/*		className='mt-14'*/}
+			{/*		styleButton={{*/}
+			{/*			minWidth: 140*/}
+			{/*		}}*/}
+			{/*	/>*/}
+			{/*	/!*<TouchableOpacity onPress={initGame} style={styles.restartButton}>*!/*/}
+			{/*	/!*	<TextComponent style={styles.buttonText}>Restart</TextComponent>*!/*/}
+			{/*	/!*</TouchableOpacity>*!/*/}
+			{/*	/!*<TouchableOpacity onPress={moveDiscs}>*!/*/}
+			{/*	/!*	<Text style={styles.buttonText}>Move Discs</Text>*!/*/}
+			{/*	/!*</TouchableOpacity>*!/*/}
+			{/*</View>*/}
 		</View>
 	)
 }
@@ -207,6 +213,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center"
+	},
+	restart: {
+		marginLeft: "auto"
+	},
+	restartIcon: {
+		fontSize: 24,
+		color: "#000"
 	},
 	message: {
 		width: "100%",
